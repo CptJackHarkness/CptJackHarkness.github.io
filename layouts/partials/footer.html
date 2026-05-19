@@ -1,11 +1,5 @@
 <footer class="site-footer">
     <section class="copyright">
-        &copy; 
-        {{ if customs "startYear" }}
-            {{ .Scratch.Set "pages" (where .Site.Pages "Type" "in" .Site.Params.mainSections) }}
-            {{ .Scratch.Set "pages" ((.Scratch.Get "pages").ByDate) }}
-            {{ .Scratch.Get "startYear" }} - 
-        {{ end }}
-        {{ now.Format "2006" }} {{ .Site.Title }}
+        &copy; {{ now.Format "2006" }} {{ .Site.Title }}
     </section>
 </footer>
