@@ -41,7 +41,7 @@ theme = 'hugo-theme-stack'
     params = { icon = "flag" }
 
 [[menu.main]]
-    name = "Wargaming (ATEC)"
+    name = "Wargaming"
     url = "/categories/wargaming/"
     weight = 40
     params = { icon = "terminal" }
