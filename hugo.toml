@@ -1,4 +1,4 @@
-baseURL = '/'
+baseURL = 'https://cptjackharkness.github.io/'
 languageCode = 'en'
 title = 'Ricardo Ribeiro | Cybersecurity'
 theme = 'hugo-theme-stack'
