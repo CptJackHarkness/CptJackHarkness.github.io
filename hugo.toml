@@ -23,25 +23,33 @@ theme = 'hugo-theme-stack'
     url = "https://github.com/CptJackHarkness"
 
 [[menu.main]]
+    identifier = "home"
     name = "Home"
     url = "/"
     weight = 10
-    params = { icon = "home" }
+    [menu.main.params]
+        icon = "home"
 
 [[menu.main]]
+    identifier = "homelab"
     name = "Homelab"
     url = "/categories/homelab/"
     weight = 20
-    params = { icon = "server" }
+    [menu.main.params]
+        icon = "server"
 
 [[menu.main]]
+    identifier = "ctfs"
     name = "CTFs"
     url = "/categories/ctfs/"
     weight = 30
-    params = { icon = "flag" }
+    [menu.main.params]
+        icon = "flag"
 
 [[menu.main]]
-    name = "Wargaming"
+    identifier = "wargaming"
+    name = "Wargaming (ATEC)"
     url = "/categories/wargaming/"
     weight = 40
-    params = { icon = "terminal" }
+    [menu.main.params]
+        icon = "terminal"
