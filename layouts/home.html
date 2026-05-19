@@ -1,0 +1,44 @@
+{{ define "main" }}
+    <style>
+        /* Forçar texto branco no cartão de boas-vindas */
+        .welcome-card, .welcome-card h1, .welcome-card h2, .welcome-card h3, .welcome-card p, .welcome-card li, .welcome-card strong {
+            color: #ffffff !important;
+        }
+        
+        /* Formatar a imagem como um Banner horizontal */
+        .welcome-card img {
+            width: 100%; /* Ocupa a largura toda do cartão */
+            max-height: 300px; /* Limita a altura para não ficar gigante (podes ajustar este valor) */
+            object-fit: cover; /* Garante que a imagem não fica esticada nem distorcida */
+            border-radius: 8px; /* Dá um toque suave nos cantos da imagem */
+            margin-bottom: 1.5rem; /* Espaço entre a base do banner e o "Hi! I'm Ricardo..." */
+            display: block; /* Garante que a imagem fica isolada no topo */
+        }
+    </style>
+
+    {{ if .Content }}
+    <article class="article welcome-card clearfix" style="padding: 2rem; margin-bottom: 2.5rem; background-color: var(--card-background); border-radius: var(--card-border-radius); box-shadow: var(--shadow-l2);">
+        <header class="article-header">
+            <h1 class="article-title" style="font-size: 2rem; margin-bottom: 1rem;">{{ .Title }}</h1>
+        </header>
+        <section class="article-content">
+            {{ .Content }}
+        </section>
+    </article>
+    {{ end }}
+
+    <h2 class="section-title" style="margin-bottom: 1.5rem; color: var(--body-text-color);">Últimos Write-ups e Projetos</h2>
+
+    {{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
+    {{ $notHidden := where .Site.RegularPages "Params.hidden" "!=" true }}
+    {{ $filtered := ($pages | intersect $notHidden) }}
+    {{ $paginator := .Paginate $filtered }}
+
+    <section class="article-list">
+        {{ range $index, $element := $paginator.Pages }}
+            {{ partial "article-list/default" . }}
+        {{ end }}
+    </section>
+
+    {{ partial "pagination.html" . }}
+{{ end }}
