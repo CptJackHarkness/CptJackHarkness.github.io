@@ -5,6 +5,7 @@ theme = 'hugo-theme-stack'
 
 [params]
     description = 'Cybersecurity & SOC Analysis Portfolio'
+    showPoweredBy = false
 
 [params.sidebar]
     subtitle = 'Cybersecurity Student | Future SOC Analyst'
