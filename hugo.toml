@@ -48,7 +48,7 @@ theme = 'hugo-theme-stack'
 
 [[menu.main]]
     identifier = "wargaming"
-    name = "Wargaming (ATEC)"
+    name = "Wargaming"
     url = "/categories/wargaming/"
     weight = 40
     [menu.main.params]
