@@ -4,6 +4,7 @@ image: cover.png
 description: "How to identify open ports and vulnerable services on a target host."
 date: 2026-05-16
 categories:
+    - quick-writeups
     - Pentesting
     - Recon
 tags:

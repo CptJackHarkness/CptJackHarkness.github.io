@@ -6,7 +6,7 @@ date: 2026-05-15
 draft: false
 avatar: "cover.jpg"
 ---
-![Banner do Portfólio de Cibersegurança](/cover.jpg)
+![Banner do Portfólio de Cibersegurança](/cover.PNG)
 Hi! I'm **Ricardo Ribeiro**, a Cybersecurity student.
 
 This space will be used to document my home labs, study notes, and technical reports (*write-ups*).

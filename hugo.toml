@@ -54,6 +54,14 @@ theme = 'hugo-theme-stack'
     [menu.main.params]
         icon = "terminal"
 
+[[menu.main]]
+    identifier = "quick-writeups"
+    name = "Quick Writeups"
+    url = "/categories/quick-writeups/"
+    weight = 50
+    [menu.main.params]
+        icon = "bolt"
+
 [params.colorScheme]
     default = "dark"
     toggle = false

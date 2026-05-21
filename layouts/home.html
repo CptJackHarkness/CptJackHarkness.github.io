@@ -5,13 +5,12 @@
             color: #ffffff !important;
         }
         
-        /* Formatar a imagem como um Banner horizontal */
+       /* Formatar a imagem como um Banner horizontal na totalidade */
         .welcome-card img {
             width: 100%; /* Ocupa a largura toda do cartão */
-            max-height: 300px; /* Limita a altura para não ficar gigante (podes ajustar este valor) */
-            object-fit: cover; /* Garante que a imagem não fica esticada nem distorcida */
-            border-radius: 8px; /* Dá um toque suave nos cantos da imagem */
-            margin-bottom: 1.5rem; /* Espaço entre a base do banner e o "Hi! I'm Ricardo..." */
+            height: auto; /* Escala a altura proporcionalmente à largura original (500px) */
+            border-radius: 8px; /* Dá um toque suave nos cantos */
+            margin-bottom: 1.5rem; /* Espaço entre a base do banner e o texto */
             display: block; /* Garante que a imagem fica isolada no topo */
         }
     </style>
