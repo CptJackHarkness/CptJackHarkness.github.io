@@ -53,3 +53,7 @@ theme = 'hugo-theme-stack'
     weight = 40
     [menu.main.params]
         icon = "terminal"
+
+[params.colorScheme]
+    default = "dark"
+    toggle = false
