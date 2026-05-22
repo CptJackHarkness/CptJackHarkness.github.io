@@ -1,6 +1,6 @@
 baseURL = 'https://cptjackharkness.github.io/'
 languageCode = 'en'
-title = 'Ricardo Ribeiro | Cybersecurity'
+title = 'Ricardo Ribeiro'
 theme = 'hugo-theme-stack'
 
 [params]

@@ -1,17 +1,17 @@
 ---
 title: "Homelab"
-description: "A minha sandbox pessoal: Automação, self-hosting e o entretenimento."
+description: "My personal sandbox: Automation, self-hosting, and entertainment."
 image: "cover.png"
 ---
 
-O meu **Homelab** é o meu campo de treinos privado para cibersegurança, mas é também o coração digital da minha casa.
+My **Homelab** is my private training ground for cybersecurity, but it is also the digital heart of my home.
 
-Em vez de ser apenas um ambiente estéril e isolado para laboratórios, é uma infraestrutura divertida que mantenho 24/7. É aqui que misturo a minha paixão por *Blue Team* e defesa de sistemas com projetos pessoais de automação, gestão de conteúdos e entretenimento.
+Instead of being just a sterile and isolated environment for labs, it is a fun infrastructure that I maintain 24/7. This is where I mix my passion for Blue Team operations and systems defense with personal projects for automation, content management, and entertainment.
 
-**O que vais encontrar nesta secção:**
-* **Cibersegurança & Blue Team:** Implementação de SIEM, análise de telemetria, hardening de sistemas e gestão de firewalls.
-* **Infraestrutura & Virtualização:** Gestão do meu ambiente Proxmox e orquestração de serviços em Docker para manter tudo a rolar.
-* **Automação & Smart Home:** Integrações práticas com o Home Assistant para tornar a casa inteligente.
-* **Self-Hosting & Lazer:** A arquitetura por trás dos meus serviços pessoais de media e diversão, garantindo que tudo corre de forma fluida, privada e sob o meu total controlo.
+**What you will find in this section:**
+* **Cybersecurity & Blue Team:** SIEM implementation, telemetry analysis, systems hardening, and firewall management.
+* **Infrastructure & Virtualization:** Managing my Proxmox environment and orchestrating Docker services to keep everything running.
+* **Automation & Smart Home:** Practical integrations with Home Assistant to make my home smart.
+* **Self-Hosting & Leisure:** The architecture behind my personal media and entertainment services, ensuring everything runs smoothly, privately, and under my complete control.
 
-Mais do que mostrar ferramentas, esta secção é o diário de bordo de uma infraestrutura real, construída tanto para caçar ameaças como para servir as minhas paixões tecnológicas diárias.
+More than just showing tools, this section is the logbook of a real infrastructure, built both to hunt threats and to serve my daily technological passions.

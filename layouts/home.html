@@ -1,28 +1,74 @@
 {{ define "main" }}
     <style>
-        /* Forçar texto branco no cartão de boas-vindas */
+        /* Forçar texto branco no cartão */
         .welcome-card, .welcome-card h1, .welcome-card h2, .welcome-card h3, .welcome-card p, .welcome-card li, .welcome-card strong {
             color: #ffffff !important;
         }
         
-       /* Formatar a imagem como um Banner horizontal na totalidade */
+        /* Formatar o Banner horizontal */
         .welcome-card img {
-            width: 100%; /* Ocupa a largura toda do cartão */
-            height: auto; /* Escala a altura proporcionalmente à largura original (500px) */
-            border-radius: 8px; /* Dá um toque suave nos cantos */
-            margin-bottom: 1.5rem; /* Espaço entre a base do banner e o texto */
-            display: block; /* Garante que a imagem fica isolada no topo */
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        /* --- ESTILOS DO DROPDOWN --- */
+        .welcome-dropdown summary {
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer; /* Muda o rato para a mãozinha */
+            list-style: none; /* Esconde a seta padrão em alguns browsers */
+            display: flex;
+            justify-content: space-between; /* Coloca o título à esquerda e a seta à direita */
+            align-items: center;
+            outline: none;
+        }
+        
+        /* Esconde a seta padrão no Safari */
+        .welcome-dropdown summary::-webkit-details-marker {
+            display: none;
+        }
+
+        /* Seta personalizada que roda */
+        .welcome-dropdown summary::after {
+            content: "▼";
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        /* Roda a seta 180 graus quando o dropdown está aberto */
+        .welcome-dropdown[open] summary::after {
+            transform: rotate(-180deg);
+        }
+
+        /* Animação suave para o conteúdo ao abrir */
+        .welcome-dropdown-content {
+            margin-top: 1.5rem;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 
     {{ if .Content }}
     <article class="article welcome-card clearfix" style="padding: 2rem; margin-bottom: 2.5rem; background-color: var(--card-background); border-radius: var(--card-border-radius); box-shadow: var(--shadow-l2);">
-        <header class="article-header">
-            <h1 class="article-title" style="font-size: 2rem; margin-bottom: 1rem;">{{ .Title }}</h1>
-        </header>
-        <section class="article-content">
-            {{ .Content }}
-        </section>
+        <details class="welcome-dropdown">
+            <summary>{{ .Title }}</summary>
+            <div class="welcome-dropdown-content">
+                {{ .Content }}
+            </div>
+        </details>
     </article>
     {{ end }}
 
