@@ -1,0 +1,51 @@
+baseURL: "https://cptjackharkness.github.io/"
+languageCode: en
+title: Ricardo Ribeiro
+theme: PaperMod
+paginate: 10
+
+params:
+  homeInfoParams:
+    Title: "Hi, I'm Ricardo Ribeiro "
+    Content: >
+      Cybersecurity student based in Braga, Portugal currently taking a
+      professional course and learning through hands-on practice.
+      This site is where I document what I'm building and breaking: home lab
+      setups, CTF challenges, wargaming exercises, and technical write-ups.
+      Not a polished resume, just a working journal.
+
+  socialIcons:
+    - name: github
+      url: "https://github.com/CptJackHarkness"
+    - name: linkedin
+      url: "https://www.linkedin.com/in/ricardo-ribeiro-2277ab23b/"
+
+  defaultTheme: dark
+  ShowReadingTime: true
+  ShowShareButtons: false
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+
+menu:
+  main:
+    - identifier: about
+      name: About Me
+      url: /about/
+      weight: 10
+    - identifier: homelab
+      name: Homelab
+      url: /homelab/
+      weight: 20
+    - identifier: ctfs
+      name: CTFs
+      url: /ctfs/
+      weight: 30
+    - identifier: wargaming
+      name: Wargaming
+      url: /wargaming/
+      weight: 40
+    - identifier: quick-writeups
+      name: Quick Writeups
+      url: /quick-writeups/
+      weight: 50
