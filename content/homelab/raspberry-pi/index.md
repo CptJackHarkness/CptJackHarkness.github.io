@@ -3,7 +3,6 @@ title: "Homelab #1: Raspberry Pi 4 — Pi-hole, Tailscale & Jellyfin"
 date: 2026-06-01
 description: "How I turned a Raspberry Pi 4 into a home DNS filter, VPN node, and media server."
 ---
-<!--more-->
 
 ## Overview
 
