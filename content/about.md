@@ -29,5 +29,5 @@ go smoothly. If something here is useful to you, that's a bonus.
 
 ## Get in Touch
 
-Github: https://github.com/CptJackHarkness
-Linkedin: https://www.linkedin.com/in/ricardo-ribeiro-2277ab23b/
+- [GitHub](https://github.com/CptJackHarkness)
+- [LinkedIn](https://www.linkedin.com/in/ricardo-ribeiro-2277ab23b/)
