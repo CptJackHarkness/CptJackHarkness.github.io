@@ -13,6 +13,9 @@ params:
       This site is where I document what I'm building and breaking: home lab
       setups, CTF challenges, wargaming exercises, and technical write-ups.
       Not a polished resume, just a working journal.
+  ShowPoweredBy: false
+  copyright: "2024"
+  hidePostsOnHomePage: true
 
   socialIcons:
     - name: github
