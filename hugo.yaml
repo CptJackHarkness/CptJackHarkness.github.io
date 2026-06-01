@@ -6,7 +6,7 @@ paginate: 10
 
 params:
   homeInfoParams:
-    Title: "Hi, I'm Ricardo Ribeiro "
+    Title: "Hi, I'm Ricardo Ribeiro! "
     Content: >
       Cybersecurity student based in Braga, Portugal currently taking a
       professional course and learning through hands-on practice.
