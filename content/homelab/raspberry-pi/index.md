@@ -10,7 +10,7 @@ Before the SFF server arrives, my Raspberry Pi 4 is doing the heavy lifting.
 It currently runs three services: Pi-hole for DNS-level ad and tracker blocking,
 Tailscale for secure remote access, and Jellyfin as a self-hosted media server.
 
-This post documents the setup and what I learned along the way.
+This post documents a simple setup and what I learned along the way.
 
 ---
 
