@@ -2,12 +2,6 @@
 title: "Reverse Power — File Carving & Magic Bytes"
 date: 2026-06-03
 description: "A forensics challenge involving corrupted file signatures, hex editing, EXIF password extraction, and password-protected ZIP archives."
-tags:
-    - Forensics
-    - File Carving
-    - Hex Editing
-    - EXIF
-    - Magic Bytes
 ---
 
 ## Overview

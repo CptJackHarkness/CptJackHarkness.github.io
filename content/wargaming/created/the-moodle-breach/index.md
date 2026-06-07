@@ -2,14 +2,6 @@
 title: "The Moodle Breach — Multi-Vector Forensics"
 date: 2026-06-03
 description: "A miscellaneous challenge combining HTML source analysis, XOR decryption, EXIF metadata extraction, LSB steganography, Base64 decoding, and visual forensics to recover 6 flags."
-tags:
-    - Forensics
-    - Steganography
-    - XOR
-    - EXIF
-    - LSB
-    - Base64
-    - Web
 ---
 
 ## Overview

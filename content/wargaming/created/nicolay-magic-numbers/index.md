@@ -2,12 +2,6 @@
 title: "Nicolay Magic Numbers — Network Knocker & Brute Force"
 date: 2026-06-03
 description: "A multi-stage challenge involving port knocking with a Fibonacci sequence, WAF bypass via rate limiting, and a nested zip bomb requiring scripted extraction."
-tags:
-    - Port Knocking
-    - Brute Force
-    - WAF Bypass
-    - Scripting
-    - Networking
 ---
 
 ## Overview

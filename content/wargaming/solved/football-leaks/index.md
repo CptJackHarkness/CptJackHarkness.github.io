@@ -2,12 +2,6 @@
 title: "Football Leaks — Web Vulnerabilities Chain"
 date: 2026-06-03
 description: "A web challenge exploiting client-side authentication bypass, IDOR, and SQL injection to extract three flags from a football data leak portal."
-tags:
-    - Web
-    - IDOR
-    - SQL Injection
-    - Authentication Bypass
-    - OWASP
 ---
 
 ## Overview

@@ -2,13 +2,6 @@
 title: "Little Juice Challenge — Boot2Root"
 date: 2026-06-03
 description: "A Boot2Root Docker challenge involving port scanning, Git repository exposure, lateral movement via PostgreSQL, and privilege escalation through a misconfigured cronjob."
-tags:
-    - Boot2Root
-    - Nmap
-    - Git
-    - PostgreSQL
-    - Privilege Escalation
-    - Docker
 ---
 
 ## Overview

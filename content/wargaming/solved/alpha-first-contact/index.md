@@ -2,10 +2,6 @@
 title: "Alpha — First Contact"
 date: 2026-06-03
 description: "The introductory wargaming challenge requiring a simple /etc/hosts file edit to resolve a custom domain."
-tags:
-    - Networking
-    - DNS
-    - Linux
 ---
 
 ## Overview

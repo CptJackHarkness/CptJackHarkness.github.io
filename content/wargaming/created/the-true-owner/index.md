@@ -2,13 +2,6 @@
 title: "The True Owner — LFI, Base64 & Cookie Tampering"
 date: 2026-06-03
 description: "A web challenge chaining OWASP Top 10 vulnerabilities: information disclosure via robots.txt, Local File Inclusion, Base64-encoded credentials, and cookie tampering for privilege escalation."
-tags:
-    - Web
-    - LFI
-    - OWASP
-    - Cookie Tampering
-    - Base64
-    - Path Traversal
 ---
 
 ## Overview

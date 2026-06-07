@@ -2,12 +2,6 @@
 title: "Caesar — Hash Cracking & ROT8000"
 date: 2026-06-03
 description: "A two-part challenge combining SHA256 hash cracking, custom XOR-based decryption, and ROT8000 Unicode rotation to decode a message disguised as East Asian ideograms."
-tags:
-    - Cryptography
-    - Hash Cracking
-    - ROT8000
-    - XOR
-    - CyberChef
 ---
 
 ## Overview

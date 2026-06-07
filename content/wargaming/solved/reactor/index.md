@@ -2,12 +2,6 @@
 title: "Reactor — Binary Analysis & XOR Decoding"
 date: 2026-06-03
 description: "A reverse engineering challenge involving string extraction from a binary, hex-to-ASCII decoding, XOR binary-to-decimal conversion, and a two-stage access code challenge."
-tags:
-    - Reverse Engineering
-    - Binary Analysis
-    - XOR
-    - Strings
-    - CyberChef
 ---
 
 ## Overview

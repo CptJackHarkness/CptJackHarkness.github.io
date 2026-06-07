@@ -2,13 +2,6 @@
 title: "Meme Forum — Port Knocking & Password Cracking"
 date: 2026-06-03
 description: "A challenge combining hidden endpoint discovery, port knocking brute force, FTP access, and RAR password cracking with John the Ripper."
-tags:
-    - Port Knocking
-    - FTP
-    - Brute Force
-    - John the Ripper
-    - Scripting
-    - Networking
 ---
 
 ## Overview

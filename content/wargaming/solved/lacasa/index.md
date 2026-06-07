@@ -2,12 +2,6 @@
 title: "LaCasa — FTP, Steganography & Privilege Escalation"
 date: 2026-06-03
 description: "A Money Heist-themed challenge chaining anonymous FTP access, image steganography, SSH lateral movement, and vim-based root privilege escalation."
-tags:
-    - FTP
-    - Steganography
-    - SSH
-    - Privilege Escalation
-    - CTF
 ---
 
 ## Overview

@@ -2,10 +2,6 @@
 title: "Emergency Notes — Double XOR Cryptography"
 date: 2026-06-03
 description: "A cryptography challenge focused on the XOR operation and its reversibility, requiring players to test key combinations to decrypt a double-XOR-encrypted backup."
-tags:
-    - Cryptography
-    - XOR
-    - CyberChef
 ---
 
 ## Overview

@@ -2,12 +2,6 @@
 title: "Handsome Peter — Steganography Challenge"
 date: 2026-06-03
 description: "A multi-technique steganography challenge covering EXIF metadata, file appending, LSB, DCT, colour palette manipulation, and audio steganography."
-tags:
-    - Steganography
-    - EXIF
-    - LSB
-    - DCT
-    - Forensics
 ---
 
 ## Overview

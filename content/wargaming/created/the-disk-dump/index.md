@@ -2,13 +2,6 @@
 title: "The Disk Dump — FAT12 Forensics & XOR Decryption"
 date: 2026-06-03
 description: "A forensic imaging challenge involving FAT12 filesystem analysis, recovery of deleted files, a decoy rabbit hole, and XOR-based flag decryption."
-tags:
-    - Forensics
-    - File Carving
-    - FAT12
-    - XOR
-    - Disk Imaging
-    - Autopsy
 ---
 
 ## Overview

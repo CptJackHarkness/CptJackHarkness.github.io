@@ -2,11 +2,6 @@
 title: "Otillianni Math — Prime Number Indexing"
 date: 2026-06-03
 description: "A data obfuscation challenge where a flag is hidden inside 10,000 random characters by placing each flag character at prime number indices."
-tags:
-    - Scripting
-    - Python
-    - Mathematics
-    - Obfuscation
 ---
 
 ## Overview

@@ -2,13 +2,6 @@
 title: "Confusion — Multi-Layer Steganography with Movie Clues"
 date: 2026-06-03
 description: "A three-part steganography challenge using movie-themed passphrases, steghide extraction, Base64/Base32 decoding, and nested ZIP archives to reconstruct a split flag."
-tags:
-    - Steganography
-    - Steghide
-    - Base64
-    - Base32
-    - CyberChef
-    - Forensics
 ---
 
 ## Overview

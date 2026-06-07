@@ -2,11 +2,6 @@
 title: "Roda do Hamster — Layered Encoding Decoder"
 date: 2026-06-03
 description: "A challenge solved by scripting a recursive decoder that automatically strips multiple layers of Base16/32/64/85 and Ascii85 encoding until plain text is revealed."
-tags:
-    - Scripting
-    - Python
-    - Encoding
-    - Automation
 ---
 
 ## Overview

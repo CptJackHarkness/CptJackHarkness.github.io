@@ -7,3 +7,37 @@ description: "Structured laboratory exercises and academic wargaming scenarios. 
 
 - [Challenges We Created](/wargaming/created/)
 - [Challenges We Solved](/wargaming/solved/)
+
+---
+
+## Teams
+
+<details>
+<summary>My Team — BRAVO</summary>
+
+- Cláudio Rolo
+- Gabriel Caixinha
+- Guilherme Monteiro
+- Ivan Arrojado
+- João Duarte
+- [Luís Miguel](https://www.linkedin.com/in/luisfelipevidalmiguel)
+- Mickael Ferreira
+- Pedro Rodrigues
+- Ricardo Azevedo
+
+</details>
+
+<details>
+<summary>Opposing Team — ALPHA</summary>
+
+- Caio Lopes
+- [Cristiano Mota](https://www.linkedin.com/in/cristiano-mota-a277b9330)
+- [Diogo Oliveira](https://www.linkedin.com/in/diogo-oliveira-b67694368)
+- Gonçalo Rocha
+- João Barros
+- [Miguel Andrade](https://www.linkedin.com/in/mglandrade)
+- Nuno Soares
+- Pedro Vasconcelos
+- Rita Cambey
+
+</details>
