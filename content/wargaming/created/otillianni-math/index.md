@@ -1,5 +1,5 @@
 ---
-title: "Otillianni Math — Prime Number Indexing"
+title: "Otillianni Math - Prime Number Indexing"
 date: 2026-06-03
 description: "A data obfuscation challenge where a flag is hidden inside 10,000 random characters by placing each flag character at prime number indices."
 ---
@@ -24,13 +24,13 @@ A Python script:
 
 ## Solution Walkthrough
 
-### Step 1 — Read the File
+### Step 1 - Read the File
 ```python
 with open("otilianni.txt", "r") as f:
     content = f.read()
 ```
 
-### Step 2 — Implement the Prime Check Function
+### Step 2 - Implement the Prime Check Function
 ```python
 def is_prime(n):
     if n < 2:
@@ -41,7 +41,7 @@ def is_prime(n):
     return True
 ```
 
-### Step 3 — Extract Characters at Prime Indices
+### Step 3 - Extract Characters at Prime Indices
 Iterate over the string, collect characters at prime positions, and stop as soon as the closing `}` is found (to avoid capturing the random noise added after the flag):
 ```python
 flag = ""
@@ -58,7 +58,7 @@ print(flag)
 
 ## What I Learned
 
-Prime numbers have a property that makes them useful for data indexing — they are unpredictable to the naked eye and distributed across large ranges. This challenge reinforced the importance of recognising patterns in data and the value of scripting as an analytical tool. Without automation, manually checking 10,000 character positions would be infeasible.
+Prime numbers have a property that makes them useful for data indexing as they are unpredictable to the naked eye and distributed across large ranges. This challenge reinforced the importance of recognising patterns in data and the value of scripting as an analytical tool. Without automation, manually checking 10,000 character positions would be infeasible.
 
 ---
 

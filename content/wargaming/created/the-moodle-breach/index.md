@@ -1,12 +1,12 @@
 ---
-title: "The Moodle Breach — Multi-Vector Forensics"
+title: "The Moodle Breach - Multi-Vector Forensics"
 date: 2026-06-03
 description: "A miscellaneous challenge combining HTML source analysis, XOR decryption, EXIF metadata extraction, LSB steganography, Base64 decoding, and visual forensics to recover 6 flags."
 ---
 
 ## Overview
 
-"The Moodle Breach" is a miscellaneous challenge requiring analysis of multiple artefacts — HTML documents, images, and text files — to extract six distinct flags. It covers a broad range of techniques in one scenario.
+"The Moodle Breach" is a miscellaneous challenge requiring analysis of multiple artefacts — HTML documents, images, and text files - to extract six distinct flags. It covers a broad range of techniques in one scenario.
 
 ---
 
@@ -23,7 +23,7 @@ description: "A miscellaneous challenge combining HTML source analysis, XOR decr
 
 ## Solution Walkthrough
 
-### Flag 1 — HTML Comment + XOR (`incident_report.html`)
+### Flag 1 - HTML Comment + XOR (`incident_report.html`)
 
 Open the file and locate two comments: one at the top with `schema: 4d` (the XOR key) and one at the bottom with `tok=2b012c...` (the encrypted data).
 
@@ -44,7 +44,7 @@ print(flag)
 
 ---
 
-### Flag 2 — EXIF Metadata + Hex (`captura_03_moodle_admin.jpg`)
+### Flag 2 - EXIF Metadata + Hex (`captura_03_moodle_admin.jpg`)
 
 ```bash
 exiftool captura_03_moodle_admin.jpg | grep -i description
@@ -56,7 +56,7 @@ echo "664c61475f6653745f7b337831665f6d3030646c335f34646d316e7d" | xxd -r -p
 
 ---
 
-### Flag 3 — LSB Steganography (`captura_02_burpsuite_intercept.png`)
+### Flag 3 - LSB Steganography (`captura_02_burpsuite_intercept.png`)
 
 The `integrity_hashes.txt` hints at "lower bit planes of RGB channels".
 ```bash
@@ -68,7 +68,7 @@ Alternatively, use StegOnline online — upload the file, click **Extract Files/
 
 ---
 
-### Flag 4 — Meta Tag + Hex (`index.html`)
+### Flag 4 - Meta Tag + Hex (`index.html`)
 
 Inspect the HTML source and locate an anomalous meta tag:
 ```html
@@ -81,9 +81,9 @@ Decode the hex string via CyberChef (From Hex) or terminal.
 
 ---
 
-### Flag 5 — Base64 (`wargaming_notes.txt`)
+### Flag 5 - Base64 (`wargaming_notes.txt`)
 
-The file contains a WiFi note with a password ending in `==` — a clear Base64 padding indicator.
+The file contains a WiFi note with a password ending in `==` - a clear Base64 padding indicator.
 ```bash
 echo "ZkxhR19mU3Rfe2I0czM2NF93NHJnNG0zfQ==" | base64 -d
 ```
@@ -91,7 +91,7 @@ echo "ZkxhR19mU3Rfe2I0czM2NF93NHJnNG0zfQ==" | base64 -d
 
 ---
 
-### Flag 6 — Visual Analysis (`captura_06_php_source.png`)
+### Flag 6 - Visual Analysis (`captura_06_php_source.png`)
 
 Inspect the screenshot carefully. The value of the `$CFG->sessioncookie` PHP variable has been replaced with the flag. Read it directly from the image or use an OCR tool.
 

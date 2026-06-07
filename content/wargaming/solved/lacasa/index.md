@@ -1,5 +1,5 @@
 ---
-title: "LaCasa — FTP, Steganography & Privilege Escalation"
+title: "LaCasa - FTP, Steganography & Privilege Escalation"
 date: 2026-06-03
 description: "A Money Heist-themed challenge chaining anonymous FTP access, image steganography, SSH lateral movement, and vim-based root privilege escalation."
 ---
@@ -12,36 +12,36 @@ description: "A Money Heist-themed challenge chaining anonymous FTP access, imag
 
 ## Solution Walkthrough
 
-### Step 1 — Reconnaissance
+### Step 1 - Reconnaissance
 ```bash
 nmap <target-ip>
 ```
-Identified open ports including FTP and HTTP. Visited the website — `robots.txt` yielded nothing useful. The HTML source contained placeholder credentials that did not work on the login page.
+Identified open ports including FTP and HTTP. Visited the website - `robots.txt` yielded nothing useful. The HTML source contained placeholder credentials that did not work on the login page.
 
 ---
 
-### Step 2 — Anonymous FTP Access
+### Step 2 - Anonymous FTP Access
 Anonymous FTP login was enabled. Navigated to the accessible `pub` folder and found a file containing a credential hint: `toquio:BellaCiao`.
 
 ---
 
-### Step 3 — FTP Login as Tóquio
-Used the recovered credentials to log in as `toquio` and accessed the previously locked folder. Found 3 files — one containing the first flag.
+### Step 3 - FTP Login as Toquio
+Used the recovered credentials to log in as `toquio` and accessed the previously locked folder. Found 3 files - one containing the first flag.
 
 **Flag 1:** `FLAG{T0qu10_F0und_Th3_W4y}`
 
 ---
 
-### Step 4 — Image Steganography
-Analysed image files from the FTP server. One contained hidden data — extracted using `zsteg`:
+### Step 4 - Image Steganography
+Analysed image files from the FTP server. One contained hidden data - extracted using `zsteg`:
 ```bash
 zsteg <image>
 ```
-Output: a Base64-encoded hash. Decoded it to reveal the name **Silene Oliveira** — the actress who plays the character Tóquio in the series.
+Output: a Base64-encoded hash. Decoded it to reveal the name **Silene Oliveira** - the actress who plays the character Tóquio in the series.
 
 ---
 
-### Step 5 — Web Login & Further Enumeration
+### Step 5 - Web Login & Further Enumeration
 Used "Silene Oliveira" as a credential to log into the website. Gained access to an authenticated area containing 4 files:
 - Two files with a **latitude** and **longitude**
 - A **candidates list**
@@ -51,7 +51,7 @@ The coordinates (via Google Maps) pointed to **Berlin**. Cross-referencing with 
 
 ---
 
-### Step 6 — SSH Access as Berlim
+### Step 6 - SSH Access as Berlim
 ```bash
 ssh Berlim@<target-ip>
 ```
@@ -61,7 +61,7 @@ Found a flag hidden in the shell history:
 
 ---
 
-### Step 7 — Credential Discovery & Lateral Movement
+### Step 7 - Credential Discovery & Lateral Movement
 Continued exploring the home folder. Decoded an encoded file to reveal new credentials: `professor:V@tic4n0`. Switched user:
 ```bash
 su professor
@@ -69,7 +69,7 @@ su professor
 
 ---
 
-### Step 8 — Root Privilege Escalation via vim
+### Step 8 - Root Privilege Escalation via vim
 Checked sudo permissions:
 ```bash
 sudo -l
@@ -85,7 +85,7 @@ Accessed the root account and captured the third flag.
 
 ---
 
-### Step 9 — Final Flag
+### Step 9 - Final Flag
 Reviewed previously obtained files. Found the fourth flag inside `capitais.txt`.
 
 **Flag 4:** `FLAG{Porto_B3rc0_N4c4o}`

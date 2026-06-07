@@ -1,12 +1,12 @@
 ---
-title: "Roda do Hamster — Layered Encoding Decoder"
+title: "Roda do Hamster - Layered Encoding Decoder"
 date: 2026-06-03
 description: "A challenge solved by scripting a recursive decoder that automatically strips multiple layers of Base16/32/64/85 and Ascii85 encoding until plain text is revealed."
 ---
 
 ## Overview
 
-"Roda do Hamster" (Hamster Wheel) presented a file encoded in multiple successive layers of different encoding schemes. The `README.txt` described the approach required: since there were no passwords or symmetric keys, the solution was pure automated decoding — cycling through encoding algorithms until natural language emerged.
+"Roda do Hamster" (Hamster Wheel) presented a file encoded in multiple successive layers of different encoding schemes. The `README.txt` described the approach required: since there were no passwords or symmetric keys, the solution was pure automated decoding - cycling through encoding algorithms until natural language emerged.
 
 ---
 
@@ -59,7 +59,7 @@ while True:
 
 ## What I Learned
 
-When an encoding problem has no cryptographic key, scripted brute-force decoding across common encoding schemes is the right approach. The key insight here was recognising that Base64, Base32, and similar schemes are **encodings** (not encryption) and are trivially reversible — the challenge was just in chaining them automatically. Padding handling is a common pitfall.
+When an encoding problem has no cryptographic key, scripted brute-force decoding across common encoding schemes is the right approach. The key insight here was recognising that Base64, Base32, and similar schemes are **encodings** (not encryption) and are trivially reversible - the challenge was just in chaining them automatically. Padding handling is a common pitfall.
 
 ---
 

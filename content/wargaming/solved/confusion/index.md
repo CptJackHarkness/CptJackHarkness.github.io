@@ -1,5 +1,5 @@
 ---
-title: "Confusion — Multi-Layer Steganography with Movie Clues"
+title: "Confusion - Multi-Layer Steganography with Movie Clues"
 date: 2026-06-03
 description: "A three-part steganography challenge using movie-themed passphrases, steghide extraction, Base64/Base32 decoding, and nested ZIP archives to reconstruct a split flag."
 ---
@@ -12,14 +12,14 @@ description: "A three-part steganography challenge using movie-themed passphrase
 
 ## Solution Walkthrough
 
-### Step 1 — Read the README
+### Step 1 - Read the README
 `readme.txt` stated:
 - All passwords must be in uppercase
 - The flag is split across 3 files
 
 ---
 
-### Part 1 — First Image (100.jpeg)
+### Part 1 - First Image (100.jpeg)
 
 Analysed the EXIF metadata of `100.jpeg`:
 ```bash
@@ -39,12 +39,12 @@ The extracted file contained a Base64-encoded hash. Decoded it in CyberChef (Fro
 
 ---
 
-### Part 2 — Second Image
+### Part 2 - Second Image
 
-EXIF metadata on the second image hinted that the passphrase was the film referenced by the images — **INCEPTION**.
+EXIF metadata on the second image hinted that the passphrase was the film referenced by the images - **INCEPTION**.
 
 ```bash
-steghide extract -sf <image2> -p INCEPTION
+steghide extract -sf 200.jpeg -p INCEPTION
 ```
 Extracted a file containing a Base32-encoded hash. Decoded it in CyberChef (From Base32):
 
@@ -52,9 +52,9 @@ Extracted a file containing a Base32-encoded hash. Decoded it in CyberChef (From
 
 ---
 
-### Part 3 — Third File ("A113")
+### Part 3 - Third File ("A113")
 
-The file was named `A113` — a well-known Disney/Pixar easter egg appearing across many films. Used **DISNEY** as the passphrase to extract the hidden content:
+The file was named `A113`, a well-known Disney easter egg appearing across many films. Used **DISNEY** as the passphrase to extract the hidden content:
 
 ```bash
 steghide extract -sf A113 -p DISNEY
@@ -66,7 +66,7 @@ unzip <extracted_file>
 The second file's clue had mentioned **Limbo** as the solution for the final challenge (a reference to *Inception*'s concept of dream layers). Used **LIMBO** to extract the final hidden file:
 
 ```bash
-steghide extract -sf <final_image> -p LIMBO
+steghide extract -sf 300.jpeg -p LIMBO
 ```
 Decoded the extracted hash to obtain the last flag fragment:
 
@@ -83,7 +83,7 @@ Joined the three parts:
 
 ## What I Learned
 
-This challenge reinforced that steganography passphrases are often hidden in plain sight — metadata, cultural references, or thematic clues embedded in the challenge's narrative. Methodical metadata inspection with `exiftool` and familiarity with common film references (like the A113 easter egg) are genuinely useful skills in CTF steganography.
+This challenge reinforced that steganography passphrases are often hidden in plain sight with metadata, cultural references, or thematic clues embedded in the challenge's narrative. Methodical metadata inspection with `exiftool` and familiarity with common film references (like the A113 easter egg) are genuinely useful skills in CTF steganography.
 
 ---
 

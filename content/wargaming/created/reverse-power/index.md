@@ -1,5 +1,5 @@
 ---
-title: "Reverse Power — File Carving & Magic Bytes"
+title: "Reverse Power - File Carving & Magic Bytes"
 date: 2026-06-03
 description: "A forensics challenge involving corrupted file signatures, hex editing, EXIF password extraction, and password-protected ZIP archives."
 ---
@@ -30,7 +30,7 @@ description: "A forensics challenge involving corrupted file signatures, hex edi
 
 ## Solution Walkthrough
 
-### Step 1 — Identify & Repair the Main ZIP
+### Step 1 - Identify & Repair the Main ZIP
 ```bash
 file Serious_Business.pdf
 ```
@@ -41,7 +41,7 @@ unzip Serious_Business.pdf
 
 ---
 
-### Step 2 — Repair the Corrupted Image
+### Step 2 - Repair the Corrupted Image
 Inside the extracted folders, locate `broken.jpg` and `important.zip`. The image won't open because its signature is corrupted. Open it in a hex editor and replace the first 2 bytes:
 
 | Offset | Corrupted | Correct |
@@ -50,7 +50,7 @@ Inside the extracted folders, locate `broken.jpg` and `important.zip`. The image
 
 ---
 
-### Step 3 — Extract the Password and Flag
+### Step 3 - Extract the Password and Flag
 With the image repaired, read its EXIF Comment field:
 ```bash
 exiftool broken/folder2/broken.jpg | grep -i "comment"
@@ -66,7 +66,7 @@ unzip broken/folder4/important.zip
 
 ## What I Learned
 
-File extensions are just labels — the actual file type is determined by its internal signature. Attackers and defenders alike need to understand magic bytes: attackers use them to disguise malicious files, and analysts use them to correctly identify what a file actually is regardless of what it claims to be.
+File extensions are just labels and the actual file type is determined by its internal signature. Attackers and defenders alike need to understand magic bytes: attackers use them to disguise malicious files, and analysts use them to correctly identify what a file actually is regardless of what it claims to be.
 
 ---
 

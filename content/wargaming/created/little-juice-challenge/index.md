@@ -1,5 +1,5 @@
 ---
-title: "Little Juice Challenge — Boot2Root"
+title: "Little Juice Challenge - Boot2Root"
 date: 2026-06-03
 description: "A Boot2Root Docker challenge involving port scanning, Git repository exposure, lateral movement via PostgreSQL, and privilege escalation through a misconfigured cronjob."
 ---
@@ -30,15 +30,15 @@ Key vulnerabilities planted:
 - PostgreSQL on port 5433 configured to listen on all interfaces, containing SSH credentials in a `system_ssh` table
 - SSH on port 2222
 - HTTP server on port 8080
-- A root cronjob running `/opt/sync_git.sh` every minute with `chmod 777` — writable by any user
+- A root cronjob running `/opt/sync_git.sh` every minute with `chmod 777` - writable by any user
 
 ---
 
 ## Solution Walkthrough
 
-### Step 1 — Port Scanning
+### Step 1 - Port Scanning
 ```bash
-nmap -p- --min-rate 1000 172.30.2.33
+nmap -p- --min-rate 1000 <target-ip>
 ```
 **Ports discovered:**
 - `2121/tcp` — FTP (vsFTPd 3.0.5)
@@ -48,10 +48,10 @@ nmap -p- --min-rate 1000 172.30.2.33
 
 ---
 
-### Step 2 — Web Enumeration
+### Step 2 - Web Enumeration
 ```bash
-curl http://172.30.2.33:8080/robots.txt
-curl http://172.30.2.33:8080/
+curl http://<target-ip>:8080/robots.txt
+curl http://<target-ip>:8080/
 ```
 The `robots.txt` reveals a restricted `/README.txt`. An HTML comment in the page source exposes FTP credentials in plaintext:
 ```
@@ -60,12 +60,12 @@ anonymous:An0nym0us-som3tim3s-r3quir3s-a-p4ssw0rd
 
 ---
 
-### Step 3 — Web Hint
+### Step 3 - Web Hint
 Navigate to `Meet the Team > Anthony Goes` — the hint points to checking `/opt` for maintenance scripts.
 
 ---
 
-### Step 4 — FTP & Git History Exploitation
+### Step 4 - FTP & Git History Exploitation
 Log into FTP with the anonymous credentials. The `.git` directory is exposed. Recover the sensitive commit history:
 ```bash
 git log
@@ -75,19 +75,19 @@ git show <commit-hash>
 
 ---
 
-### Step 5 — PostgreSQL Lateral Movement
+### Step 5 - PostgreSQL Lateral Movement
 Connect to the database using the recovered credentials:
 ```bash
-psql -h 172.30.2.33 -p 5433 -U db_admin
+psql -h <target-ip> -p 5433 -U db_admin
 SELECT * FROM system_ssh;
 ```
 **SSH credentials found:** `student` / `Ss8_4cceSS_2026#`
 
 ---
 
-### Step 6 — SSH Access & Zip Bomb
+### Step 6 - SSH Access & Zip Bomb
 ```bash
-ssh student@172.30.2.33 -p 2222
+ssh student@<target-ip> -p 2222
 ```
 A `level50.zip` is waiting. Unpack all 50 nested levels automatically:
 ```bash

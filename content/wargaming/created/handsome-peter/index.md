@@ -1,12 +1,12 @@
 ---
-title: "Handsome Peter — Steganography Challenge"
+title: "Handsome Peter - Steganography Challenge"
 date: 2026-06-03
 description: "A multi-technique steganography challenge covering EXIF metadata, file appending, LSB, DCT, colour palette manipulation, and audio steganography."
 ---
 
 ## Overview
 
-"Handsome Peter" is a practical journey through steganography, covering 6 fundamental data-hiding techniques. Steganography is the practice of concealing information inside other data (media files, metadata, etc.) in an imperceptible way. Unlike cryptography — which protects data by making it unreadable — steganography hides the very existence of the message.
+"Handsome Peter" is a practical journey through steganography, covering 6 fundamental data-hiding techniques. Steganography is the practice of concealing information inside other data (media files, metadata, etc.) in an imperceptible way. Unlike cryptography - which protects data by making it unreadable — steganography hides the very existence of the message.
 
 The objective is to identify and extract 6 flags hidden across different files using 6 distinct steganography techniques.
 
@@ -60,7 +60,7 @@ echo "fLaG_fSt_{AuDi0_AmPlitUd3_M4st3r_sTeG}" | steghide embed -ef - -cf music02
 
 ## Solution Walkthrough
 
-### Step 1 — EXIF Metadata (image02.jpg)
+### Step 1 - EXIF Metadata (image02.jpg)
 Inspect the image metadata using exiftool. The flag will be in the "Comment" field.
 ```bash
 exiftool image02.jpg
@@ -71,7 +71,7 @@ strings image02.jpg | grep fLaG_fSt_
 
 ---
 
-### Step 2 — Append/Trailer (image05.jpg)
+### Step 2 - Append/Trailer (image05.jpg)
 Use `tail` to view the flag and `binwalk` to extract appended data.
 ```bash
 tail -n 5 image05.jpg
@@ -83,7 +83,7 @@ cd _image05.jpg.extracted && ls -la && cat password_1.txt
 
 ---
 
-### Step 3 — LSB (image07.png)
+### Step 3 - LSB (image07.png)
 Use `zsteg` to automatically analyse LSB layers.
 ```bash
 zsteg -a image07.png
@@ -94,7 +94,7 @@ zsteg -a image07.png 2>/dev/null | grep -i fLaG_fSt_
 
 ---
 
-### Step 4 — DCT (image09.jpg)
+### Step 4 - DCT (image09.jpg)
 Extract data hidden in DCT frequencies with steghide, using the password found in Step 2.
 ```bash
 steghide extract -sf image09.jpg -xf output.txt -p 'H4nds0meP3ter!#$' && cat output.txt
@@ -104,7 +104,7 @@ steghide extract -sf image09.jpg -xf output.txt -p 'H4nds0meP3ter!#$' && cat out
 
 ---
 
-### Step 5 — Colour Palette (image14.gif)
+### Step 5 - Colour Palette (image14.gif)
 Use `gifshuffle` to reveal data hidden in the colour palette.
 ```bash
 gifshuffle image14.gif
@@ -113,7 +113,7 @@ gifshuffle image14.gif
 
 ---
 
-### Step 6 — Audio Steganography (music02.wav)
+### Step 6 - Audio Steganography (music02.wav)
 Extract data from the audio file with steghide, using the password found in Step 4.
 ```bash
 steghide extract -sf music02.wav -xf audio_output.txt -p 'P3t3rSt3g0M4st3r'

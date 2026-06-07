@@ -1,5 +1,5 @@
 ---
-title: "Football Leaks — Web Vulnerabilities Chain"
+title: "Football Leaks - Web Vulnerabilities Chain"
 date: 2026-06-03
 description: "A web challenge exploiting client-side authentication bypass, IDOR, and SQL injection to extract three flags from a football data leak portal."
 ---
@@ -12,21 +12,21 @@ description: "A web challenge exploiting client-side authentication bypass, IDOR
 
 ## Solution Walkthrough
 
-### Step 1 — Initial Reconnaissance
-Navigated to the Football Leaks application. The portal presented a restricted area and various documents — some legitimate, some distractions (including a RickRoll in ASCII format).
+### Step 1 - Initial Reconnaissance
+Navigated to the Football Leaks application. The portal presented a restricted area and various documents - some legitimate, some distractions (including a RickRoll in ASCII format).
 
-Inspected the HTML source and found **credentials exposed in a comment** — an emergency maintenance access that was never removed before publishing.
+Inspected the HTML source and found **credentials exposed in a comment** - an emergency maintenance access that was never removed before publishing.
 
 Port scan:
 ```bash
 nmap -sC -sV -p- 172.30.1.37
 ```
 
-Also ran a provided `programa.py` script locally — it contained encoded content and misleading messages acting as a distraction.
+Also ran a provided `programa.py` script locally - it contained encoded content and misleading messages acting as a distraction.
 
 ---
 
-### Flag 1 — Client-Side Authentication Bypass
+### Flag 1 - Client-Side Authentication Bypass
 
 Analysed the login form with browser Developer Tools. The password field had a `required` attribute enforcing client-side validation.
 
@@ -38,14 +38,14 @@ Analysed the login form with browser Developer Tools. The password field had a `
 
 ---
 
-### Flag 2 — IDOR (Insecure Direct Object Reference)
+### Flag 2 - IDOR (Insecure Direct Object Reference)
 
 After gaining access, analysed the profile page. The user identifier was passed via a predictable URL parameter:
 ```
 http://footballeaks.ctf/perfil.php?id=1
 ```
 
-Manually changed `id=1` to other values to access profiles belonging to other users — no server-side authorisation check was in place.
+Manually changed `id=1` to other values to access profiles belonging to other users - no server-side authorisation check was in place.
 
 Tested for SQL injection with sqlmap (no results), and checked HTTP headers with curl:
 ```bash
@@ -61,7 +61,7 @@ Accessing another user's profile revealed the second flag.
 
 ---
 
-### Flag 3 — SQL Injection (UNION-based)
+### Flag 3 - SQL Injection (UNION-based)
 
 Found a player search feature in the restricted area. Testing the search field revealed that user input was not sanitised before being used in a database query.
 

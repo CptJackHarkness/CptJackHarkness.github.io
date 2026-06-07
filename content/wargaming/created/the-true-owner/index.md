@@ -1,12 +1,12 @@
 ---
-title: "The True Owner — LFI, Base64 & Cookie Tampering"
+title: "The True Owner - LFI, Base64 & Cookie Tampering"
 date: 2026-06-03
 description: "A web challenge chaining OWASP Top 10 vulnerabilities: information disclosure via robots.txt, Local File Inclusion, Base64-encoded credentials, and cookie tampering for privilege escalation."
 ---
 
 ## Overview
 
-"The True Owner" explores a chain of web vulnerabilities based on the OWASP Top 10 (2025). The challenge requires progressing through multiple attack layers in sequence — a realistic reflection of how real-world web attacks chain smaller weaknesses into full compromise.
+"The True Owner" explores a chain of web vulnerabilities based on the OWASP Top 10 (2025). The challenge requires progressing through multiple attack layers in sequence - a realistic reflection of how real-world web attacks chain smaller weaknesses into full compromise.
 
 ---
 
@@ -31,35 +31,35 @@ description: "A web challenge chaining OWASP Top 10 vulnerabilities: information
 
 ## Solution Walkthrough
 
-### Step 1 — Add Host Entry
+### Step 1 - Add Host Entry
 ```bash
-echo "172.30.2.32 atequi.ctf" | sudo tee -a /etc/hosts
+echo "<target-ip> atequi.ctf" | sudo tee -a /etc/hosts
 ```
 
-### Step 2 — Reconnaissance via robots.txt
+### Step 2 - Reconnaissance via robots.txt
 ```
 http://atequi.ctf/robots.txt
 ```
 Reveals `/notes.txt`. Reading it discloses the existence of `/secrets.txt` and hints at the LFI vulnerability via the `file` parameter.
 
-### Step 3 — Local File Inclusion (Path Traversal)
+### Step 3 - Local File Inclusion (Path Traversal)
 In the "Info (Wargame)" page, exploit the vulnerable `?file=` parameter:
 ```
 wargame.php?file=../../../../../../secrets.txt
 ```
 **Server returns:** `Guylherm:YXRlcXVpX293bmVyCg==`
 
-### Step 4 — Decode Base64 & Login
+### Step 4 - Decode Base64 & Login
 ```bash
 echo "YXRlcXVpX293bmVyCg==" | base64 -d
 # Output: atequi_owner
 ```
 Use credentials `Guylherm:atequi_owner` at `login.php`.
 
-### Step 5 — Cookie Tampering
+### Step 5 - Cookie Tampering
 After login, open browser Developer Tools (`F12`) → Application/Storage → Cookies. Change the `role` cookie value from `user` to `admin`.
 
-### Step 6 — Flag
+### Step 6 - Flag
 Refresh the page (`F5`). The server trusts the forged cookie and renders the admin area with the flag.
 
 ---
