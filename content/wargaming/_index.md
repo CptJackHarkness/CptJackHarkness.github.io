@@ -18,7 +18,7 @@ description: "Structured laboratory exercises and academic wargaming scenarios. 
 - Cláudio Rolo
 - Gabriel Caixinha
 - Guilherme Monteiro
-- Ivan Arrojado
+- [Ivan Arrojado](https://www.linkedin.com/in/ivan-arrojado/)
 - João Duarte
 - [Luís Miguel](https://www.linkedin.com/in/luisfelipevidalmiguel)
 - Mickael Ferreira
@@ -38,6 +38,6 @@ description: "Structured laboratory exercises and academic wargaming scenarios. 
 - [Miguel Andrade](https://www.linkedin.com/in/mglandrade)
 - Nuno Soares
 - Pedro Vasconcelos
-- Rita Cambey
+- [Rita Cambey](https://www.linkedin.com/in/rita-cambey-378813377?utm_source=share_via&utm_content=profile&utm_medium=member_ios)
 
 </details>
