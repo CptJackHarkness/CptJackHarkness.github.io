@@ -2,7 +2,7 @@ baseURL: "https://cptjackharkness.github.io/"
 languageCode: en
 title: Ricardo Ribeiro
 theme: PaperMod
-paginate: 10
+paginate: 5
 
 params:
   homeInfoParams:
