@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Homelab on Ricardo Ribeiro</title>
+    <link>http://localhost:1313/homelab/</link>
+    <description>Recent content in Homelab on Ricardo Ribeiro</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 01 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/homelab/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Homelab #1: Raspberry Pi 4 — Pi-hole, Tailscale &amp; Jellyfin</title>
+      <link>http://localhost:1313/homelab/raspberry-pi/</link>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/homelab/raspberry-pi/</guid>
+      <description>How I turned a Raspberry Pi 4 into a home DNS filter, VPN node, and media server.</description>
+    </item>
+  </channel>
+</rss>

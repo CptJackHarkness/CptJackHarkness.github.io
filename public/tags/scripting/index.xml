@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Scripting on Ricardo Ribeiro</title>
+    <link>http://localhost:1313/tags/scripting/</link>
+    <description>Recent content in Scripting on Ricardo Ribeiro</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 03 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/scripting/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Meme Forum — Port Knocking &amp; Password Cracking</title>
+      <link>http://localhost:1313/wargaming/solved/meme-forum/</link>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/wargaming/solved/meme-forum/</guid>
+      <description>A challenge combining hidden endpoint discovery, port knocking brute force, FTP access, and RAR password cracking with John the Ripper.</description>
+    </item>
+    <item>
+      <title>Nicolay Magic Numbers — Network Knocker &amp; Brute Force</title>
+      <link>http://localhost:1313/wargaming/created/nicolay-magic-numbers/</link>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/wargaming/created/nicolay-magic-numbers/</guid>
+      <description>A multi-stage challenge involving port knocking with a Fibonacci sequence, WAF bypass via rate limiting, and a nested zip bomb requiring scripted extraction.</description>
+    </item>
+    <item>
+      <title>Otillianni Math — Prime Number Indexing</title>
+      <link>http://localhost:1313/wargaming/created/otillianni-math/</link>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/wargaming/created/otillianni-math/</guid>
+      <description>A data obfuscation challenge where a flag is hidden inside 10,000 random characters by placing each flag character at prime number indices.</description>
+    </item>
+    <item>
+      <title>Roda do Hamster — Layered Encoding Decoder</title>
+      <link>http://localhost:1313/wargaming/solved/roda-do-hamster/</link>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/wargaming/solved/roda-do-hamster/</guid>
+      <description>A challenge solved by scripting a recursive decoder that automatically strips multiple layers of Base16/32/64/85 and Ascii85 encoding until plain text is revealed.</description>
+    </item>
+  </channel>
+</rss>

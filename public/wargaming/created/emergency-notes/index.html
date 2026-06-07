@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="dark">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Emergency Notes — Double XOR Cryptography | Ricardo Ribeiro</title>
+<meta name="keywords" content="Cryptography, XOR, CyberChef">
+<meta name="description" content="A cryptography challenge focused on the XOR operation and its reversibility, requiring players to test key combinations to decrypt a double-XOR-encrypted backup.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/wargaming/created/emergency-notes/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.89ca4972ab5e6aaa05e9a0dae0c4bb64b26585bc79e36f5cf33614eea0283abe.css" integrity="sha256-icpJcqteaqoF6aDa4MS7ZLJlhbx5429c8zYU7qAoOr4=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/wargaming/created/emergency-notes/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Ricardo Ribeiro (Alt + H)">Ricardo Ribeiro</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:1313/about/" title="About Me">
+                    <span>About Me</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/homelab/" title="Homelab">
+                    <span>Homelab</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/ctfs/" title="CTFs">
+                    <span>CTFs</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/wargaming/" title="Wargaming">
+                    <span>Wargaming</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/quick-writeups/" title="Quick Writeups">
+                    <span>Quick Writeups</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/wargaming/">Wargaming</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/wargaming/created/">Challenges We Created</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      Emergency Notes — Double XOR Cryptography
+    </h1>
+    <div class="post-description">
+      A cryptography challenge focused on the XOR operation and its reversibility, requiring players to test key combinations to decrypt a double-XOR-encrypted backup.
+    </div>
+    <div class="post-meta">
+
+<span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>2 min</span>
+
+</div>
+  </header> 
+  <div class="post-content md-content"><h2 id="overview">Overview<a hidden class="anchor" aria-hidden="true" href="#overview">#</a></h2>
+<p>&ldquo;Emergency Notes&rdquo; is a practical cryptography exercise focused on the XOR (Exclusive OR) logical operation. XOR compares bits and has two fundamental properties:</p>
+<ul>
+<li><strong>Self-inverse:</strong> <code>A XOR A = 0</code></li>
+<li><strong>Identity:</strong> <code>A XOR 0 = A</code></li>
+</ul>
+<p>When a readable message has XOR applied with a key, it becomes unreadable ciphertext. Applying XOR again with the same key perfectly recovers the original message.</p>
+<p>The scenario: a sysadmin created an emergency backup and protected it with a homemade XOR scheme. The player receives a notes file containing the encrypted content in hexadecimal format and three possible passphrases. Only two of the three were used — the goal is to find the correct combination.</p>
+<hr>
+<h2 id="challenge-creation">Challenge Creation<a hidden class="anchor" aria-hidden="true" href="#challenge-creation">#</a></h2>
+<p>Built entirely in CyberChef:</p>
+<ol>
+<li>Started with the original flag + ASCII art: <code>fLaG_fSt{N1c0lay_emergency_backup}</code></li>
+<li>Applied XOR twice using two distinct passphrases (UTF-8 format):
+<ul>
+<li><code>xor is not backup</code></li>
+<li><code>do not use in production</code></li>
+</ul>
+</li>
+<li>Converted the result to hexadecimal (to make it safe to store as text)</li>
+<li>Created <code>notes.txt</code> containing the hex output and <strong>three</strong> candidate phrases — including <code>emergency backup</code> as a red herring</li>
+</ol>
+<hr>
+<h2 id="solution-walkthrough">Solution Walkthrough<a hidden class="anchor" aria-hidden="true" href="#solution-walkthrough">#</a></h2>
+<h3 id="step-1--open-cyberchef">Step 1 — Open CyberChef<a hidden class="anchor" aria-hidden="true" href="#step-1--open-cyberchef">#</a></h3>
+<p>Copy the long hex string from <code>notes.txt</code> and paste it into the CyberChef Input field.</p>
+<h3 id="step-2--reverse-the-hex">Step 2 — Reverse the Hex<a hidden class="anchor" aria-hidden="true" href="#step-2--reverse-the-hex">#</a></h3>
+<p>Add a <strong>From Hex</strong> operation to the recipe to convert back to binary.</p>
+<h3 id="step-3--test-xor-combinations">Step 3 — Test XOR Combinations<a hidden class="anchor" aria-hidden="true" href="#step-3--test-xor-combinations">#</a></h3>
+<p>With three candidate phrases and only two used, there are exactly 3 possible combinations. Add two XOR operations to the recipe, setting the Key format to UTF-8.</p>
+<p>The correct combination:</p>
+<ul>
+<li><strong>XOR 1:</strong> <code>xor is not backup</code></li>
+<li><strong>XOR 2:</strong> <code>do not use in production</code></li>
+</ul>
+<h3 id="step-4--capture-the-flag">Step 4 — Capture the Flag<a hidden class="anchor" aria-hidden="true" href="#step-4--capture-the-flag">#</a></h3>
+<p>With the two correct keys applied, XOR&rsquo;s reversibility cancels the cipher and the Output reveals the flag.</p>
+<p><strong>Alternatively via terminal:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>python3 <span style="color:#f92672">-</span>c <span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> functools<span style="color:#f92672">,</span> operator
+</span></span><span style="display:flex;"><span>data <span style="color:#f92672">=</span> bytes<span style="color:#f92672">.</span>fromhex(<span style="color:#e6db74">&#34;PASTE_HEX_HERE&#34;</span>)
+</span></span><span style="display:flex;"><span>keys <span style="color:#f92672">=</span> [<span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;xor is not backup&#34;</span>, <span style="color:#e6db74">b</span><span style="color:#e6db74">&#34;do not use in production&#34;</span>]
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> data
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> key <span style="color:#f92672">in</span> keys:
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> bytes(b <span style="color:#f92672">^</span> key[i <span style="color:#f92672">%</span> len(key)] <span style="color:#66d9ef">for</span> i, b <span style="color:#f92672">in</span> enumerate(result))
+</span></span><span style="display:flex;"><span>print(result<span style="color:#f92672">.</span>decode())
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#39;</span>
+</span></span></code></pre></div><hr>
+<h2 id="what-i-learned">What I Learned<a hidden class="anchor" aria-hidden="true" href="#what-i-learned">#</a></h2>
+<p>XOR is not a secure encryption scheme — it is trivially reversible if the key is known or guessable. This challenge reinforces why symmetric encryption should never be implemented with simple XOR against static passphrases, especially when both the ciphertext and candidate keys are available to the attacker.</p>
+<hr>
+<h2 id="flag">Flag<a hidden class="anchor" aria-hidden="true" href="#flag">#</a></h2>
+<p><code>fLaG_fSt{N1c0lay_emergency_backup}</code></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/cryptography/">Cryptography</a></li>
+      <li><a href="http://localhost:1313/tags/xor/">XOR</a></li>
+      <li><a href="http://localhost:1313/tags/cyberchef/">CyberChef</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/wargaming/solved/confusion/">
+    <span class="title">« Prev</span>
+    <span>Confusion — Multi-Layer Steganography with Movie Clues</span>
+  </a>
+  <a class="next" href="http://localhost:1313/wargaming/solved/football-leaks/">
+    <span class="title">Next »</span>
+    <span>Football Leaks — Web Vulnerabilities Chain</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Ricardo Ribeiro</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

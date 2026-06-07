@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>ROT8000 on Ricardo Ribeiro</title>
+    <link>http://localhost:1313/tags/rot8000/</link>
+    <description>Recent content in ROT8000 on Ricardo Ribeiro</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 03 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/rot8000/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Caesar — Hash Cracking &amp; ROT8000</title>
+      <link>http://localhost:1313/wargaming/solved/caesar/</link>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/wargaming/solved/caesar/</guid>
+      <description>A two-part challenge combining SHA256 hash cracking, custom XOR-based decryption, and ROT8000 Unicode rotation to decode a message disguised as East Asian ideograms.</description>
+    </item>
+  </channel>
+</rss>

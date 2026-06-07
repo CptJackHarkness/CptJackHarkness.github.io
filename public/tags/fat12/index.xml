@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>FAT12 on Ricardo Ribeiro</title>
+    <link>http://localhost:1313/tags/fat12/</link>
+    <description>Recent content in FAT12 on Ricardo Ribeiro</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 03 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/fat12/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Disk Dump — FAT12 Forensics &amp; XOR Decryption</title>
+      <link>http://localhost:1313/wargaming/created/the-disk-dump/</link>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/wargaming/created/the-disk-dump/</guid>
+      <description>A forensic imaging challenge involving FAT12 filesystem analysis, recovery of deleted files, a decoy rabbit hole, and XOR-based flag decryption.</description>
+    </item>
+  </channel>
+</rss>

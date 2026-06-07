@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="dark">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Caesar — Hash Cracking &amp; ROT8000 | Ricardo Ribeiro</title>
+<meta name="keywords" content="Cryptography, Hash Cracking, ROT8000, XOR, CyberChef">
+<meta name="description" content="A two-part challenge combining SHA256 hash cracking, custom XOR-based decryption, and ROT8000 Unicode rotation to decode a message disguised as East Asian ideograms.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/wargaming/solved/caesar/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.89ca4972ab5e6aaa05e9a0dae0c4bb64b26585bc79e36f5cf33614eea0283abe.css" integrity="sha256-icpJcqteaqoF6aDa4MS7ZLJlhbx5429c8zYU7qAoOr4=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/wargaming/solved/caesar/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Ricardo Ribeiro (Alt + H)">Ricardo Ribeiro</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:1313/about/" title="About Me">
+                    <span>About Me</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/homelab/" title="Homelab">
+                    <span>Homelab</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/ctfs/" title="CTFs">
+                    <span>CTFs</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/wargaming/" title="Wargaming">
+                    <span>Wargaming</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/quick-writeups/" title="Quick Writeups">
+                    <span>Quick Writeups</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/wargaming/">Wargaming</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/wargaming/solved/">Challenges We Solved</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      Caesar — Hash Cracking &amp; ROT8000
+    </h1>
+    <div class="post-description">
+      A two-part challenge combining SHA256 hash cracking, custom XOR-based decryption, and ROT8000 Unicode rotation to decode a message disguised as East Asian ideograms.
+    </div>
+    <div class="post-meta">
+
+<span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>2 min</span>
+
+</div>
+  </header> 
+  <div class="post-content md-content"><h2 id="overview">Overview<a hidden class="anchor" aria-hidden="true" href="#overview">#</a></h2>
+<p>&ldquo;Caesar&rdquo; is a two-part cryptographic challenge. The first part requires cracking a SHA256 hash to obtain a decryption key. The second part involves decoding a message that has been rotated using ROT8000 — a Unicode rotation that transforms ASCII characters into characters resembling East Asian ideograms.</p>
+<hr>
+<h2 id="solution-walkthrough">Solution Walkthrough<a hidden class="anchor" aria-hidden="true" href="#solution-walkthrough">#</a></h2>
+<h3 id="part-1--hash-cracking">Part 1 — Hash Cracking<a hidden class="anchor" aria-hidden="true" href="#part-1--hash-cracking">#</a></h3>
+<p>The first message provided this hash:</p>
+<pre tabindex="0"><code>6ec4dca2bcc10d9f68fbd938aefd9e8daff46c1674e09501e2520dd2c82b1e6f
+</code></pre><p>Identified the hash type with <code>hashid</code> — the 64-character hex string is consistent with SHA256. Used <a href="https://crackstation.net">CrackStation</a> to look it up in its database.</p>
+<p><strong>Hash cracked:</strong> <code>veni</code></p>
+<hr>
+<h3 id="part-2--decrypting-the-encrypted-file">Part 2 — Decrypting the Encrypted File<a hidden class="anchor" aria-hidden="true" href="#part-2--decrypting-the-encrypted-file">#</a></h3>
+<p>Used <code>veni</code> as the key to decrypt <code>bau.enc</code> with the provided <code>chave.py</code> script. The decrypted message revealed the flag format used by the challenge creators:</p>
+<pre tabindex="0"><code>C4es4r ... w4s ... [secret]
+</code></pre><p>This established the expected flag structure: <code>C4es4r_w4s_[secret]</code></p>
+<hr>
+<h3 id="part-3--decoding-the-final-message">Part 3 — Decoding the Final Message<a hidden class="anchor" aria-hidden="true" href="#part-3--decoding-the-final-message">#</a></h3>
+<p>The second message contained a riddle hinting at a &ldquo;rotation&rdquo; that makes Western letters look like &ldquo;ideograms from a distant dynasty&rdquo;. The final encoded message was:</p>
+<pre tabindex="0"><code>籫簼籽类簽粂簼籭籨籁粂籨籾簾
+</code></pre><p>Tested in order:</p>
+<ul>
+<li><strong>ROT13</strong> — no useful output</li>
+<li><strong>ROT47</strong> — no change</li>
+<li><strong>ROT8000</strong> — success. ROT8000 is a Unicode rotation capable of transforming ASCII characters into characters resembling ideograms.</li>
+</ul>
+<p><strong>Result:</strong> <code>b3tr4y3d_8y_u5</code></p>
+<p>Combining with the format discovered earlier:</p>
+<p><strong>Final flag:</strong> <code>C4es4r_w4s_b3tr4y3d_8y_u5</code></p>
+<hr>
+<h2 id="what-i-learned">What I Learned<a hidden class="anchor" aria-hidden="true" href="#what-i-learned">#</a></h2>
+<p>ROT8000 is a lesser-known rotation cipher that operates on Unicode code points, not just ASCII. It is specifically designed to make text look like CJK (Chinese/Japanese/Korean) characters — making it visually unrecognisable to anyone unfamiliar with it. This challenge reinforced the importance of exploring the full range of encoding and rotation schemes, not just the classic ROT13 and ROT47.</p>
+<hr>
+<h2 id="flag">Flag<a hidden class="anchor" aria-hidden="true" href="#flag">#</a></h2>
+<p><code>C4es4r_w4s_b3tr4y3d_8y_u5</code></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/cryptography/">Cryptography</a></li>
+      <li><a href="http://localhost:1313/tags/hash-cracking/">Hash Cracking</a></li>
+      <li><a href="http://localhost:1313/tags/rot8000/">ROT8000</a></li>
+      <li><a href="http://localhost:1313/tags/xor/">XOR</a></li>
+      <li><a href="http://localhost:1313/tags/cyberchef/">CyberChef</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/wargaming/solved/alpha-first-contact/">
+    <span class="title">« Prev</span>
+    <span>Alpha — First Contact</span>
+  </a>
+  <a class="next" href="http://localhost:1313/wargaming/solved/confusion/">
+    <span class="title">Next »</span>
+    <span>Confusion — Multi-Layer Steganography with Movie Clues</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Ricardo Ribeiro</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

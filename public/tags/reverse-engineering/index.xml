@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Reverse Engineering on Ricardo Ribeiro</title>
+    <link>http://localhost:1313/tags/reverse-engineering/</link>
+    <description>Recent content in Reverse Engineering on Ricardo Ribeiro</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 03 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/reverse-engineering/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Reactor — Binary Analysis &amp; XOR Decoding</title>
+      <link>http://localhost:1313/wargaming/solved/reactor/</link>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/wargaming/solved/reactor/</guid>
+      <description>A reverse engineering challenge involving string extraction from a binary, hex-to-ASCII decoding, XOR binary-to-decimal conversion, and a two-stage access code challenge.</description>
+    </item>
+  </channel>
+</rss>

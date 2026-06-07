@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Steganography on Ricardo Ribeiro</title>
+    <link>http://localhost:1313/tags/steganography/</link>
+    <description>Recent content in Steganography on Ricardo Ribeiro</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 03 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/steganography/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Confusion — Multi-Layer Steganography with Movie Clues</title>
+      <link>http://localhost:1313/wargaming/solved/confusion/</link>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/wargaming/solved/confusion/</guid>
+      <description>A three-part steganography challenge using movie-themed passphrases, steghide extraction, Base64/Base32 decoding, and nested ZIP archives to reconstruct a split flag.</description>
+    </item>
+    <item>
+      <title>Handsome Peter — Steganography Challenge</title>
+      <link>http://localhost:1313/wargaming/created/handsome-peter/</link>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/wargaming/created/handsome-peter/</guid>
+      <description>A multi-technique steganography challenge covering EXIF metadata, file appending, LSB, DCT, colour palette manipulation, and audio steganography.</description>
+    </item>
+    <item>
+      <title>LaCasa — FTP, Steganography &amp; Privilege Escalation</title>
+      <link>http://localhost:1313/wargaming/solved/lacasa/</link>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/wargaming/solved/lacasa/</guid>
+      <description>A Money Heist-themed challenge chaining anonymous FTP access, image steganography, SSH lateral movement, and vim-based root privilege escalation.</description>
+    </item>
+    <item>
+      <title>The Moodle Breach — Multi-Vector Forensics</title>
+      <link>http://localhost:1313/wargaming/created/the-moodle-breach/</link>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/wargaming/created/the-moodle-breach/</guid>
+      <description>A miscellaneous challenge combining HTML source analysis, XOR decryption, EXIF metadata extraction, LSB steganography, Base64 decoding, and visual forensics to recover 6 flags.</description>
+    </item>
+  </channel>
+</rss>

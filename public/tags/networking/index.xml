@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Networking on Ricardo Ribeiro</title>
+    <link>http://localhost:1313/tags/networking/</link>
+    <description>Recent content in Networking on Ricardo Ribeiro</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 03 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/networking/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Alpha — First Contact</title>
+      <link>http://localhost:1313/wargaming/solved/alpha-first-contact/</link>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/wargaming/solved/alpha-first-contact/</guid>
+      <description>The introductory wargaming challenge requiring a simple /etc/hosts file edit to resolve a custom domain.</description>
+    </item>
+    <item>
+      <title>Meme Forum — Port Knocking &amp; Password Cracking</title>
+      <link>http://localhost:1313/wargaming/solved/meme-forum/</link>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/wargaming/solved/meme-forum/</guid>
+      <description>A challenge combining hidden endpoint discovery, port knocking brute force, FTP access, and RAR password cracking with John the Ripper.</description>
+    </item>
+    <item>
+      <title>Nicolay Magic Numbers — Network Knocker &amp; Brute Force</title>
+      <link>http://localhost:1313/wargaming/created/nicolay-magic-numbers/</link>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/wargaming/created/nicolay-magic-numbers/</guid>
+      <description>A multi-stage challenge involving port knocking with a Fibonacci sequence, WAF bypass via rate limiting, and a nested zip bomb requiring scripted extraction.</description>
+    </item>
+  </channel>
+</rss>
