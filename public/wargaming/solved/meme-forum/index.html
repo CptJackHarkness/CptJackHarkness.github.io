@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
-<title>Meme Forum — Port Knocking &amp; Password Cracking | Ricardo Ribeiro</title>
+<title>Meme Forum - Port Knocking &amp; Password Cracking | Ricardo Ribeiro</title>
 <meta name="keywords" content="">
 <meta name="description" content="A challenge combining hidden endpoint discovery, port knocking brute force, FTP access, and RAR password cracking with John the Ripper.">
 <meta name="author" content="">
@@ -114,7 +114,7 @@
     </svg>
 </nav>
     <h1 class="post-title entry-hint-parent">
-      Meme Forum — Port Knocking &amp; Password Cracking
+      Meme Forum - Port Knocking &amp; Password Cracking
     </h1>
     <div class="post-description">
       A challenge combining hidden endpoint discovery, port knocking brute force, FTP access, and RAR password cracking with John the Ripper.
@@ -126,14 +126,14 @@
 </div>
   </header> 
   <div class="post-content md-content"><h2 id="overview">Overview<a hidden class="anchor" aria-hidden="true" href="#overview">#</a></h2>
-<p>&ldquo;Meme Forum&rdquo; required discovering a hidden endpoint, brute-forcing a port knocking sequence to unlock FTP access, and cracking a password-protected RAR archive to retrieve the flag.</p>
+<p>&ldquo;MemeForum&rdquo; required discovering a hidden endpoint, brute-forcing a port knocking sequence to unlock FTP access, and cracking a password-protected RAR archive to retrieve the flag.</p>
 <hr>
 <h2 id="solution-walkthrough">Solution Walkthrough<a hidden class="anchor" aria-hidden="true" href="#solution-walkthrough">#</a></h2>
-<h3 id="step-1--initial-reconnaissance">Step 1 — Initial Reconnaissance<a hidden class="anchor" aria-hidden="true" href="#step-1--initial-reconnaissance">#</a></h3>
+<h3 id="step-1---initial-reconnaissance">Step 1 - Initial Reconnaissance<a hidden class="anchor" aria-hidden="true" href="#step-1---initial-reconnaissance">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmap &lt;target-ip&gt;
 </span></span></code></pre></div><p>Only port <code>8080</code> was open. Visited <code>https://memeforum.ctf/</code> — no obvious entry points at first glance.</p>
 <hr>
-<h3 id="step-2--hidden-endpoint-discovery">Step 2 — Hidden Endpoint Discovery<a hidden class="anchor" aria-hidden="true" href="#step-2--hidden-endpoint-discovery">#</a></h3>
+<h3 id="step-2---hidden-endpoint-discovery">Step 2 - Hidden Endpoint Discovery<a hidden class="anchor" aria-hidden="true" href="#step-2---hidden-endpoint-discovery">#</a></h3>
 <p>Inspected the HTML source of the main page and found a reference to a hidden endpoint: <code>/information</code>.</p>
 <p>Navigating there revealed:</p>
 <ul>
@@ -141,13 +141,13 @@
 <li>Access to the FTP would only be possible through <strong>port knocking</strong> with the correct sequence</li>
 </ul>
 <hr>
-<h3 id="step-3--finding-the-knock-sequence">Step 3 — Finding the Knock Sequence<a hidden class="anchor" aria-hidden="true" href="#step-3--finding-the-knock-sequence">#</a></h3>
-<p>Returned to the main page. A video posted by the user <code>trollface</code> (referenced in the hint) had a &ldquo;Watch on YouTube&rdquo; link. Viewing the video revealed the ports: <strong>69, 67, 88, 92</strong> — but not in the correct order.</p>
+<h3 id="step-3---finding-the-knock-sequence">Step 3 - Finding the Knock Sequence<a hidden class="anchor" aria-hidden="true" href="#step-3---finding-the-knock-sequence">#</a></h3>
+<p>Returned to the main page. A video posted by the user <code>trollface</code> (referenced in the hint) had a &ldquo;Watch on YouTube&rdquo; link. Viewing the video revealed the ports: <strong>69, 67, 88, 92</strong> - but not in the correct order.</p>
 <hr>
-<h3 id="step-4--brute-force-the-knock-sequence">Step 4 — Brute Force the Knock Sequence<a hidden class="anchor" aria-hidden="true" href="#step-4--brute-force-the-knock-sequence">#</a></h3>
+<h3 id="step-4---brute-force-the-knock-sequence">Step 4 - Brute Force the Knock Sequence<a hidden class="anchor" aria-hidden="true" href="#step-4---brute-force-the-knock-sequence">#</a></h3>
 <p>Developed a script to test all 24 permutations of the 4 ports, sending SYN packets for each and checking if FTP (port 21) became accessible:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
-</span></span></span><span style="display:flex;"><span>IP<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;172.30.1.35&#34;</span>
+</span></span></span><span style="display:flex;"><span>IP<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&lt;target-ip&gt;&#34;</span>
 </span></span><span style="display:flex;"><span>PORTS<span style="color:#f92672">=(</span><span style="color:#ae81ff">69</span> <span style="color:#ae81ff">67</span> <span style="color:#ae81ff">88</span> 92<span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>check_ftp<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
@@ -180,10 +180,10 @@
 </span></span><span style="display:flex;"><span>permutations <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>PORTS[@]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
 </span></span></code></pre></div><p><strong>Correct sequence found:</strong> <code>67 88 92 69</code></p>
 <hr>
-<h3 id="step-5--maintain-the-knock-session-keepalive">Step 5 — Maintain the Knock (Session Keepalive)<a hidden class="anchor" aria-hidden="true" href="#step-5--maintain-the-knock-session-keepalive">#</a></h3>
+<h3 id="step-5---maintain-the-knock-session-keepalive">Step 5 - Maintain the Knock (Session Keepalive)<a hidden class="anchor" aria-hidden="true" href="#step-5---maintain-the-knock-session-keepalive">#</a></h3>
 <p>To prevent the FTP session from timing out, a second script kept the knock sequence running continuously:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
-</span></span></span><span style="display:flex;"><span>IP<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;172.30.1.35&#34;</span>
+</span></span></span><span style="display:flex;"><span>IP<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&lt;target-ip&gt;&#34;</span>
 </span></span><span style="display:flex;"><span>SEQ<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;67 88 92 69&#34;</span>
 </span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Maintaining open port with sequence: </span>$SEQ<span style="color:#e6db74">&#34;</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> true; <span style="color:#66d9ef">do</span>
@@ -191,10 +191,10 @@
 </span></span><span style="display:flex;"><span>    sleep 0.1
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
 </span></span></code></pre></div><hr>
-<h3 id="step-6--ftp-access--archive-download">Step 6 — FTP Access &amp; Archive Download<a hidden class="anchor" aria-hidden="true" href="#step-6--ftp-access--archive-download">#</a></h3>
+<h3 id="step-6---ftp-access--archive-download">Step 6 - FTP Access &amp; Archive Download<a hidden class="anchor" aria-hidden="true" href="#step-6---ftp-access--archive-download">#</a></h3>
 <p>With the port knocking running in the background, connected to the FTP server and downloaded <code>flag.rar</code> — password protected.</p>
 <hr>
-<h3 id="step-7--password-cracking">Step 7 — Password Cracking<a hidden class="anchor" aria-hidden="true" href="#step-7--password-cracking">#</a></h3>
+<h3 id="step-7---password-cracking">Step 7 - Password Cracking<a hidden class="anchor" aria-hidden="true" href="#step-7---password-cracking">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rar2john flag.rar &gt; hash.txt
 </span></span><span style="display:flex;"><span>john hash.txt --wordlist<span style="color:#f92672">=</span>/usr/share/wordlists/rockyou.txt
 </span></span></code></pre></div><p>Password recovered. Extracted the RAR archive to reveal the flag file.</p>
@@ -211,11 +211,11 @@
 <nav class="paginav">
   <a class="prev" href="http://localhost:1313/wargaming/created/little-juice-challenge/">
     <span class="title">« Prev</span>
-    <span>Little Juice Challenge — Boot2Root</span>
+    <span>Little Juice Challenge - Boot2Root</span>
   </a>
   <a class="next" href="http://localhost:1313/wargaming/created/nicolay-magic-numbers/">
     <span class="title">Next »</span>
-    <span>Nicolay Magic Numbers — Network Knocker &amp; Brute Force</span>
+    <span>Nicolay Magic Numbers - Network Knocker &amp; Brute Force</span>
   </a>
 </nav>
 

@@ -98,7 +98,7 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Otillianni Math — Prime Number Indexing
+    <h2 class="entry-hint-parent">Otillianni Math - Prime Number Indexing
     </h2>
   </header>
   <div class="entry-content">
@@ -109,66 +109,66 @@ Solving the challenge requires writing an automation script capable of computing
   <footer class="entry-footer">
 
 <span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to Otillianni Math — Prime Number Indexing" href="http://localhost:1313/wargaming/created/otillianni-math/"></a>
+  <a class="entry-link" aria-label="post link to Otillianni Math - Prime Number Indexing" href="http://localhost:1313/wargaming/created/otillianni-math/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Reactor — Binary Analysis &amp; XOR Decoding
+    <h2 class="entry-hint-parent">Reactor - Binary Analysis &amp; XOR Decoding
     </h2>
   </header>
   <div class="entry-content">
     <p>Overview “Reactor” is a reverse engineering challenge built around a binary executable that requests two sequential access codes. The solution requires extracting strings from the binary, decoding values in hex and binary, and applying XOR to uncover the second code.
-Solution Walkthrough Step 1 — Run the Binary ./reactor The program prompts for an access code.
-Step 2 — Extract Strings from the Binary strings reactor Among the extracted strings, a value labelled primary_sequence was found encoded in hexadecimal. A backup_sequence also appeared at the end.
+Solution Walkthrough Step 1 - Run the Binary ./reactor The program prompts for an access code.
+Step 2 - Extract Strings from the Binary strings reactor Among the extracted strings, a value labelled primary_sequence was found encoded in hexadecimal. A backup_sequence also appeared at the end.
 ...</p>
   </div>
   <footer class="entry-footer">
 
 <span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to Reactor — Binary Analysis & XOR Decoding" href="http://localhost:1313/wargaming/solved/reactor/"></a>
+  <a class="entry-link" aria-label="post link to Reactor - Binary Analysis & XOR Decoding" href="http://localhost:1313/wargaming/solved/reactor/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Reverse Power — File Carving &amp; Magic Bytes
+    <h2 class="entry-hint-parent">Reverse Power - File Carving &amp; Magic Bytes
     </h2>
   </header>
   <div class="entry-content">
     <p>Overview “Reverse Power” is a practical forensics exercise focused on low-level data manipulation, covering file carving and file format analysis. It explores how file signatures (magic bytes) work and how to recover files when those signatures are deliberately corrupted.
-Techniques Covered File Signatures (Magic Bytes): Most file types include unique identifiers in their first bytes. ZIPs begin with 50 4B 03 04, JPEGs with FF D8. The challenge requires identifying and restoring corrupted signatures. Hex Editing: Directly inspecting and altering raw binary content of a file. EXIF Metadata: Extracting passwords hidden in image metadata fields. Password-Protected Archives: Using recovered passwords to unlock ZIP files. Challenge Setup A flag.txt containing flaG_fSt_{R3v3rse_M451C} was compressed and password-protected into important.zip The ZIP password (z1p1nz1p) was hidden in the EXIF Comment field of broken.jpg The first 2 bytes of broken.jpg were corrupted to RE, breaking its JPEG signature All files were packaged into Serious_Business.pdf — actually a ZIP with its first 8 bytes overwritten to look like a PDF 1.4 header Solution Walkthrough Step 1 — Identify &amp; Repair the Main ZIP file Serious_Business.pdf The file command reveals it is actually a ZIP. Extract it:
+Techniques Covered File Signatures (Magic Bytes): Most file types include unique identifiers in their first bytes. ZIPs begin with 50 4B 03 04, JPEGs with FF D8. The challenge requires identifying and restoring corrupted signatures. Hex Editing: Directly inspecting and altering raw binary content of a file. EXIF Metadata: Extracting passwords hidden in image metadata fields. Password-Protected Archives: Using recovered passwords to unlock ZIP files. Challenge Setup A flag.txt containing flaG_fSt_{R3v3rse_M451C} was compressed and password-protected into important.zip The ZIP password (z1p1nz1p) was hidden in the EXIF Comment field of broken.jpg The first 2 bytes of broken.jpg were corrupted to RE, breaking its JPEG signature All files were packaged into Serious_Business.pdf — actually a ZIP with its first 8 bytes overwritten to look like a PDF 1.4 header Solution Walkthrough Step 1 - Identify &amp; Repair the Main ZIP file Serious_Business.pdf The file command reveals it is actually a ZIP. Extract it:
 ...</p>
   </div>
   <footer class="entry-footer">
 
 <span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to Reverse Power — File Carving & Magic Bytes" href="http://localhost:1313/wargaming/created/reverse-power/"></a>
+  <a class="entry-link" aria-label="post link to Reverse Power - File Carving & Magic Bytes" href="http://localhost:1313/wargaming/created/reverse-power/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Roda do Hamster — Layered Encoding Decoder
+    <h2 class="entry-hint-parent">Roda do Hamster - Layered Encoding Decoder
     </h2>
   </header>
   <div class="entry-content">
-    <p>Overview “Roda do Hamster” (Hamster Wheel) presented a file encoded in multiple successive layers of different encoding schemes. The README.txt described the approach required: since there were no passwords or symmetric keys, the solution was pure automated decoding — cycling through encoding algorithms until natural language emerged.
+    <p>Overview “Roda do Hamster” (Hamster Wheel) presented a file encoded in multiple successive layers of different encoding schemes. The README.txt described the approach required: since there were no passwords or symmetric keys, the solution was pure automated decoding - cycling through encoding algorithms until natural language emerged.
 Approach A Python script (quebra.py) was developed and run against roda.txt following this logic:
-Cyclic Recognition: The script tests the content against native decoding algorithms in sequence: Ascii85, Base85, Base64, Base32, Base16. Sanitisation &amp; Padding: For encodings requiring strict block sizes (Base64, Base32), the algorithm dynamically calculates and injects missing padding (=) to prevent truncated payload errors. Decoding Validation: If the output generates bytes that translate to clean UTF-8 text, the engine marks that layer as successfully broken. Stopping Condition: The loop iterates recursively until all encoding layers are stripped and the result is natural language where the mathematical conversions fail. Script Logic (quebra.py) import base64, binascii def try_decode(data): encodings = [ (&#34;Base64&#34;, lambda d: base64.b64decode(d &#43; &#34;=&#34; * (-len(d) % 4))), (&#34;Base32&#34;, lambda d: base64.b32decode(d &#43; &#34;=&#34; * (-len(d) % 8), casefold=True)), (&#34;Base16&#34;, lambda d: base64.b16decode(d, casefold=True)), (&#34;Base85&#34;, lambda d: base64.b85decode(d)), (&#34;Ascii85&#34;, lambda d: base64.a85decode(d)), ] for name, fn in encodings: try: result = fn(data.strip()) decoded = result.decode(&#34;utf-8&#34;) print(f&#34;[&#43;] Decoded layer: {name}&#34;) return decoded except Exception: continue return None with open(&#34;roda.txt&#34;, &#34;r&#34;) as f: content = f.read().strip() while True: result = try_decode(content) if result is None: print(f&#34;\n[*] Final result:\n{content}&#34;) break content = result What I Learned When an encoding problem has no cryptographic key, scripted brute-force decoding across common encoding schemes is the right approach. The key insight here was recognising that Base64, Base32, and similar schemes are encodings (not encryption) and are trivially reversible — the challenge was just in chaining them automatically. Padding handling is a common pitfall.
+Cyclic Recognition: The script tests the content against native decoding algorithms in sequence: Ascii85, Base85, Base64, Base32, Base16. Sanitisation &amp; Padding: For encodings requiring strict block sizes (Base64, Base32), the algorithm dynamically calculates and injects missing padding (=) to prevent truncated payload errors. Decoding Validation: If the output generates bytes that translate to clean UTF-8 text, the engine marks that layer as successfully broken. Stopping Condition: The loop iterates recursively until all encoding layers are stripped and the result is natural language where the mathematical conversions fail. Script Logic (quebra.py) import base64, binascii def try_decode(data): encodings = [ (&#34;Base64&#34;, lambda d: base64.b64decode(d &#43; &#34;=&#34; * (-len(d) % 4))), (&#34;Base32&#34;, lambda d: base64.b32decode(d &#43; &#34;=&#34; * (-len(d) % 8), casefold=True)), (&#34;Base16&#34;, lambda d: base64.b16decode(d, casefold=True)), (&#34;Base85&#34;, lambda d: base64.b85decode(d)), (&#34;Ascii85&#34;, lambda d: base64.a85decode(d)), ] for name, fn in encodings: try: result = fn(data.strip()) decoded = result.decode(&#34;utf-8&#34;) print(f&#34;[&#43;] Decoded layer: {name}&#34;) return decoded except Exception: continue return None with open(&#34;roda.txt&#34;, &#34;r&#34;) as f: content = f.read().strip() while True: result = try_decode(content) if result is None: print(f&#34;\n[*] Final result:\n{content}&#34;) break content = result What I Learned When an encoding problem has no cryptographic key, scripted brute-force decoding across common encoding schemes is the right approach. The key insight here was recognising that Base64, Base32, and similar schemes are encodings (not encryption) and are trivially reversible - the challenge was just in chaining them automatically. Padding handling is a common pitfall.
 ...</p>
   </div>
   <footer class="entry-footer">
 
 <span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to Roda do Hamster — Layered Encoding Decoder" href="http://localhost:1313/wargaming/solved/roda-do-hamster/"></a>
+  <a class="entry-link" aria-label="post link to Roda do Hamster - Layered Encoding Decoder" href="http://localhost:1313/wargaming/solved/roda-do-hamster/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">The Disk Dump — FAT12 Forensics &amp; XOR Decryption
+    <h2 class="entry-hint-parent">The Disk Dump - FAT12 Forensics &amp; XOR Decryption
     </h2>
   </header>
   <div class="entry-content">
-    <p>Overview “The Disk Dump” focuses on forensic analysis of FAT12 filesystems and fundamental cryptography. It explores how FAT handles file deletion: when a file is deleted, the data remains intact on disk — only the first byte of the filename in the directory entry is replaced with 0xE5, marking the space as available.
+    <p>Overview “The Disk Dump” focuses on forensic analysis of FAT12 filesystems and fundamental cryptography. It explores how FAT handles file deletion: when a file is deleted, the data remains intact on disk - only the first byte of the filename in the directory entry is replaced with 0xE5, marking the space as available.
 The challenge also includes a decoy flag (rabbit hole) designed to mislead players.
 Challenge Setup A FAT12 disk image (the_disk_dump.img) was created and mounted. Four files were written and then forensically deleted (first byte replaced with 0xE5):
 ...</p>
@@ -176,7 +176,7 @@ Challenge Setup A FAT12 disk image (the_disk_dump.img) was created and mounted. 
   <footer class="entry-footer">
 
 <span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to The Disk Dump — FAT12 Forensics & XOR Decryption" href="http://localhost:1313/wargaming/created/the-disk-dump/"></a>
+  <a class="entry-link" aria-label="post link to The Disk Dump - FAT12 Forensics & XOR Decryption" href="http://localhost:1313/wargaming/created/the-disk-dump/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

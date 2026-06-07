@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
-<title>Caesar — Hash Cracking &amp; ROT8000 | Ricardo Ribeiro</title>
+<title>Caesar - Hash Cracking &amp; ROT8000 | Ricardo Ribeiro</title>
 <meta name="keywords" content="">
 <meta name="description" content="A two-part challenge combining SHA256 hash cracking, custom XOR-based decryption, and ROT8000 Unicode rotation to decode a message disguised as East Asian ideograms.">
 <meta name="author" content="">
@@ -114,7 +114,7 @@
     </svg>
 </nav>
     <h1 class="post-title entry-hint-parent">
-      Caesar — Hash Cracking &amp; ROT8000
+      Caesar - Hash Cracking &amp; ROT8000
     </h1>
     <div class="post-description">
       A two-part challenge combining SHA256 hash cracking, custom XOR-based decryption, and ROT8000 Unicode rotation to decode a message disguised as East Asian ideograms.
@@ -126,16 +126,16 @@
 </div>
   </header> 
   <div class="post-content md-content"><h2 id="overview">Overview<a hidden class="anchor" aria-hidden="true" href="#overview">#</a></h2>
-<p>&ldquo;Caesar&rdquo; is a two-part cryptographic challenge. The first part requires cracking a SHA256 hash to obtain a decryption key. The second part involves decoding a message that has been rotated using ROT8000 — a Unicode rotation that transforms ASCII characters into characters resembling East Asian ideograms.</p>
+<p>&ldquo;Caesar&rdquo; is a two-part cryptographic challenge. The first part requires cracking a SHA256 hash to obtain a decryption key. The second part involves decoding a message that has been rotated using ROT8000 - a Unicode rotation that transforms ASCII characters into characters resembling East Asian ideograms.</p>
 <hr>
 <h2 id="solution-walkthrough">Solution Walkthrough<a hidden class="anchor" aria-hidden="true" href="#solution-walkthrough">#</a></h2>
-<h3 id="part-1--hash-cracking">Part 1 — Hash Cracking<a hidden class="anchor" aria-hidden="true" href="#part-1--hash-cracking">#</a></h3>
+<h3 id="part-1---hash-cracking">Part 1 - Hash Cracking<a hidden class="anchor" aria-hidden="true" href="#part-1---hash-cracking">#</a></h3>
 <p>The first message provided this hash:</p>
 <pre tabindex="0"><code>6ec4dca2bcc10d9f68fbd938aefd9e8daff46c1674e09501e2520dd2c82b1e6f
-</code></pre><p>Identified the hash type with <code>hashid</code> — the 64-character hex string is consistent with SHA256. Used <a href="https://crackstation.net">CrackStation</a> to look it up in its database.</p>
+</code></pre><p>Identified the hash type with <code>hashid</code> - the 64-character hex string is consistent with SHA256. Used <a href="https://crackstation.net">CrackStation</a> to look it up in its database.</p>
 <p><strong>Hash cracked:</strong> <code>veni</code></p>
 <hr>
-<h3 id="part-2--decrypting-the-encrypted-file">Part 2 — Decrypting the Encrypted File<a hidden class="anchor" aria-hidden="true" href="#part-2--decrypting-the-encrypted-file">#</a></h3>
+<h3 id="part-2---decrypting-the-encrypted-file">Part 2 - Decrypting the Encrypted File<a hidden class="anchor" aria-hidden="true" href="#part-2---decrypting-the-encrypted-file">#</a></h3>
 <p>Used <code>veni</code> as the key to decrypt <code>bau.enc</code> with the provided <code>chave.py</code> script. The decrypted message revealed the flag format used by the challenge creators:</p>
 <pre tabindex="0"><code>C4es4r ... w4s ... [secret]
 </code></pre><p>This established the expected flag structure: <code>C4es4r_w4s_[secret]</code></p>
@@ -145,16 +145,16 @@
 <pre tabindex="0"><code>籫簼籽类簽粂簼籭籨籁粂籨籾簾
 </code></pre><p>Tested in order:</p>
 <ul>
-<li><strong>ROT13</strong> — no useful output</li>
-<li><strong>ROT47</strong> — no change</li>
-<li><strong>ROT8000</strong> — success. ROT8000 is a Unicode rotation capable of transforming ASCII characters into characters resembling ideograms.</li>
+<li><strong>ROT13</strong> - no useful output</li>
+<li><strong>ROT47</strong> - no change</li>
+<li><strong>ROT8000</strong> - success. ROT8000 is a Unicode rotation capable of transforming ASCII characters into characters resembling ideograms.</li>
 </ul>
 <p><strong>Result:</strong> <code>b3tr4y3d_8y_u5</code></p>
 <p>Combining with the format discovered earlier:</p>
 <p><strong>Final flag:</strong> <code>C4es4r_w4s_b3tr4y3d_8y_u5</code></p>
 <hr>
 <h2 id="what-i-learned">What I Learned<a hidden class="anchor" aria-hidden="true" href="#what-i-learned">#</a></h2>
-<p>ROT8000 is a lesser-known rotation cipher that operates on Unicode code points, not just ASCII. It is specifically designed to make text look like CJK (Chinese/Japanese/Korean) characters — making it visually unrecognisable to anyone unfamiliar with it. This challenge reinforced the importance of exploring the full range of encoding and rotation schemes, not just the classic ROT13 and ROT47.</p>
+<p>ROT8000 is a lesser-known rotation cipher that operates on Unicode code points, not just ASCII. It is specifically designed to make text look like CJK (Chinese/Japanese/Korean) characters making it visually unrecognisable to anyone unfamiliar with it. This challenge reinforced the importance of exploring the full range of encoding and rotation schemes, not just the classic ROT13 and ROT47.</p>
 <hr>
 <h2 id="flag">Flag<a hidden class="anchor" aria-hidden="true" href="#flag">#</a></h2>
 <p><code>C4es4r_w4s_b3tr4y3d_8y_u5</code></p>
@@ -168,11 +168,11 @@
 <nav class="paginav">
   <a class="prev" href="http://localhost:1313/wargaming/solved/alpha-first-contact/">
     <span class="title">« Prev</span>
-    <span>Alpha — First Contact</span>
+    <span>Alpha - First Contact</span>
   </a>
   <a class="next" href="http://localhost:1313/wargaming/solved/confusion/">
     <span class="title">Next »</span>
-    <span>Confusion — Multi-Layer Steganography with Movie Clues</span>
+    <span>Confusion - Multi-Layer Steganography with Movie Clues</span>
   </a>
 </nav>
 

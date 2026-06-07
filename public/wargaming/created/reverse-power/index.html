@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
-<title>Reverse Power — File Carving &amp; Magic Bytes | Ricardo Ribeiro</title>
+<title>Reverse Power - File Carving &amp; Magic Bytes | Ricardo Ribeiro</title>
 <meta name="keywords" content="">
 <meta name="description" content="A forensics challenge involving corrupted file signatures, hex editing, EXIF password extraction, and password-protected ZIP archives.">
 <meta name="author" content="">
@@ -114,7 +114,7 @@
     </svg>
 </nav>
     <h1 class="post-title entry-hint-parent">
-      Reverse Power — File Carving &amp; Magic Bytes
+      Reverse Power - File Carving &amp; Magic Bytes
     </h1>
     <div class="post-description">
       A forensics challenge involving corrupted file signatures, hex editing, EXIF password extraction, and password-protected ZIP archives.
@@ -145,12 +145,12 @@
 </ol>
 <hr>
 <h2 id="solution-walkthrough">Solution Walkthrough<a hidden class="anchor" aria-hidden="true" href="#solution-walkthrough">#</a></h2>
-<h3 id="step-1--identify--repair-the-main-zip">Step 1 — Identify &amp; Repair the Main ZIP<a hidden class="anchor" aria-hidden="true" href="#step-1--identify--repair-the-main-zip">#</a></h3>
+<h3 id="step-1---identify--repair-the-main-zip">Step 1 - Identify &amp; Repair the Main ZIP<a hidden class="anchor" aria-hidden="true" href="#step-1---identify--repair-the-main-zip">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>file Serious_Business.pdf
 </span></span></code></pre></div><p>The <code>file</code> command reveals it is actually a ZIP. Extract it:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>unzip Serious_Business.pdf
 </span></span></code></pre></div><hr>
-<h3 id="step-2--repair-the-corrupted-image">Step 2 — Repair the Corrupted Image<a hidden class="anchor" aria-hidden="true" href="#step-2--repair-the-corrupted-image">#</a></h3>
+<h3 id="step-2---repair-the-corrupted-image">Step 2 - Repair the Corrupted Image<a hidden class="anchor" aria-hidden="true" href="#step-2---repair-the-corrupted-image">#</a></h3>
 <p>Inside the extracted folders, locate <code>broken.jpg</code> and <code>important.zip</code>. The image won&rsquo;t open because its signature is corrupted. Open it in a hex editor and replace the first 2 bytes:</p>
 <table>
   <thead>
@@ -169,7 +169,7 @@
   </tbody>
 </table>
 <hr>
-<h3 id="step-3--extract-the-password-and-flag">Step 3 — Extract the Password and Flag<a hidden class="anchor" aria-hidden="true" href="#step-3--extract-the-password-and-flag">#</a></h3>
+<h3 id="step-3---extract-the-password-and-flag">Step 3 - Extract the Password and Flag<a hidden class="anchor" aria-hidden="true" href="#step-3---extract-the-password-and-flag">#</a></h3>
 <p>With the image repaired, read its EXIF Comment field:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>exiftool broken/folder2/broken.jpg | grep -i <span style="color:#e6db74">&#34;comment&#34;</span>
 </span></span></code></pre></div><p><strong>Password found:</strong> <code>z1p1nz1p</code></p>
@@ -177,7 +177,7 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>unzip broken/folder4/important.zip
 </span></span></code></pre></div><hr>
 <h2 id="what-i-learned">What I Learned<a hidden class="anchor" aria-hidden="true" href="#what-i-learned">#</a></h2>
-<p>File extensions are just labels — the actual file type is determined by its internal signature. Attackers and defenders alike need to understand magic bytes: attackers use them to disguise malicious files, and analysts use them to correctly identify what a file actually is regardless of what it claims to be.</p>
+<p>File extensions are just labels and the actual file type is determined by its internal signature. Attackers and defenders alike need to understand magic bytes: attackers use them to disguise malicious files, and analysts use them to correctly identify what a file actually is regardless of what it claims to be.</p>
 <hr>
 <h2 id="flag">Flag<a hidden class="anchor" aria-hidden="true" href="#flag">#</a></h2>
 <p><code>fLaG_fSt_{R3v3rse_M451C}</code></p>
@@ -191,11 +191,11 @@
 <nav class="paginav">
   <a class="prev" href="http://localhost:1313/wargaming/solved/reactor/">
     <span class="title">« Prev</span>
-    <span>Reactor — Binary Analysis &amp; XOR Decoding</span>
+    <span>Reactor - Binary Analysis &amp; XOR Decoding</span>
   </a>
   <a class="next" href="http://localhost:1313/wargaming/solved/roda-do-hamster/">
     <span class="title">Next »</span>
-    <span>Roda do Hamster — Layered Encoding Decoder</span>
+    <span>Roda do Hamster - Layered Encoding Decoder</span>
   </a>
 </nav>
 

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
-<title>LaCasa — FTP, Steganography &amp; Privilege Escalation | Ricardo Ribeiro</title>
+<title>LaCasa - FTP, Steganography &amp; Privilege Escalation | Ricardo Ribeiro</title>
 <meta name="keywords" content="">
 <meta name="description" content="A Money Heist-themed challenge chaining anonymous FTP access, image steganography, SSH lateral movement, and vim-based root privilege escalation.">
 <meta name="author" content="">
@@ -114,7 +114,7 @@
     </svg>
 </nav>
     <h1 class="post-title entry-hint-parent">
-      LaCasa — FTP, Steganography &amp; Privilege Escalation
+      LaCasa - FTP, Steganography &amp; Privilege Escalation
     </h1>
     <div class="post-description">
       A Money Heist-themed challenge chaining anonymous FTP access, image steganography, SSH lateral movement, and vim-based root privilege escalation.
@@ -129,23 +129,23 @@
 <p>&ldquo;LaCasa&rdquo; is a Money Heist (La Casa de Papel)-themed challenge involving multiple attack stages: anonymous FTP access, credential discovery, image steganography, lateral movement via SSH, and privilege escalation using GTFOBins.</p>
 <hr>
 <h2 id="solution-walkthrough">Solution Walkthrough<a hidden class="anchor" aria-hidden="true" href="#solution-walkthrough">#</a></h2>
-<h3 id="step-1--reconnaissance">Step 1 — Reconnaissance<a hidden class="anchor" aria-hidden="true" href="#step-1--reconnaissance">#</a></h3>
+<h3 id="step-1---reconnaissance">Step 1 - Reconnaissance<a hidden class="anchor" aria-hidden="true" href="#step-1---reconnaissance">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmap &lt;target-ip&gt;
-</span></span></code></pre></div><p>Identified open ports including FTP and HTTP. Visited the website — <code>robots.txt</code> yielded nothing useful. The HTML source contained placeholder credentials that did not work on the login page.</p>
+</span></span></code></pre></div><p>Identified open ports including FTP and HTTP. Visited the website - <code>robots.txt</code> yielded nothing useful. The HTML source contained placeholder credentials that did not work on the login page.</p>
 <hr>
-<h3 id="step-2--anonymous-ftp-access">Step 2 — Anonymous FTP Access<a hidden class="anchor" aria-hidden="true" href="#step-2--anonymous-ftp-access">#</a></h3>
+<h3 id="step-2---anonymous-ftp-access">Step 2 - Anonymous FTP Access<a hidden class="anchor" aria-hidden="true" href="#step-2---anonymous-ftp-access">#</a></h3>
 <p>Anonymous FTP login was enabled. Navigated to the accessible <code>pub</code> folder and found a file containing a credential hint: <code>toquio:BellaCiao</code>.</p>
 <hr>
-<h3 id="step-3--ftp-login-as-tóquio">Step 3 — FTP Login as Tóquio<a hidden class="anchor" aria-hidden="true" href="#step-3--ftp-login-as-tóquio">#</a></h3>
-<p>Used the recovered credentials to log in as <code>toquio</code> and accessed the previously locked folder. Found 3 files — one containing the first flag.</p>
+<h3 id="step-3---ftp-login-as-toquio">Step 3 - FTP Login as Toquio<a hidden class="anchor" aria-hidden="true" href="#step-3---ftp-login-as-toquio">#</a></h3>
+<p>Used the recovered credentials to log in as <code>toquio</code> and accessed the previously locked folder. Found 3 files - one containing the first flag.</p>
 <p><strong>Flag 1:</strong> <code>FLAG{T0qu10_F0und_Th3_W4y}</code></p>
 <hr>
-<h3 id="step-4--image-steganography">Step 4 — Image Steganography<a hidden class="anchor" aria-hidden="true" href="#step-4--image-steganography">#</a></h3>
-<p>Analysed image files from the FTP server. One contained hidden data — extracted using <code>zsteg</code>:</p>
+<h3 id="step-4---image-steganography">Step 4 - Image Steganography<a hidden class="anchor" aria-hidden="true" href="#step-4---image-steganography">#</a></h3>
+<p>Analysed image files from the FTP server. One contained hidden data - extracted using <code>zsteg</code>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>zsteg &lt;image&gt;
-</span></span></code></pre></div><p>Output: a Base64-encoded hash. Decoded it to reveal the name <strong>Silene Oliveira</strong> — the actress who plays the character Tóquio in the series.</p>
+</span></span></code></pre></div><p>Output: a Base64-encoded hash. Decoded it to reveal the name <strong>Silene Oliveira</strong> - the actress who plays the character Tóquio in the series.</p>
 <hr>
-<h3 id="step-5--web-login--further-enumeration">Step 5 — Web Login &amp; Further Enumeration<a hidden class="anchor" aria-hidden="true" href="#step-5--web-login--further-enumeration">#</a></h3>
+<h3 id="step-5---web-login--further-enumeration">Step 5 - Web Login &amp; Further Enumeration<a hidden class="anchor" aria-hidden="true" href="#step-5---web-login--further-enumeration">#</a></h3>
 <p>Used &ldquo;Silene Oliveira&rdquo; as a credential to log into the website. Gained access to an authenticated area containing 4 files:</p>
 <ul>
 <li>Two files with a <strong>latitude</strong> and <strong>longitude</strong></li>
@@ -154,16 +154,16 @@
 </ul>
 <p>The coordinates (via Google Maps) pointed to <strong>Berlin</strong>. Cross-referencing with the candidates list, identified the actor playing the character &ldquo;Berlim&rdquo;: <strong>defonollosaandres</strong>.</p>
 <hr>
-<h3 id="step-6--ssh-access-as-berlim">Step 6 — SSH Access as Berlim<a hidden class="anchor" aria-hidden="true" href="#step-6--ssh-access-as-berlim">#</a></h3>
+<h3 id="step-6---ssh-access-as-berlim">Step 6 - SSH Access as Berlim<a hidden class="anchor" aria-hidden="true" href="#step-6---ssh-access-as-berlim">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ssh Berlim@&lt;target-ip&gt;
 </span></span></code></pre></div><p>Found a flag hidden in the shell history:</p>
 <p><strong>Flag 2:</strong> <code>FLAG{B3rl1m_H1st0ry_Unl0ck3d}</code></p>
 <hr>
-<h3 id="step-7--credential-discovery--lateral-movement">Step 7 — Credential Discovery &amp; Lateral Movement<a hidden class="anchor" aria-hidden="true" href="#step-7--credential-discovery--lateral-movement">#</a></h3>
+<h3 id="step-7---credential-discovery--lateral-movement">Step 7 - Credential Discovery &amp; Lateral Movement<a hidden class="anchor" aria-hidden="true" href="#step-7---credential-discovery--lateral-movement">#</a></h3>
 <p>Continued exploring the home folder. Decoded an encoded file to reveal new credentials: <code>professor:V@tic4n0</code>. Switched user:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>su professor
 </span></span></code></pre></div><hr>
-<h3 id="step-8--root-privilege-escalation-via-vim">Step 8 — Root Privilege Escalation via vim<a hidden class="anchor" aria-hidden="true" href="#step-8--root-privilege-escalation-via-vim">#</a></h3>
+<h3 id="step-8---root-privilege-escalation-via-vim">Step 8 - Root Privilege Escalation via vim<a hidden class="anchor" aria-hidden="true" href="#step-8---root-privilege-escalation-via-vim">#</a></h3>
 <p>Checked sudo permissions:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo -l
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># professor can run vim as root without a password</span>
@@ -172,7 +172,7 @@
 </span></span></code></pre></div><p>Accessed the root account and captured the third flag.</p>
 <p><strong>Flag 3:</strong> <code>FLAG{Pr0f3ss0r_M4st3rm1nd_CTF_COMPLETE}</code></p>
 <hr>
-<h3 id="step-9--final-flag">Step 9 — Final Flag<a hidden class="anchor" aria-hidden="true" href="#step-9--final-flag">#</a></h3>
+<h3 id="step-9---final-flag">Step 9 - Final Flag<a hidden class="anchor" aria-hidden="true" href="#step-9---final-flag">#</a></h3>
 <p>Reviewed previously obtained files. Found the fourth flag inside <code>capitais.txt</code>.</p>
 <p><strong>Flag 4:</strong> <code>FLAG{Porto_B3rc0_N4c4o}</code></p>
 <hr>
@@ -213,11 +213,11 @@
 <nav class="paginav">
   <a class="prev" href="http://localhost:1313/wargaming/created/handsome-peter/">
     <span class="title">« Prev</span>
-    <span>Handsome Peter — Steganography Challenge</span>
+    <span>Handsome Peter - Steganography Challenge</span>
   </a>
   <a class="next" href="http://localhost:1313/wargaming/created/little-juice-challenge/">
     <span class="title">Next »</span>
-    <span>Little Juice Challenge — Boot2Root</span>
+    <span>Little Juice Challenge - Boot2Root</span>
   </a>
 </nav>
 

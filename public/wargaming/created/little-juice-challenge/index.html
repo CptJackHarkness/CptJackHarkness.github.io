@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
-<title>Little Juice Challenge — Boot2Root | Ricardo Ribeiro</title>
+<title>Little Juice Challenge - Boot2Root | Ricardo Ribeiro</title>
 <meta name="keywords" content="">
 <meta name="description" content="A Boot2Root Docker challenge involving port scanning, Git repository exposure, lateral movement via PostgreSQL, and privilege escalation through a misconfigured cronjob.">
 <meta name="author" content="">
@@ -114,7 +114,7 @@
     </svg>
 </nav>
     <h1 class="post-title entry-hint-parent">
-      Little Juice Challenge — Boot2Root
+      Little Juice Challenge - Boot2Root
     </h1>
     <div class="post-description">
       A Boot2Root Docker challenge involving port scanning, Git repository exposure, lateral movement via PostgreSQL, and privilege escalation through a misconfigured cronjob.
@@ -145,12 +145,12 @@
 <li>PostgreSQL on port 5433 configured to listen on all interfaces, containing SSH credentials in a <code>system_ssh</code> table</li>
 <li>SSH on port 2222</li>
 <li>HTTP server on port 8080</li>
-<li>A root cronjob running <code>/opt/sync_git.sh</code> every minute with <code>chmod 777</code> — writable by any user</li>
+<li>A root cronjob running <code>/opt/sync_git.sh</code> every minute with <code>chmod 777</code> - writable by any user</li>
 </ul>
 <hr>
 <h2 id="solution-walkthrough">Solution Walkthrough<a hidden class="anchor" aria-hidden="true" href="#solution-walkthrough">#</a></h2>
-<h3 id="step-1--port-scanning">Step 1 — Port Scanning<a hidden class="anchor" aria-hidden="true" href="#step-1--port-scanning">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmap -p- --min-rate <span style="color:#ae81ff">1000</span> 172.30.2.33
+<h3 id="step-1---port-scanning">Step 1 - Port Scanning<a hidden class="anchor" aria-hidden="true" href="#step-1---port-scanning">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmap -p- --min-rate <span style="color:#ae81ff">1000</span> &lt;target-ip&gt;
 </span></span></code></pre></div><p><strong>Ports discovered:</strong></p>
 <ul>
 <li><code>2121/tcp</code> — FTP (vsFTPd 3.0.5)</li>
@@ -159,29 +159,29 @@
 <li><code>8080/tcp</code> — HTTP</li>
 </ul>
 <hr>
-<h3 id="step-2--web-enumeration">Step 2 — Web Enumeration<a hidden class="anchor" aria-hidden="true" href="#step-2--web-enumeration">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl http://172.30.2.33:8080/robots.txt
-</span></span><span style="display:flex;"><span>curl http://172.30.2.33:8080/
+<h3 id="step-2---web-enumeration">Step 2 - Web Enumeration<a hidden class="anchor" aria-hidden="true" href="#step-2---web-enumeration">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl http://&lt;target-ip&gt;:8080/robots.txt
+</span></span><span style="display:flex;"><span>curl http://&lt;target-ip&gt;:8080/
 </span></span></code></pre></div><p>The <code>robots.txt</code> reveals a restricted <code>/README.txt</code>. An HTML comment in the page source exposes FTP credentials in plaintext:</p>
 <pre tabindex="0"><code>anonymous:An0nym0us-som3tim3s-r3quir3s-a-p4ssw0rd
 </code></pre><hr>
-<h3 id="step-3--web-hint">Step 3 — Web Hint<a hidden class="anchor" aria-hidden="true" href="#step-3--web-hint">#</a></h3>
+<h3 id="step-3---web-hint">Step 3 - Web Hint<a hidden class="anchor" aria-hidden="true" href="#step-3---web-hint">#</a></h3>
 <p>Navigate to <code>Meet the Team &gt; Anthony Goes</code> — the hint points to checking <code>/opt</code> for maintenance scripts.</p>
 <hr>
-<h3 id="step-4--ftp--git-history-exploitation">Step 4 — FTP &amp; Git History Exploitation<a hidden class="anchor" aria-hidden="true" href="#step-4--ftp--git-history-exploitation">#</a></h3>
+<h3 id="step-4---ftp--git-history-exploitation">Step 4 - FTP &amp; Git History Exploitation<a hidden class="anchor" aria-hidden="true" href="#step-4---ftp--git-history-exploitation">#</a></h3>
 <p>Log into FTP with the anonymous credentials. The <code>.git</code> directory is exposed. Recover the sensitive commit history:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git log
 </span></span><span style="display:flex;"><span>git show &lt;commit-hash&gt;
 </span></span></code></pre></div><p><strong>Credentials found:</strong> <code>db_admin</code> / <code>G1t_Hub_Rocks!</code></p>
 <hr>
-<h3 id="step-5--postgresql-lateral-movement">Step 5 — PostgreSQL Lateral Movement<a hidden class="anchor" aria-hidden="true" href="#step-5--postgresql-lateral-movement">#</a></h3>
+<h3 id="step-5---postgresql-lateral-movement">Step 5 - PostgreSQL Lateral Movement<a hidden class="anchor" aria-hidden="true" href="#step-5---postgresql-lateral-movement">#</a></h3>
 <p>Connect to the database using the recovered credentials:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>psql -h 172.30.2.33 -p <span style="color:#ae81ff">5433</span> -U db_admin
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>psql -h &lt;target-ip&gt; -p <span style="color:#ae81ff">5433</span> -U db_admin
 </span></span><span style="display:flex;"><span>SELECT * FROM system_ssh;
 </span></span></code></pre></div><p><strong>SSH credentials found:</strong> <code>student</code> / <code>Ss8_4cceSS_2026#</code></p>
 <hr>
-<h3 id="step-6--ssh-access--zip-bomb">Step 6 — SSH Access &amp; Zip Bomb<a hidden class="anchor" aria-hidden="true" href="#step-6--ssh-access--zip-bomb">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ssh student@172.30.2.33 -p <span style="color:#ae81ff">2222</span>
+<h3 id="step-6---ssh-access--zip-bomb">Step 6 - SSH Access &amp; Zip Bomb<a hidden class="anchor" aria-hidden="true" href="#step-6---ssh-access--zip-bomb">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ssh student@&lt;target-ip&gt; -p <span style="color:#ae81ff">2222</span>
 </span></span></code></pre></div><p>A <code>level50.zip</code> is waiting. Unpack all 50 nested levels automatically:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>f<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;level50.zip&#34;</span>; <span style="color:#66d9ef">while</span> <span style="color:#f92672">[[</span> -f <span style="color:#e6db74">&#34;</span>$f<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#e6db74">&#34;</span>$f<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> *.zip <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">do</span> n<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>unzip -Z1 <span style="color:#e6db74">&#34;</span>$f<span style="color:#e6db74">&#34;</span> | head -n1<span style="color:#66d9ef">)</span>; unzip -o <span style="color:#e6db74">&#34;</span>$f<span style="color:#e6db74">&#34;</span>; rm <span style="color:#e6db74">&#34;</span>$f<span style="color:#e6db74">&#34;</span>; f<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$n<span style="color:#e6db74">&#34;</span>; <span style="color:#66d9ef">done</span>
 </span></span></code></pre></div><hr>
@@ -203,11 +203,11 @@
 <nav class="paginav">
   <a class="prev" href="http://localhost:1313/wargaming/solved/lacasa/">
     <span class="title">« Prev</span>
-    <span>LaCasa — FTP, Steganography &amp; Privilege Escalation</span>
+    <span>LaCasa - FTP, Steganography &amp; Privilege Escalation</span>
   </a>
   <a class="next" href="http://localhost:1313/wargaming/solved/meme-forum/">
     <span class="title">Next »</span>
-    <span>Meme Forum — Port Knocking &amp; Password Cracking</span>
+    <span>Meme Forum - Port Knocking &amp; Password Cracking</span>
   </a>
 </nav>
 

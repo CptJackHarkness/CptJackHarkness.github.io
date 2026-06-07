@@ -7,7 +7,7 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Challenges We Solved | Ricardo Ribeiro</title>
 <meta name="keywords" content="">
-<meta name="description" content="CTF challenges created by the opposing team, solved by us during the wargaming event.">
+<meta name="description" content="CTF challenges created by the opposing team Alpha, solved by us during the wargaming event.">
 <meta name="author" content="">
 <link rel="canonical" href="http://localhost:1313/wargaming/solved/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.89ca4972ab5e6aaa05e9a0dae0c4bb64b26585bc79e36f5cf33614eea0283abe.css" integrity="sha256-icpJcqteaqoF6aDa4MS7ZLJlhbx5429c8zYU7qAoOr4=" rel="preload stylesheet" as="style">
@@ -110,59 +110,59 @@
     Challenges We Solved
   </h1>
   <div class="post-description">
-    CTF challenges created by the opposing team, solved by us during the wargaming event.
+    CTF challenges created by the opposing team Alpha, solved by us during the wargaming event.
   </div>
 </header>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Meme Forum — Port Knocking &amp; Password Cracking
+    <h2 class="entry-hint-parent">Meme Forum - Port Knocking &amp; Password Cracking
     </h2>
   </header>
   <div class="entry-content">
-    <p>Overview “Meme Forum” required discovering a hidden endpoint, brute-forcing a port knocking sequence to unlock FTP access, and cracking a password-protected RAR archive to retrieve the flag.
-Solution Walkthrough Step 1 — Initial Reconnaissance nmap &lt;target-ip&gt; Only port 8080 was open. Visited https://memeforum.ctf/ — no obvious entry points at first glance.
-Step 2 — Hidden Endpoint Discovery Inspected the HTML source of the main page and found a reference to a hidden endpoint: /information.
+    <p>Overview “MemeForum” required discovering a hidden endpoint, brute-forcing a port knocking sequence to unlock FTP access, and cracking a password-protected RAR archive to retrieve the flag.
+Solution Walkthrough Step 1 - Initial Reconnaissance nmap &lt;target-ip&gt; Only port 8080 was open. Visited https://memeforum.ctf/ — no obvious entry points at first glance.
+Step 2 - Hidden Endpoint Discovery Inspected the HTML source of the main page and found a reference to a hidden endpoint: /information.
 ...</p>
   </div>
   <footer class="entry-footer">
 
 <span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to Meme Forum — Port Knocking & Password Cracking" href="http://localhost:1313/wargaming/solved/meme-forum/"></a>
+  <a class="entry-link" aria-label="post link to Meme Forum - Port Knocking & Password Cracking" href="http://localhost:1313/wargaming/solved/meme-forum/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Reactor — Binary Analysis &amp; XOR Decoding
+    <h2 class="entry-hint-parent">Reactor - Binary Analysis &amp; XOR Decoding
     </h2>
   </header>
   <div class="entry-content">
     <p>Overview “Reactor” is a reverse engineering challenge built around a binary executable that requests two sequential access codes. The solution requires extracting strings from the binary, decoding values in hex and binary, and applying XOR to uncover the second code.
-Solution Walkthrough Step 1 — Run the Binary ./reactor The program prompts for an access code.
-Step 2 — Extract Strings from the Binary strings reactor Among the extracted strings, a value labelled primary_sequence was found encoded in hexadecimal. A backup_sequence also appeared at the end.
+Solution Walkthrough Step 1 - Run the Binary ./reactor The program prompts for an access code.
+Step 2 - Extract Strings from the Binary strings reactor Among the extracted strings, a value labelled primary_sequence was found encoded in hexadecimal. A backup_sequence also appeared at the end.
 ...</p>
   </div>
   <footer class="entry-footer">
 
 <span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to Reactor — Binary Analysis & XOR Decoding" href="http://localhost:1313/wargaming/solved/reactor/"></a>
+  <a class="entry-link" aria-label="post link to Reactor - Binary Analysis & XOR Decoding" href="http://localhost:1313/wargaming/solved/reactor/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Roda do Hamster — Layered Encoding Decoder
+    <h2 class="entry-hint-parent">Roda do Hamster - Layered Encoding Decoder
     </h2>
   </header>
   <div class="entry-content">
-    <p>Overview “Roda do Hamster” (Hamster Wheel) presented a file encoded in multiple successive layers of different encoding schemes. The README.txt described the approach required: since there were no passwords or symmetric keys, the solution was pure automated decoding — cycling through encoding algorithms until natural language emerged.
+    <p>Overview “Roda do Hamster” (Hamster Wheel) presented a file encoded in multiple successive layers of different encoding schemes. The README.txt described the approach required: since there were no passwords or symmetric keys, the solution was pure automated decoding - cycling through encoding algorithms until natural language emerged.
 Approach A Python script (quebra.py) was developed and run against roda.txt following this logic:
-Cyclic Recognition: The script tests the content against native decoding algorithms in sequence: Ascii85, Base85, Base64, Base32, Base16. Sanitisation &amp; Padding: For encodings requiring strict block sizes (Base64, Base32), the algorithm dynamically calculates and injects missing padding (=) to prevent truncated payload errors. Decoding Validation: If the output generates bytes that translate to clean UTF-8 text, the engine marks that layer as successfully broken. Stopping Condition: The loop iterates recursively until all encoding layers are stripped and the result is natural language where the mathematical conversions fail. Script Logic (quebra.py) import base64, binascii def try_decode(data): encodings = [ (&#34;Base64&#34;, lambda d: base64.b64decode(d &#43; &#34;=&#34; * (-len(d) % 4))), (&#34;Base32&#34;, lambda d: base64.b32decode(d &#43; &#34;=&#34; * (-len(d) % 8), casefold=True)), (&#34;Base16&#34;, lambda d: base64.b16decode(d, casefold=True)), (&#34;Base85&#34;, lambda d: base64.b85decode(d)), (&#34;Ascii85&#34;, lambda d: base64.a85decode(d)), ] for name, fn in encodings: try: result = fn(data.strip()) decoded = result.decode(&#34;utf-8&#34;) print(f&#34;[&#43;] Decoded layer: {name}&#34;) return decoded except Exception: continue return None with open(&#34;roda.txt&#34;, &#34;r&#34;) as f: content = f.read().strip() while True: result = try_decode(content) if result is None: print(f&#34;\n[*] Final result:\n{content}&#34;) break content = result What I Learned When an encoding problem has no cryptographic key, scripted brute-force decoding across common encoding schemes is the right approach. The key insight here was recognising that Base64, Base32, and similar schemes are encodings (not encryption) and are trivially reversible — the challenge was just in chaining them automatically. Padding handling is a common pitfall.
+Cyclic Recognition: The script tests the content against native decoding algorithms in sequence: Ascii85, Base85, Base64, Base32, Base16. Sanitisation &amp; Padding: For encodings requiring strict block sizes (Base64, Base32), the algorithm dynamically calculates and injects missing padding (=) to prevent truncated payload errors. Decoding Validation: If the output generates bytes that translate to clean UTF-8 text, the engine marks that layer as successfully broken. Stopping Condition: The loop iterates recursively until all encoding layers are stripped and the result is natural language where the mathematical conversions fail. Script Logic (quebra.py) import base64, binascii def try_decode(data): encodings = [ (&#34;Base64&#34;, lambda d: base64.b64decode(d &#43; &#34;=&#34; * (-len(d) % 4))), (&#34;Base32&#34;, lambda d: base64.b32decode(d &#43; &#34;=&#34; * (-len(d) % 8), casefold=True)), (&#34;Base16&#34;, lambda d: base64.b16decode(d, casefold=True)), (&#34;Base85&#34;, lambda d: base64.b85decode(d)), (&#34;Ascii85&#34;, lambda d: base64.a85decode(d)), ] for name, fn in encodings: try: result = fn(data.strip()) decoded = result.decode(&#34;utf-8&#34;) print(f&#34;[&#43;] Decoded layer: {name}&#34;) return decoded except Exception: continue return None with open(&#34;roda.txt&#34;, &#34;r&#34;) as f: content = f.read().strip() while True: result = try_decode(content) if result is None: print(f&#34;\n[*] Final result:\n{content}&#34;) break content = result What I Learned When an encoding problem has no cryptographic key, scripted brute-force decoding across common encoding schemes is the right approach. The key insight here was recognising that Base64, Base32, and similar schemes are encodings (not encryption) and are trivially reversible - the challenge was just in chaining them automatically. Padding handling is a common pitfall.
 ...</p>
   </div>
   <footer class="entry-footer">
 
 <span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to Roda do Hamster — Layered Encoding Decoder" href="http://localhost:1313/wargaming/solved/roda-do-hamster/"></a>
+  <a class="entry-link" aria-label="post link to Roda do Hamster - Layered Encoding Decoder" href="http://localhost:1313/wargaming/solved/roda-do-hamster/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

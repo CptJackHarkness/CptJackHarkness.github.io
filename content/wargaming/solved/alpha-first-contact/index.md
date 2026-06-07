@@ -20,7 +20,6 @@ echo "<target-ip> memeforum.ctf" | sudo tee -a /etc/hosts
 echo "<target-ip> footballeaks.ctf" | sudo tee -a /etc/hosts
 echo "<target-ip> hello-alph" | sudo tee -a /etc/hosts
 ```
-Will try my best to not expose any IP's, even though they are private.
 
 With the domain resolved, the challenge page became accessible and the flag was visible.
 

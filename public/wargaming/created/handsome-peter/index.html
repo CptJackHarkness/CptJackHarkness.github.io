@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
-<title>Handsome Peter — Steganography Challenge | Ricardo Ribeiro</title>
+<title>Handsome Peter - Steganography Challenge | Ricardo Ribeiro</title>
 <meta name="keywords" content="">
 <meta name="description" content="A multi-technique steganography challenge covering EXIF metadata, file appending, LSB, DCT, colour palette manipulation, and audio steganography.">
 <meta name="author" content="">
@@ -114,7 +114,7 @@
     </svg>
 </nav>
     <h1 class="post-title entry-hint-parent">
-      Handsome Peter — Steganography Challenge
+      Handsome Peter - Steganography Challenge
     </h1>
     <div class="post-description">
       A multi-technique steganography challenge covering EXIF metadata, file appending, LSB, DCT, colour palette manipulation, and audio steganography.
@@ -126,7 +126,7 @@
 </div>
   </header> 
   <div class="post-content md-content"><h2 id="overview">Overview<a hidden class="anchor" aria-hidden="true" href="#overview">#</a></h2>
-<p>&ldquo;Handsome Peter&rdquo; is a practical journey through steganography, covering 6 fundamental data-hiding techniques. Steganography is the practice of concealing information inside other data (media files, metadata, etc.) in an imperceptible way. Unlike cryptography — which protects data by making it unreadable — steganography hides the very existence of the message.</p>
+<p>&ldquo;Handsome Peter&rdquo; is a practical journey through steganography, covering 6 fundamental data-hiding techniques. Steganography is the practice of concealing information inside other data (media files, metadata, etc.) in an imperceptible way. Unlike cryptography - which protects data by making it unreadable — steganography hides the very existence of the message.</p>
 <p>The objective is to identify and extract 6 flags hidden across different files using 6 distinct steganography techniques.</p>
 <hr>
 <h2 id="techniques-covered">Techniques Covered<a hidden class="anchor" aria-hidden="true" href="#techniques-covered">#</a></h2>
@@ -155,14 +155,14 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;fLaG_fSt_{AuDi0_AmPlitUd3_M4st3r_sTeG}&#34;</span> | steghide embed -ef - -cf music02.wav -p <span style="color:#e6db74">&#39;P3t3rSt3g0M4st3r&#39;</span>
 </span></span></code></pre></div><hr>
 <h2 id="solution-walkthrough">Solution Walkthrough<a hidden class="anchor" aria-hidden="true" href="#solution-walkthrough">#</a></h2>
-<h3 id="step-1--exif-metadata-image02jpg">Step 1 — EXIF Metadata (image02.jpg)<a hidden class="anchor" aria-hidden="true" href="#step-1--exif-metadata-image02jpg">#</a></h3>
+<h3 id="step-1---exif-metadata-image02jpg">Step 1 - EXIF Metadata (image02.jpg)<a hidden class="anchor" aria-hidden="true" href="#step-1---exif-metadata-image02jpg">#</a></h3>
 <p>Inspect the image metadata using exiftool. The flag will be in the &ldquo;Comment&rdquo; field.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>exiftool image02.jpg
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Alternative:</span>
 </span></span><span style="display:flex;"><span>strings image02.jpg | grep fLaG_fSt_
 </span></span></code></pre></div><p><strong>Result:</strong> <code>fLaG_fSt_{M3tAdAtA_sTeG_iS_fUn}</code></p>
 <hr>
-<h3 id="step-2--appendtrailer-image05jpg">Step 2 — Append/Trailer (image05.jpg)<a hidden class="anchor" aria-hidden="true" href="#step-2--appendtrailer-image05jpg">#</a></h3>
+<h3 id="step-2---appendtrailer-image05jpg">Step 2 - Append/Trailer (image05.jpg)<a hidden class="anchor" aria-hidden="true" href="#step-2---appendtrailer-image05jpg">#</a></h3>
 <p>Use <code>tail</code> to view the flag and <code>binwalk</code> to extract appended data.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>tail -n <span style="color:#ae81ff">5</span> image05.jpg
 </span></span><span style="display:flex;"><span>binwalk -e image05.jpg
@@ -170,25 +170,25 @@
 </span></span></code></pre></div><p><strong>Result:</strong> <code>fLaG_fSt{App3nD_l4y3r5_sTeG}</code><br>
 <strong>Password found:</strong> <code>H4nds0meP3ter!#$</code></p>
 <hr>
-<h3 id="step-3--lsb-image07png">Step 3 — LSB (image07.png)<a hidden class="anchor" aria-hidden="true" href="#step-3--lsb-image07png">#</a></h3>
+<h3 id="step-3---lsb-image07png">Step 3 - LSB (image07.png)<a hidden class="anchor" aria-hidden="true" href="#step-3---lsb-image07png">#</a></h3>
 <p>Use <code>zsteg</code> to automatically analyse LSB layers.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>zsteg -a image07.png
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># More targeted:</span>
 </span></span><span style="display:flex;"><span>zsteg -a image07.png 2&gt;/dev/null | grep -i fLaG_fSt_
 </span></span></code></pre></div><p><strong>Result:</strong> <code>fLaG_fSt_{LsB_sTeG_iS_SiGnIficaNt}</code></p>
 <hr>
-<h3 id="step-4--dct-image09jpg">Step 4 — DCT (image09.jpg)<a hidden class="anchor" aria-hidden="true" href="#step-4--dct-image09jpg">#</a></h3>
+<h3 id="step-4---dct-image09jpg">Step 4 - DCT (image09.jpg)<a hidden class="anchor" aria-hidden="true" href="#step-4---dct-image09jpg">#</a></h3>
 <p>Extract data hidden in DCT frequencies with steghide, using the password found in Step 2.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>steghide extract -sf image09.jpg -xf output.txt -p <span style="color:#e6db74">&#39;H4nds0meP3ter!#$&#39;</span> <span style="color:#f92672">&amp;&amp;</span> cat output.txt
 </span></span></code></pre></div><p><strong>Result:</strong> <code>fLaG_fSt_{DcT_sTeG_iS_dIsCrEte}</code><br>
 <strong>Password found:</strong> <code>P3t3rSt3g0M4st3r</code></p>
 <hr>
-<h3 id="step-5--colour-palette-image14gif">Step 5 — Colour Palette (image14.gif)<a hidden class="anchor" aria-hidden="true" href="#step-5--colour-palette-image14gif">#</a></h3>
+<h3 id="step-5---colour-palette-image14gif">Step 5 - Colour Palette (image14.gif)<a hidden class="anchor" aria-hidden="true" href="#step-5---colour-palette-image14gif">#</a></h3>
 <p>Use <code>gifshuffle</code> to reveal data hidden in the colour palette.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gifshuffle image14.gif
 </span></span></code></pre></div><p><strong>Result:</strong> <code>fLaG_fSt_{PaLeTtE_oRdEr_mAtTeRs_sTeG}</code></p>
 <hr>
-<h3 id="step-6--audio-steganography-music02wav">Step 6 — Audio Steganography (music02.wav)<a hidden class="anchor" aria-hidden="true" href="#step-6--audio-steganography-music02wav">#</a></h3>
+<h3 id="step-6---audio-steganography-music02wav">Step 6 - Audio Steganography (music02.wav)<a hidden class="anchor" aria-hidden="true" href="#step-6---audio-steganography-music02wav">#</a></h3>
 <p>Extract data from the audio file with steghide, using the password found in Step 4.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>steghide extract -sf music02.wav -xf audio_output.txt -p <span style="color:#e6db74">&#39;P3t3rSt3g0M4st3r&#39;</span>
 </span></span><span style="display:flex;"><span>cat audio_output.txt
@@ -246,11 +246,11 @@
 <nav class="paginav">
   <a class="prev" href="http://localhost:1313/wargaming/solved/football-leaks/">
     <span class="title">« Prev</span>
-    <span>Football Leaks — Web Vulnerabilities Chain</span>
+    <span>Football Leaks - Web Vulnerabilities Chain</span>
   </a>
   <a class="next" href="http://localhost:1313/wargaming/solved/lacasa/">
     <span class="title">Next »</span>
-    <span>LaCasa — FTP, Steganography &amp; Privilege Escalation</span>
+    <span>LaCasa - FTP, Steganography &amp; Privilege Escalation</span>
   </a>
 </nav>
 

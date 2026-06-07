@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
-<title>Roda do Hamster — Layered Encoding Decoder | Ricardo Ribeiro</title>
+<title>Roda do Hamster - Layered Encoding Decoder | Ricardo Ribeiro</title>
 <meta name="keywords" content="">
 <meta name="description" content="A challenge solved by scripting a recursive decoder that automatically strips multiple layers of Base16/32/64/85 and Ascii85 encoding until plain text is revealed.">
 <meta name="author" content="">
@@ -114,7 +114,7 @@
     </svg>
 </nav>
     <h1 class="post-title entry-hint-parent">
-      Roda do Hamster — Layered Encoding Decoder
+      Roda do Hamster - Layered Encoding Decoder
     </h1>
     <div class="post-description">
       A challenge solved by scripting a recursive decoder that automatically strips multiple layers of Base16/32/64/85 and Ascii85 encoding until plain text is revealed.
@@ -126,7 +126,7 @@
 </div>
   </header> 
   <div class="post-content md-content"><h2 id="overview">Overview<a hidden class="anchor" aria-hidden="true" href="#overview">#</a></h2>
-<p>&ldquo;Roda do Hamster&rdquo; (Hamster Wheel) presented a file encoded in multiple successive layers of different encoding schemes. The <code>README.txt</code> described the approach required: since there were no passwords or symmetric keys, the solution was pure automated decoding — cycling through encoding algorithms until natural language emerged.</p>
+<p>&ldquo;Roda do Hamster&rdquo; (Hamster Wheel) presented a file encoded in multiple successive layers of different encoding schemes. The <code>README.txt</code> described the approach required: since there were no passwords or symmetric keys, the solution was pure automated decoding - cycling through encoding algorithms until natural language emerged.</p>
 <hr>
 <h2 id="approach">Approach<a hidden class="anchor" aria-hidden="true" href="#approach">#</a></h2>
 <p>A Python script (<code>quebra.py</code>) was developed and run against <code>roda.txt</code> following this logic:</p>
@@ -169,7 +169,7 @@
 </span></span><span style="display:flex;"><span>    content <span style="color:#f92672">=</span> result
 </span></span></code></pre></div><hr>
 <h2 id="what-i-learned">What I Learned<a hidden class="anchor" aria-hidden="true" href="#what-i-learned">#</a></h2>
-<p>When an encoding problem has no cryptographic key, scripted brute-force decoding across common encoding schemes is the right approach. The key insight here was recognising that Base64, Base32, and similar schemes are <strong>encodings</strong> (not encryption) and are trivially reversible — the challenge was just in chaining them automatically. Padding handling is a common pitfall.</p>
+<p>When an encoding problem has no cryptographic key, scripted brute-force decoding across common encoding schemes is the right approach. The key insight here was recognising that Base64, Base32, and similar schemes are <strong>encodings</strong> (not encryption) and are trivially reversible - the challenge was just in chaining them automatically. Padding handling is a common pitfall.</p>
 <hr>
 <h2 id="flag">Flag<a hidden class="anchor" aria-hidden="true" href="#flag">#</a></h2>
 <p><code>CTF{5cr1pt1ng_m45t3r_p0rt0_2026}</code></p>
@@ -183,11 +183,11 @@
 <nav class="paginav">
   <a class="prev" href="http://localhost:1313/wargaming/created/reverse-power/">
     <span class="title">« Prev</span>
-    <span>Reverse Power — File Carving &amp; Magic Bytes</span>
+    <span>Reverse Power - File Carving &amp; Magic Bytes</span>
   </a>
   <a class="next" href="http://localhost:1313/wargaming/created/the-disk-dump/">
     <span class="title">Next »</span>
-    <span>The Disk Dump — FAT12 Forensics &amp; XOR Decryption</span>
+    <span>The Disk Dump - FAT12 Forensics &amp; XOR Decryption</span>
   </a>
 </nav>
 

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
-<title>Emergency Notes — Double XOR Cryptography | Ricardo Ribeiro</title>
+<title>Emergency Notes - Double XOR Cryptography | Ricardo Ribeiro</title>
 <meta name="keywords" content="">
 <meta name="description" content="A cryptography challenge focused on the XOR operation and its reversibility, requiring players to test key combinations to decrypt a double-XOR-encrypted backup.">
 <meta name="author" content="">
@@ -114,7 +114,7 @@
     </svg>
 </nav>
     <h1 class="post-title entry-hint-parent">
-      Emergency Notes — Double XOR Cryptography
+      Emergency Notes - Double XOR Cryptography
     </h1>
     <div class="post-description">
       A cryptography challenge focused on the XOR operation and its reversibility, requiring players to test key combinations to decrypt a double-XOR-encrypted backup.
@@ -132,7 +132,7 @@
 <li><strong>Identity:</strong> <code>A XOR 0 = A</code></li>
 </ul>
 <p>When a readable message has XOR applied with a key, it becomes unreadable ciphertext. Applying XOR again with the same key perfectly recovers the original message.</p>
-<p>The scenario: a sysadmin created an emergency backup and protected it with a homemade XOR scheme. The player receives a notes file containing the encrypted content in hexadecimal format and three possible passphrases. Only two of the three were used — the goal is to find the correct combination.</p>
+<p>The scenario: a sysadmin created an emergency backup and protected it with a homemade XOR scheme. The player receives a notes file containing the encrypted content in hexadecimal format and three possible passphrases. Only two of the three were used - the goal is to find the correct combination.</p>
 <hr>
 <h2 id="challenge-creation">Challenge Creation<a hidden class="anchor" aria-hidden="true" href="#challenge-creation">#</a></h2>
 <p>Built entirely in CyberChef:</p>
@@ -145,22 +145,22 @@
 </ul>
 </li>
 <li>Converted the result to hexadecimal (to make it safe to store as text)</li>
-<li>Created <code>notes.txt</code> containing the hex output and <strong>three</strong> candidate phrases — including <code>emergency backup</code> as a red herring</li>
+<li>Created <code>notes.txt</code> containing the hex output and <strong>three</strong> candidate phrases - including <code>emergency backup</code> as a red herring</li>
 </ol>
 <hr>
 <h2 id="solution-walkthrough">Solution Walkthrough<a hidden class="anchor" aria-hidden="true" href="#solution-walkthrough">#</a></h2>
-<h3 id="step-1--open-cyberchef">Step 1 — Open CyberChef<a hidden class="anchor" aria-hidden="true" href="#step-1--open-cyberchef">#</a></h3>
+<h3 id="step-1---open-cyberchef">Step 1 - Open CyberChef<a hidden class="anchor" aria-hidden="true" href="#step-1---open-cyberchef">#</a></h3>
 <p>Copy the long hex string from <code>notes.txt</code> and paste it into the CyberChef Input field.</p>
-<h3 id="step-2--reverse-the-hex">Step 2 — Reverse the Hex<a hidden class="anchor" aria-hidden="true" href="#step-2--reverse-the-hex">#</a></h3>
+<h3 id="step-2---reverse-the-hex">Step 2 - Reverse the Hex<a hidden class="anchor" aria-hidden="true" href="#step-2---reverse-the-hex">#</a></h3>
 <p>Add a <strong>From Hex</strong> operation to the recipe to convert back to binary.</p>
-<h3 id="step-3--test-xor-combinations">Step 3 — Test XOR Combinations<a hidden class="anchor" aria-hidden="true" href="#step-3--test-xor-combinations">#</a></h3>
+<h3 id="step-3---test-xor-combinations">Step 3 - Test XOR Combinations<a hidden class="anchor" aria-hidden="true" href="#step-3---test-xor-combinations">#</a></h3>
 <p>With three candidate phrases and only two used, there are exactly 3 possible combinations. Add two XOR operations to the recipe, setting the Key format to UTF-8.</p>
 <p>The correct combination:</p>
 <ul>
 <li><strong>XOR 1:</strong> <code>xor is not backup</code></li>
 <li><strong>XOR 2:</strong> <code>do not use in production</code></li>
 </ul>
-<h3 id="step-4--capture-the-flag">Step 4 — Capture the Flag<a hidden class="anchor" aria-hidden="true" href="#step-4--capture-the-flag">#</a></h3>
+<h3 id="step-4---capture-the-flag">Step 4 - Capture the Flag<a hidden class="anchor" aria-hidden="true" href="#step-4---capture-the-flag">#</a></h3>
 <p>With the two correct keys applied, XOR&rsquo;s reversibility cancels the cipher and the Output reveals the flag.</p>
 <p><strong>Alternatively via terminal:</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>python3 <span style="color:#f92672">-</span>c <span style="color:#e6db74">&#39;</span>
@@ -174,7 +174,7 @@
 </span></span><span style="display:flex;"><span><span style="color:#e6db74">&#39;</span>
 </span></span></code></pre></div><hr>
 <h2 id="what-i-learned">What I Learned<a hidden class="anchor" aria-hidden="true" href="#what-i-learned">#</a></h2>
-<p>XOR is not a secure encryption scheme — it is trivially reversible if the key is known or guessable. This challenge reinforces why symmetric encryption should never be implemented with simple XOR against static passphrases, especially when both the ciphertext and candidate keys are available to the attacker.</p>
+<p>XOR is not a secure encryption scheme and it is trivially reversible if the key is known or guessable. This challenge reinforces why symmetric encryption should never be implemented with simple XOR against static passphrases, especially when both the ciphertext and candidate keys are available to the attacker.</p>
 <hr>
 <h2 id="flag">Flag<a hidden class="anchor" aria-hidden="true" href="#flag">#</a></h2>
 <p><code>fLaG_fSt{N1c0lay_emergency_backup}</code></p>
@@ -188,11 +188,11 @@
 <nav class="paginav">
   <a class="prev" href="http://localhost:1313/wargaming/solved/confusion/">
     <span class="title">« Prev</span>
-    <span>Confusion — Multi-Layer Steganography with Movie Clues</span>
+    <span>Confusion - Multi-Layer Steganography with Movie Clues</span>
   </a>
   <a class="next" href="http://localhost:1313/wargaming/solved/football-leaks/">
     <span class="title">Next »</span>
-    <span>Football Leaks — Web Vulnerabilities Chain</span>
+    <span>Football Leaks - Web Vulnerabilities Chain</span>
   </a>
 </nav>
 

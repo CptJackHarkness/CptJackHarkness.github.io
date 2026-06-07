@@ -131,88 +131,87 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Alpha — First Contact
+    <h2 class="entry-hint-parent">Alpha - First Contact
     </h2>
   </header>
   <div class="entry-content">
     <p>Overview The first challenge of the wargaming competition served as a warm-up, requiring only a single configuration step to resolve a custom CTF domain.
 Solution Add the target machine’s IP to the local /etc/hosts file so the custom domain resolves correctly:
-echo &#34;&lt;target-ip&gt; alpha.ctf&#34; | sudo tee -a /etc/hosts With the domain resolved, the challenge page became accessible and the flag was visible.
-Flag CISEG{alpha_first_contact}
-</p>
+echo &#34;&lt;target-ip&gt; alpha.ctf&#34; | sudo tee -a /etc/hosts echo &#34;&lt;target-ip&gt; lacasa.ctf&#34; | sudo tee -a /etc/hosts echo &#34;&lt;target-ip&gt; memeforum.ctf&#34; | sudo tee -a /etc/hosts echo &#34;&lt;target-ip&gt; footballeaks.ctf&#34; | sudo tee -a /etc/hosts echo &#34;&lt;target-ip&gt; hello-alph&#34; | sudo tee -a /etc/hosts With the domain resolved, the challenge page became accessible and the flag was visible.
+...</p>
   </div>
   <footer class="entry-footer">
 
 <span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to Alpha — First Contact" href="http://localhost:1313/wargaming/solved/alpha-first-contact/"></a>
+  <a class="entry-link" aria-label="post link to Alpha - First Contact" href="http://localhost:1313/wargaming/solved/alpha-first-contact/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Caesar — Hash Cracking &amp; ROT8000
+    <h2 class="entry-hint-parent">Caesar - Hash Cracking &amp; ROT8000
     </h2>
   </header>
   <div class="entry-content">
-    <p>Overview “Caesar” is a two-part cryptographic challenge. The first part requires cracking a SHA256 hash to obtain a decryption key. The second part involves decoding a message that has been rotated using ROT8000 — a Unicode rotation that transforms ASCII characters into characters resembling East Asian ideograms.
-Solution Walkthrough Part 1 — Hash Cracking The first message provided this hash:
-6ec4dca2bcc10d9f68fbd938aefd9e8daff46c1674e09501e2520dd2c82b1e6f Identified the hash type with hashid — the 64-character hex string is consistent with SHA256. Used CrackStation to look it up in its database.
+    <p>Overview “Caesar” is a two-part cryptographic challenge. The first part requires cracking a SHA256 hash to obtain a decryption key. The second part involves decoding a message that has been rotated using ROT8000 - a Unicode rotation that transforms ASCII characters into characters resembling East Asian ideograms.
+Solution Walkthrough Part 1 - Hash Cracking The first message provided this hash:
+6ec4dca2bcc10d9f68fbd938aefd9e8daff46c1674e09501e2520dd2c82b1e6f Identified the hash type with hashid - the 64-character hex string is consistent with SHA256. Used CrackStation to look it up in its database.
 ...</p>
   </div>
   <footer class="entry-footer">
 
 <span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to Caesar — Hash Cracking & ROT8000" href="http://localhost:1313/wargaming/solved/caesar/"></a>
+  <a class="entry-link" aria-label="post link to Caesar - Hash Cracking & ROT8000" href="http://localhost:1313/wargaming/solved/caesar/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Confusion — Multi-Layer Steganography with Movie Clues
+    <h2 class="entry-hint-parent">Confusion - Multi-Layer Steganography with Movie Clues
     </h2>
   </header>
   <div class="entry-content">
     <p>Overview “Confusion” presented a split flag divided across three files, each requiring a different passphrase to extract hidden content. The challenge used movie-themed clues (specifically referencing Inception) and a Disney easter egg to guide passphrase discovery. All passwords had to be entered in uppercase.
-Solution Walkthrough Step 1 — Read the README readme.txt stated:
-All passwords must be in uppercase The flag is split across 3 files Part 1 — First Image (100.jpeg) Analysed the EXIF metadata of 100.jpeg:
+Solution Walkthrough Step 1 - Read the README readme.txt stated:
+All passwords must be in uppercase The flag is split across 3 files Part 1 - First Image (100.jpeg) Analysed the EXIF metadata of 100.jpeg:
 ...</p>
   </div>
   <footer class="entry-footer">
 
 <span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to Confusion — Multi-Layer Steganography with Movie Clues" href="http://localhost:1313/wargaming/solved/confusion/"></a>
+  <a class="entry-link" aria-label="post link to Confusion - Multi-Layer Steganography with Movie Clues" href="http://localhost:1313/wargaming/solved/confusion/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Emergency Notes — Double XOR Cryptography
+    <h2 class="entry-hint-parent">Emergency Notes - Double XOR Cryptography
     </h2>
   </header>
   <div class="entry-content">
     <p>Overview “Emergency Notes” is a practical cryptography exercise focused on the XOR (Exclusive OR) logical operation. XOR compares bits and has two fundamental properties:
 Self-inverse: A XOR A = 0 Identity: A XOR 0 = A When a readable message has XOR applied with a key, it becomes unreadable ciphertext. Applying XOR again with the same key perfectly recovers the original message.
-The scenario: a sysadmin created an emergency backup and protected it with a homemade XOR scheme. The player receives a notes file containing the encrypted content in hexadecimal format and three possible passphrases. Only two of the three were used — the goal is to find the correct combination.
+The scenario: a sysadmin created an emergency backup and protected it with a homemade XOR scheme. The player receives a notes file containing the encrypted content in hexadecimal format and three possible passphrases. Only two of the three were used - the goal is to find the correct combination.
 ...</p>
   </div>
   <footer class="entry-footer">
 
 <span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to Emergency Notes — Double XOR Cryptography" href="http://localhost:1313/wargaming/created/emergency-notes/"></a>
+  <a class="entry-link" aria-label="post link to Emergency Notes - Double XOR Cryptography" href="http://localhost:1313/wargaming/created/emergency-notes/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Football Leaks — Web Vulnerabilities Chain
+    <h2 class="entry-hint-parent">Football Leaks - Web Vulnerabilities Chain
     </h2>
   </header>
   <div class="entry-content">
     <p>Overview “Football Leaks” is a web challenge focused on identifying and exploiting real-world web vulnerabilities. The target is a portal presenting supposedly confidential football data. Tools used: nmap, curl, sqlmap, and browser developer tools.
-Solution Walkthrough Step 1 — Initial Reconnaissance Navigated to the Football Leaks application. The portal presented a restricted area and various documents — some legitimate, some distractions (including a RickRoll in ASCII format).
-Inspected the HTML source and found credentials exposed in a comment — an emergency maintenance access that was never removed before publishing.
+Solution Walkthrough Step 1 - Initial Reconnaissance Navigated to the Football Leaks application. The portal presented a restricted area and various documents - some legitimate, some distractions (including a RickRoll in ASCII format).
+Inspected the HTML source and found credentials exposed in a comment - an emergency maintenance access that was never removed before publishing.
 ...</p>
   </div>
   <footer class="entry-footer">
 
 <span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>3 min</span></footer>
-  <a class="entry-link" aria-label="post link to Football Leaks — Web Vulnerabilities Chain" href="http://localhost:1313/wargaming/solved/football-leaks/"></a>
+  <a class="entry-link" aria-label="post link to Football Leaks - Web Vulnerabilities Chain" href="http://localhost:1313/wargaming/solved/football-leaks/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

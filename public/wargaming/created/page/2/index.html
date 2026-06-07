@@ -116,27 +116,27 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Reverse Power — File Carving &amp; Magic Bytes
+    <h2 class="entry-hint-parent">Reverse Power - File Carving &amp; Magic Bytes
     </h2>
   </header>
   <div class="entry-content">
     <p>Overview “Reverse Power” is a practical forensics exercise focused on low-level data manipulation, covering file carving and file format analysis. It explores how file signatures (magic bytes) work and how to recover files when those signatures are deliberately corrupted.
-Techniques Covered File Signatures (Magic Bytes): Most file types include unique identifiers in their first bytes. ZIPs begin with 50 4B 03 04, JPEGs with FF D8. The challenge requires identifying and restoring corrupted signatures. Hex Editing: Directly inspecting and altering raw binary content of a file. EXIF Metadata: Extracting passwords hidden in image metadata fields. Password-Protected Archives: Using recovered passwords to unlock ZIP files. Challenge Setup A flag.txt containing flaG_fSt_{R3v3rse_M451C} was compressed and password-protected into important.zip The ZIP password (z1p1nz1p) was hidden in the EXIF Comment field of broken.jpg The first 2 bytes of broken.jpg were corrupted to RE, breaking its JPEG signature All files were packaged into Serious_Business.pdf — actually a ZIP with its first 8 bytes overwritten to look like a PDF 1.4 header Solution Walkthrough Step 1 — Identify &amp; Repair the Main ZIP file Serious_Business.pdf The file command reveals it is actually a ZIP. Extract it:
+Techniques Covered File Signatures (Magic Bytes): Most file types include unique identifiers in their first bytes. ZIPs begin with 50 4B 03 04, JPEGs with FF D8. The challenge requires identifying and restoring corrupted signatures. Hex Editing: Directly inspecting and altering raw binary content of a file. EXIF Metadata: Extracting passwords hidden in image metadata fields. Password-Protected Archives: Using recovered passwords to unlock ZIP files. Challenge Setup A flag.txt containing flaG_fSt_{R3v3rse_M451C} was compressed and password-protected into important.zip The ZIP password (z1p1nz1p) was hidden in the EXIF Comment field of broken.jpg The first 2 bytes of broken.jpg were corrupted to RE, breaking its JPEG signature All files were packaged into Serious_Business.pdf — actually a ZIP with its first 8 bytes overwritten to look like a PDF 1.4 header Solution Walkthrough Step 1 - Identify &amp; Repair the Main ZIP file Serious_Business.pdf The file command reveals it is actually a ZIP. Extract it:
 ...</p>
   </div>
   <footer class="entry-footer">
 
 <span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to Reverse Power — File Carving & Magic Bytes" href="http://localhost:1313/wargaming/created/reverse-power/"></a>
+  <a class="entry-link" aria-label="post link to Reverse Power - File Carving & Magic Bytes" href="http://localhost:1313/wargaming/created/reverse-power/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">The Disk Dump — FAT12 Forensics &amp; XOR Decryption
+    <h2 class="entry-hint-parent">The Disk Dump - FAT12 Forensics &amp; XOR Decryption
     </h2>
   </header>
   <div class="entry-content">
-    <p>Overview “The Disk Dump” focuses on forensic analysis of FAT12 filesystems and fundamental cryptography. It explores how FAT handles file deletion: when a file is deleted, the data remains intact on disk — only the first byte of the filename in the directory entry is replaced with 0xE5, marking the space as available.
+    <p>Overview “The Disk Dump” focuses on forensic analysis of FAT12 filesystems and fundamental cryptography. It explores how FAT handles file deletion: when a file is deleted, the data remains intact on disk - only the first byte of the filename in the directory entry is replaced with 0xE5, marking the space as available.
 The challenge also includes a decoy flag (rabbit hole) designed to mislead players.
 Challenge Setup A FAT12 disk image (the_disk_dump.img) was created and mounted. Four files were written and then forensically deleted (first byte replaced with 0xE5):
 ...</p>
@@ -144,39 +144,39 @@ Challenge Setup A FAT12 disk image (the_disk_dump.img) was created and mounted. 
   <footer class="entry-footer">
 
 <span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to The Disk Dump — FAT12 Forensics & XOR Decryption" href="http://localhost:1313/wargaming/created/the-disk-dump/"></a>
+  <a class="entry-link" aria-label="post link to The Disk Dump - FAT12 Forensics & XOR Decryption" href="http://localhost:1313/wargaming/created/the-disk-dump/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">The Moodle Breach — Multi-Vector Forensics
+    <h2 class="entry-hint-parent">The Moodle Breach - Multi-Vector Forensics
     </h2>
   </header>
   <div class="entry-content">
-    <p>Overview “The Moodle Breach” is a miscellaneous challenge requiring analysis of multiple artefacts — HTML documents, images, and text files — to extract six distinct flags. It covers a broad range of techniques in one scenario.
-Techniques Covered HTML source analysis &#43; XOR decryption EXIF metadata extraction &#43; hex decoding LSB steganography (zsteg) HTML meta tag analysis &#43; hex decoding Base64 decoding Visual forensics (screenshot analysis / OCR) Solution Walkthrough Flag 1 — HTML Comment &#43; XOR (incident_report.html) Open the file and locate two comments: one at the top with schema: 4d (the XOR key) and one at the bottom with tok=2b012c... (the encrypted data).
+    <p>Overview “The Moodle Breach” is a miscellaneous challenge requiring analysis of multiple artefacts — HTML documents, images, and text files - to extract six distinct flags. It covers a broad range of techniques in one scenario.
+Techniques Covered HTML source analysis &#43; XOR decryption EXIF metadata extraction &#43; hex decoding LSB steganography (zsteg) HTML meta tag analysis &#43; hex decoding Base64 decoding Visual forensics (screenshot analysis / OCR) Solution Walkthrough Flag 1 - HTML Comment &#43; XOR (incident_report.html) Open the file and locate two comments: one at the top with schema: 4d (the XOR key) and one at the bottom with tok=2b012c... (the encrypted data).
 ...</p>
   </div>
   <footer class="entry-footer">
 
 <span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to The Moodle Breach — Multi-Vector Forensics" href="http://localhost:1313/wargaming/created/the-moodle-breach/"></a>
+  <a class="entry-link" aria-label="post link to The Moodle Breach - Multi-Vector Forensics" href="http://localhost:1313/wargaming/created/the-moodle-breach/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">The True Owner — LFI, Base64 &amp; Cookie Tampering
+    <h2 class="entry-hint-parent">The True Owner - LFI, Base64 &amp; Cookie Tampering
     </h2>
   </header>
   <div class="entry-content">
-    <p>Overview “The True Owner” explores a chain of web vulnerabilities based on the OWASP Top 10 (2025). The challenge requires progressing through multiple attack layers in sequence — a realistic reflection of how real-world web attacks chain smaller weaknesses into full compromise.
-Vulnerabilities Covered Information Disclosure (A02:2025 — Security Misconfiguration): Mapping robots.txt directives to discover intentionally hidden paths. LFI / Path Traversal (A01:2025 — Broken Access Control): Exploiting inadequate URL parameter validation to read arbitrary files from the server. Data Encoding: Identifying and reversing Base64-encoded credentials. Cookie Tampering (A07:2025 — Authentication Failures): Escalating privileges by manipulating a client-side role cookie that the server blindly trusts. Challenge Setup A PHP/Apache container with /secrets.txt in the root, containing credentials in Base64: Guylherm:YXRlcXVpX293bmVyCg== robots.txt with Disallow: /notes.txt notes.txt pointing to /secrets.txt wargame.php directly passing ?file= to @include() — classic LFI Login validation performed entirely client-side; after login, the server sets a cookie role=user. Showing role=admin reveals the flag. Solution Walkthrough Step 1 — Add Host Entry echo &#34;172.30.2.32 atequi.ctf&#34; | sudo tee -a /etc/hosts Step 2 — Reconnaissance via robots.txt http://atequi.ctf/robots.txt Reveals /notes.txt. Reading it discloses the existence of /secrets.txt and hints at the LFI vulnerability via the file parameter.
+    <p>Overview “The True Owner” explores a chain of web vulnerabilities based on the OWASP Top 10 (2025). The challenge requires progressing through multiple attack layers in sequence - a realistic reflection of how real-world web attacks chain smaller weaknesses into full compromise.
+Vulnerabilities Covered Information Disclosure (A02:2025 — Security Misconfiguration): Mapping robots.txt directives to discover intentionally hidden paths. LFI / Path Traversal (A01:2025 — Broken Access Control): Exploiting inadequate URL parameter validation to read arbitrary files from the server. Data Encoding: Identifying and reversing Base64-encoded credentials. Cookie Tampering (A07:2025 — Authentication Failures): Escalating privileges by manipulating a client-side role cookie that the server blindly trusts. Challenge Setup A PHP/Apache container with /secrets.txt in the root, containing credentials in Base64: Guylherm:YXRlcXVpX293bmVyCg== robots.txt with Disallow: /notes.txt notes.txt pointing to /secrets.txt wargame.php directly passing ?file= to @include() — classic LFI Login validation performed entirely client-side; after login, the server sets a cookie role=user. Showing role=admin reveals the flag. Solution Walkthrough Step 1 - Add Host Entry echo &#34;&lt;target-ip&gt; atequi.ctf&#34; | sudo tee -a /etc/hosts Step 2 - Reconnaissance via robots.txt http://atequi.ctf/robots.txt Reveals /notes.txt. Reading it discloses the existence of /secrets.txt and hints at the LFI vulnerability via the file parameter.
 ...</p>
   </div>
   <footer class="entry-footer">
 
 <span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to The True Owner — LFI, Base64 & Cookie Tampering" href="http://localhost:1313/wargaming/created/the-true-owner/"></a>
+  <a class="entry-link" aria-label="post link to The True Owner - LFI, Base64 & Cookie Tampering" href="http://localhost:1313/wargaming/created/the-true-owner/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

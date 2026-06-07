@@ -116,28 +116,28 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Emergency Notes — Double XOR Cryptography
+    <h2 class="entry-hint-parent">Emergency Notes - Double XOR Cryptography
     </h2>
   </header>
   <div class="entry-content">
     <p>Overview “Emergency Notes” is a practical cryptography exercise focused on the XOR (Exclusive OR) logical operation. XOR compares bits and has two fundamental properties:
 Self-inverse: A XOR A = 0 Identity: A XOR 0 = A When a readable message has XOR applied with a key, it becomes unreadable ciphertext. Applying XOR again with the same key perfectly recovers the original message.
-The scenario: a sysadmin created an emergency backup and protected it with a homemade XOR scheme. The player receives a notes file containing the encrypted content in hexadecimal format and three possible passphrases. Only two of the three were used — the goal is to find the correct combination.
+The scenario: a sysadmin created an emergency backup and protected it with a homemade XOR scheme. The player receives a notes file containing the encrypted content in hexadecimal format and three possible passphrases. Only two of the three were used - the goal is to find the correct combination.
 ...</p>
   </div>
   <footer class="entry-footer">
 
 <span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to Emergency Notes — Double XOR Cryptography" href="http://localhost:1313/wargaming/created/emergency-notes/"></a>
+  <a class="entry-link" aria-label="post link to Emergency Notes - Double XOR Cryptography" href="http://localhost:1313/wargaming/created/emergency-notes/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Handsome Peter — Steganography Challenge
+    <h2 class="entry-hint-parent">Handsome Peter - Steganography Challenge
     </h2>
   </header>
   <div class="entry-content">
-    <p>Overview “Handsome Peter” is a practical journey through steganography, covering 6 fundamental data-hiding techniques. Steganography is the practice of concealing information inside other data (media files, metadata, etc.) in an imperceptible way. Unlike cryptography — which protects data by making it unreadable — steganography hides the very existence of the message.
+    <p>Overview “Handsome Peter” is a practical journey through steganography, covering 6 fundamental data-hiding techniques. Steganography is the practice of concealing information inside other data (media files, metadata, etc.) in an imperceptible way. Unlike cryptography - which protects data by making it unreadable — steganography hides the very existence of the message.
 The objective is to identify and extract 6 flags hidden across different files using 6 distinct steganography techniques.
 Techniques Covered EXIF Metadata: Hides information in a file’s hidden fields (comments, author, date, location). The image pixels remain untouched, making the concealment completely invisible. Append/Trailer: Inserts arbitrary data after the end-of-file marker (EOF). In JPEG, for example, the marker FF D9 marks the end of the image. Everything after it is ignored by viewers but remains in the file and can be extracted. LSB (Least Significant Bit): Alters the last bit of the RGB colour values of pixels. Since the human eye is insensitive to such subtle colour changes, the information is imperceptible. Works best with uncompressed formats like PNG and BMP. DCT (Discrete Cosine Transform): Exploits the mathematical frequencies used in JPEG compression. Data is inserted into DCT coefficients during the transform, protected by the compression algorithm’s own structure. Colour Palette: In indexed formats (GIF, PNG-8), creates imperceptible duplicate colours and manipulates palette order to encode information. Audio Steganography: Hides data by modifying bits in audio samples (WAV), altering amplitude or frequency so subtly that the human ear detects no distortion. Challenge Creation Metadata:
 ...</p>
@@ -145,12 +145,12 @@ Techniques Covered EXIF Metadata: Hides information in a file’s hidden fields 
   <footer class="entry-footer">
 
 <span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>3 min</span></footer>
-  <a class="entry-link" aria-label="post link to Handsome Peter — Steganography Challenge" href="http://localhost:1313/wargaming/created/handsome-peter/"></a>
+  <a class="entry-link" aria-label="post link to Handsome Peter - Steganography Challenge" href="http://localhost:1313/wargaming/created/handsome-peter/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Little Juice Challenge — Boot2Root
+    <h2 class="entry-hint-parent">Little Juice Challenge - Boot2Root
     </h2>
   </header>
   <div class="entry-content">
@@ -162,28 +162,28 @@ Techniques Covered Scanning &amp; Reconnaissance: Enumeration of exposed ports a
   <footer class="entry-footer">
 
 <span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to Little Juice Challenge — Boot2Root" href="http://localhost:1313/wargaming/created/little-juice-challenge/"></a>
+  <a class="entry-link" aria-label="post link to Little Juice Challenge - Boot2Root" href="http://localhost:1313/wargaming/created/little-juice-challenge/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Nicolay Magic Numbers — Network Knocker &amp; Brute Force
+    <h2 class="entry-hint-parent">Nicolay Magic Numbers - Network Knocker &amp; Brute Force
     </h2>
   </header>
   <div class="entry-content">
     <p>Overview “Nicolay Magic Numbers” is a multi-stage challenge that chains together port knocking, firewall evasion, and brute force techniques. The player must discover a hidden service locked behind a Fibonacci-based port knocking sequence, bypass a Web Application Firewall (WAF) using a rate-limited brute force script, and then defeat a 50-layer nested zip bomb to retrieve the final flag.
-Techniques Covered Port Knocking: Unlocking a firewall rule by sending packets to ports in a specific sequence. Fibonacci Sequence: Using mathematical knowledge to determine the correct knock sequence. WAF Bypass: Rate-limiting requests to stay below a detection threshold. Scripted Brute Force: Automating credential testing with controlled timing. Zip Bomb: Defeating recursively nested compressed archives with a loop script. Solution Walkthrough Step 1 — Initial Reconnaissance Begin with a port scan to identify exposed services:
+Techniques Covered Port Knocking: Unlocking a firewall rule by sending packets to ports in a specific sequence. Fibonacci Sequence: Using mathematical knowledge to determine the correct knock sequence. WAF Bypass: Rate-limiting requests to stay below a detection threshold. Scripted Brute Force: Automating credential testing with controlled timing. Zip Bomb: Defeating recursively nested compressed archives with a loop script. Solution Walkthrough Step 1 - Initial Reconnaissance Begin with a port scan to identify exposed services:
 ...</p>
   </div>
   <footer class="entry-footer">
 
 <span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to Nicolay Magic Numbers — Network Knocker & Brute Force" href="http://localhost:1313/wargaming/created/nicolay-magic-numbers/"></a>
+  <a class="entry-link" aria-label="post link to Nicolay Magic Numbers - Network Knocker & Brute Force" href="http://localhost:1313/wargaming/created/nicolay-magic-numbers/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Otillianni Math — Prime Number Indexing
+    <h2 class="entry-hint-parent">Otillianni Math - Prime Number Indexing
     </h2>
   </header>
   <div class="entry-content">
@@ -194,7 +194,7 @@ Solving the challenge requires writing an automation script capable of computing
   <footer class="entry-footer">
 
 <span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to Otillianni Math — Prime Number Indexing" href="http://localhost:1313/wargaming/created/otillianni-math/"></a>
+  <a class="entry-link" aria-label="post link to Otillianni Math - Prime Number Indexing" href="http://localhost:1313/wargaming/created/otillianni-math/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

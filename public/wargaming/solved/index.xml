@@ -9,56 +9,56 @@
     <lastBuildDate>Wed, 03 Jun 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/wargaming/solved/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Alpha — First Contact</title>
+      <title>Alpha - First Contact</title>
       <link>http://localhost:1313/wargaming/solved/alpha-first-contact/</link>
       <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/wargaming/solved/alpha-first-contact/</guid>
       <description>The introductory wargaming challenge requiring a simple /etc/hosts file edit to resolve a custom domain.</description>
     </item>
     <item>
-      <title>Caesar — Hash Cracking &amp; ROT8000</title>
+      <title>Caesar - Hash Cracking &amp; ROT8000</title>
       <link>http://localhost:1313/wargaming/solved/caesar/</link>
       <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/wargaming/solved/caesar/</guid>
       <description>A two-part challenge combining SHA256 hash cracking, custom XOR-based decryption, and ROT8000 Unicode rotation to decode a message disguised as East Asian ideograms.</description>
     </item>
     <item>
-      <title>Confusion — Multi-Layer Steganography with Movie Clues</title>
+      <title>Confusion - Multi-Layer Steganography with Movie Clues</title>
       <link>http://localhost:1313/wargaming/solved/confusion/</link>
       <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/wargaming/solved/confusion/</guid>
       <description>A three-part steganography challenge using movie-themed passphrases, steghide extraction, Base64/Base32 decoding, and nested ZIP archives to reconstruct a split flag.</description>
     </item>
     <item>
-      <title>Football Leaks — Web Vulnerabilities Chain</title>
+      <title>Football Leaks - Web Vulnerabilities Chain</title>
       <link>http://localhost:1313/wargaming/solved/football-leaks/</link>
       <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/wargaming/solved/football-leaks/</guid>
       <description>A web challenge exploiting client-side authentication bypass, IDOR, and SQL injection to extract three flags from a football data leak portal.</description>
     </item>
     <item>
-      <title>LaCasa — FTP, Steganography &amp; Privilege Escalation</title>
+      <title>LaCasa - FTP, Steganography &amp; Privilege Escalation</title>
       <link>http://localhost:1313/wargaming/solved/lacasa/</link>
       <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/wargaming/solved/lacasa/</guid>
       <description>A Money Heist-themed challenge chaining anonymous FTP access, image steganography, SSH lateral movement, and vim-based root privilege escalation.</description>
     </item>
     <item>
-      <title>Meme Forum — Port Knocking &amp; Password Cracking</title>
+      <title>Meme Forum - Port Knocking &amp; Password Cracking</title>
       <link>http://localhost:1313/wargaming/solved/meme-forum/</link>
       <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/wargaming/solved/meme-forum/</guid>
       <description>A challenge combining hidden endpoint discovery, port knocking brute force, FTP access, and RAR password cracking with John the Ripper.</description>
     </item>
     <item>
-      <title>Reactor — Binary Analysis &amp; XOR Decoding</title>
+      <title>Reactor - Binary Analysis &amp; XOR Decoding</title>
       <link>http://localhost:1313/wargaming/solved/reactor/</link>
       <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/wargaming/solved/reactor/</guid>
       <description>A reverse engineering challenge involving string extraction from a binary, hex-to-ASCII decoding, XOR binary-to-decimal conversion, and a two-stage access code challenge.</description>
     </item>
     <item>
-      <title>Roda do Hamster — Layered Encoding Decoder</title>
+      <title>Roda do Hamster - Layered Encoding Decoder</title>
       <link>http://localhost:1313/wargaming/solved/roda-do-hamster/</link>
       <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/wargaming/solved/roda-do-hamster/</guid>

@@ -5,39 +5,43 @@ description: "Structured laboratory exercises and academic wargaming scenarios. 
 
 ## Challenges
 
-- [Challenges We Created](/wargaming/created/)
-- [Challenges We Solved](/wargaming/solved/)
+- [Challenges we created](/wargaming/created/)
+- [Challenges we solved](/wargaming/solved/)
 
 ---
 
 ## Teams
 
 <details>
-<summary>My Team — BRAVO</summary>
-
-- Cláudio Rolo
-- Gabriel Caixinha
-- Guilherme Monteiro
-- [Ivan Arrojado](https://www.linkedin.com/in/ivan-arrojado/)
-- João Duarte
-- [Luís Miguel](https://www.linkedin.com/in/luisfelipevidalmiguel)
-- Mickael Ferreira
-- Pedro Rodrigues
-- Ricardo Azevedo
-
+<summary>My Team - BRAVO</summary>
+<ul>
+  <li>Cláudio Rolo</li>
+  <li>Gabriel Caixinha</li>
+  <li>Guilherme Monteiro</li>
+  <li><a href="https://www.linkedin.com/in/ivan-arrojado/">Ivan Arrojado</a></li>
+  <li>João Duarte</li>
+  <li><a href="https://www.linkedin.com/in/luisfelipevidalmiguel">Luís Miguel</a></li>
+  <li>Mickael Ferreira</li>
+  <li>Pedro Rodrigues</li>
+  <li>Ricardo Azevedo</li>
+  <li>Ricardo Ribeiro</li>
+</ul>
 </details>
 
+<br>
+
 <details>
-<summary>Opposing Team — ALPHA</summary>
-
-- Caio Lopes
-- [Cristiano Mota](https://www.linkedin.com/in/cristiano-mota-a277b9330)
-- [Diogo Oliveira](https://www.linkedin.com/in/diogo-oliveira-b67694368)
-- Gonçalo Rocha
-- João Barros
-- [Miguel Andrade](https://www.linkedin.com/in/mglandrade)
-- Nuno Soares
-- Pedro Vasconcelos
-- [Rita Cambey](https://www.linkedin.com/in/rita-cambey-378813377?utm_source=share_via&utm_content=profile&utm_medium=member_ios)
-
+<summary>Opposing Team - ALPHA</summary>
+<ul>
+  <li>Caio Lopes</li>
+  <li><a href="https://www.linkedin.com/in/cristiano-mota-a277b9330">Cristiano Mota</a></li>
+  <li><a href="https://www.linkedin.com/in/diogo-oliveira-b67694368">Diogo Oliveira</a></li>
+  <li>Gonçalo Rocha</li>
+  <li>Ivan Arrojado</li>
+  <li>João Barros</li>
+  <li><a href="https://www.linkedin.com/in/mglandrade">Miguel Andrade</a></li>
+  <li>Nuno Soares</li>
+  <li>Pedro Vasconcelos</li>
+  <li><a href="https://www.linkedin.com/in/rita-cambey-378813377">Rita Cambey</a></li>
+</ul>
 </details>

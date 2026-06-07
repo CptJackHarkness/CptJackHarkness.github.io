@@ -98,11 +98,11 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Handsome Peter — Steganography Challenge
+    <h2 class="entry-hint-parent">Handsome Peter - Steganography Challenge
     </h2>
   </header>
   <div class="entry-content">
-    <p>Overview “Handsome Peter” is a practical journey through steganography, covering 6 fundamental data-hiding techniques. Steganography is the practice of concealing information inside other data (media files, metadata, etc.) in an imperceptible way. Unlike cryptography — which protects data by making it unreadable — steganography hides the very existence of the message.
+    <p>Overview “Handsome Peter” is a practical journey through steganography, covering 6 fundamental data-hiding techniques. Steganography is the practice of concealing information inside other data (media files, metadata, etc.) in an imperceptible way. Unlike cryptography - which protects data by making it unreadable — steganography hides the very existence of the message.
 The objective is to identify and extract 6 flags hidden across different files using 6 distinct steganography techniques.
 Techniques Covered EXIF Metadata: Hides information in a file’s hidden fields (comments, author, date, location). The image pixels remain untouched, making the concealment completely invisible. Append/Trailer: Inserts arbitrary data after the end-of-file marker (EOF). In JPEG, for example, the marker FF D9 marks the end of the image. Everything after it is ignored by viewers but remains in the file and can be extracted. LSB (Least Significant Bit): Alters the last bit of the RGB colour values of pixels. Since the human eye is insensitive to such subtle colour changes, the information is imperceptible. Works best with uncompressed formats like PNG and BMP. DCT (Discrete Cosine Transform): Exploits the mathematical frequencies used in JPEG compression. Data is inserted into DCT coefficients during the transform, protected by the compression algorithm’s own structure. Colour Palette: In indexed formats (GIF, PNG-8), creates imperceptible duplicate colours and manipulates palette order to encode information. Audio Steganography: Hides data by modifying bits in audio samples (WAV), altering amplitude or frequency so subtly that the human ear detects no distortion. Challenge Creation Metadata:
 ...</p>
@@ -110,29 +110,29 @@ Techniques Covered EXIF Metadata: Hides information in a file’s hidden fields 
   <footer class="entry-footer">
 
 <span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>3 min</span></footer>
-  <a class="entry-link" aria-label="post link to Handsome Peter — Steganography Challenge" href="http://localhost:1313/wargaming/created/handsome-peter/"></a>
+  <a class="entry-link" aria-label="post link to Handsome Peter - Steganography Challenge" href="http://localhost:1313/wargaming/created/handsome-peter/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">LaCasa — FTP, Steganography &amp; Privilege Escalation
+    <h2 class="entry-hint-parent">LaCasa - FTP, Steganography &amp; Privilege Escalation
     </h2>
   </header>
   <div class="entry-content">
     <p>Overview “LaCasa” is a Money Heist (La Casa de Papel)-themed challenge involving multiple attack stages: anonymous FTP access, credential discovery, image steganography, lateral movement via SSH, and privilege escalation using GTFOBins.
-Solution Walkthrough Step 1 — Reconnaissance nmap &lt;target-ip&gt; Identified open ports including FTP and HTTP. Visited the website — robots.txt yielded nothing useful. The HTML source contained placeholder credentials that did not work on the login page.
-Step 2 — Anonymous FTP Access Anonymous FTP login was enabled. Navigated to the accessible pub folder and found a file containing a credential hint: toquio:BellaCiao.
+Solution Walkthrough Step 1 - Reconnaissance nmap &lt;target-ip&gt; Identified open ports including FTP and HTTP. Visited the website - robots.txt yielded nothing useful. The HTML source contained placeholder credentials that did not work on the login page.
+Step 2 - Anonymous FTP Access Anonymous FTP login was enabled. Navigated to the accessible pub folder and found a file containing a credential hint: toquio:BellaCiao.
 ...</p>
   </div>
   <footer class="entry-footer">
 
 <span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to LaCasa — FTP, Steganography & Privilege Escalation" href="http://localhost:1313/wargaming/solved/lacasa/"></a>
+  <a class="entry-link" aria-label="post link to LaCasa - FTP, Steganography & Privilege Escalation" href="http://localhost:1313/wargaming/solved/lacasa/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Little Juice Challenge — Boot2Root
+    <h2 class="entry-hint-parent">Little Juice Challenge - Boot2Root
     </h2>
   </header>
   <div class="entry-content">
@@ -144,40 +144,40 @@ Techniques Covered Scanning &amp; Reconnaissance: Enumeration of exposed ports a
   <footer class="entry-footer">
 
 <span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to Little Juice Challenge — Boot2Root" href="http://localhost:1313/wargaming/created/little-juice-challenge/"></a>
+  <a class="entry-link" aria-label="post link to Little Juice Challenge - Boot2Root" href="http://localhost:1313/wargaming/created/little-juice-challenge/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Meme Forum — Port Knocking &amp; Password Cracking
+    <h2 class="entry-hint-parent">Meme Forum - Port Knocking &amp; Password Cracking
     </h2>
   </header>
   <div class="entry-content">
-    <p>Overview “Meme Forum” required discovering a hidden endpoint, brute-forcing a port knocking sequence to unlock FTP access, and cracking a password-protected RAR archive to retrieve the flag.
-Solution Walkthrough Step 1 — Initial Reconnaissance nmap &lt;target-ip&gt; Only port 8080 was open. Visited https://memeforum.ctf/ — no obvious entry points at first glance.
-Step 2 — Hidden Endpoint Discovery Inspected the HTML source of the main page and found a reference to a hidden endpoint: /information.
+    <p>Overview “MemeForum” required discovering a hidden endpoint, brute-forcing a port knocking sequence to unlock FTP access, and cracking a password-protected RAR archive to retrieve the flag.
+Solution Walkthrough Step 1 - Initial Reconnaissance nmap &lt;target-ip&gt; Only port 8080 was open. Visited https://memeforum.ctf/ — no obvious entry points at first glance.
+Step 2 - Hidden Endpoint Discovery Inspected the HTML source of the main page and found a reference to a hidden endpoint: /information.
 ...</p>
   </div>
   <footer class="entry-footer">
 
 <span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to Meme Forum — Port Knocking & Password Cracking" href="http://localhost:1313/wargaming/solved/meme-forum/"></a>
+  <a class="entry-link" aria-label="post link to Meme Forum - Port Knocking & Password Cracking" href="http://localhost:1313/wargaming/solved/meme-forum/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Nicolay Magic Numbers — Network Knocker &amp; Brute Force
+    <h2 class="entry-hint-parent">Nicolay Magic Numbers - Network Knocker &amp; Brute Force
     </h2>
   </header>
   <div class="entry-content">
     <p>Overview “Nicolay Magic Numbers” is a multi-stage challenge that chains together port knocking, firewall evasion, and brute force techniques. The player must discover a hidden service locked behind a Fibonacci-based port knocking sequence, bypass a Web Application Firewall (WAF) using a rate-limited brute force script, and then defeat a 50-layer nested zip bomb to retrieve the final flag.
-Techniques Covered Port Knocking: Unlocking a firewall rule by sending packets to ports in a specific sequence. Fibonacci Sequence: Using mathematical knowledge to determine the correct knock sequence. WAF Bypass: Rate-limiting requests to stay below a detection threshold. Scripted Brute Force: Automating credential testing with controlled timing. Zip Bomb: Defeating recursively nested compressed archives with a loop script. Solution Walkthrough Step 1 — Initial Reconnaissance Begin with a port scan to identify exposed services:
+Techniques Covered Port Knocking: Unlocking a firewall rule by sending packets to ports in a specific sequence. Fibonacci Sequence: Using mathematical knowledge to determine the correct knock sequence. WAF Bypass: Rate-limiting requests to stay below a detection threshold. Scripted Brute Force: Automating credential testing with controlled timing. Zip Bomb: Defeating recursively nested compressed archives with a loop script. Solution Walkthrough Step 1 - Initial Reconnaissance Begin with a port scan to identify exposed services:
 ...</p>
   </div>
   <footer class="entry-footer">
 
 <span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to Nicolay Magic Numbers — Network Knocker & Brute Force" href="http://localhost:1313/wargaming/created/nicolay-magic-numbers/"></a>
+  <a class="entry-link" aria-label="post link to Nicolay Magic Numbers - Network Knocker & Brute Force" href="http://localhost:1313/wargaming/created/nicolay-magic-numbers/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
