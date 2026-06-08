@@ -21,8 +21,8 @@ description: "Structured laboratory exercises and academic wargaming scenarios. 
   <li><a href="https://www.linkedin.com/in/ivan-arrojado/">Ivan Arrojado</a></li>
   <li>João Duarte</li>
   <li><a href="https://www.linkedin.com/in/luisfelipevidalmiguel">Luís Miguel</a></li>
-  <li>Mickael Ferreira</li>
-  <li>Pedro Rodrigues</li>
+  <li><a href="www.linkedin.com/in/mickael-ferreira">Mickael Ferreira</li></a>
+  <li><a href="https://www.linkedin.com/in/pedro-rodrigues-a94341227/">Pedro Rodrigues</a></li>
   <li>Ricardo Azevedo</li>
   <li>Ricardo Ribeiro</li>
 </ul>
@@ -37,7 +37,6 @@ description: "Structured laboratory exercises and academic wargaming scenarios. 
   <li><a href="https://www.linkedin.com/in/cristiano-mota-a277b9330">Cristiano Mota</a></li>
   <li><a href="https://www.linkedin.com/in/diogo-oliveira-b67694368">Diogo Oliveira</a></li>
   <li>Gonçalo Rocha</li>
-  <li>Ivan Arrojado</li>
   <li>João Barros</li>
   <li><a href="https://www.linkedin.com/in/mglandrade">Miguel Andrade</a></li>
   <li>Nuno Soares</li>
