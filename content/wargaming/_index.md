@@ -40,7 +40,9 @@ description: "Structured laboratory exercises and academic wargaming scenarios. 
   <li>João Barros</li>
   <li><a href="https://www.linkedin.com/in/mglandrade">Miguel Andrade</a></li>
   <li>Nuno Soares</li>
-  <li>Pedro Vasconcelos</li>
+  <li><a href="https://www.linkedin.com/in/sopedro/">Pedro Vasconcelos</a></li>
   <li><a href="https://www.linkedin.com/in/rita-cambey-378813377">Rita Cambey</a></li>
 </ul>
+
+<summary>Our instructor - <a href="https://www.linkedin.com/in/antoniovaz/">António Vaz</a> 
 </details>
