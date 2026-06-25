@@ -24,7 +24,6 @@ description: "Structured laboratory exercises and academic wargaming scenarios. 
   <li><a href="www.linkedin.com/in/mickael-ferreira">Mickael Ferreira</li></a>
   <li><a href="https://www.linkedin.com/in/pedro-rodrigues-a94341227/">Pedro Rodrigues</a></li>
   <li>Ricardo Azevedo</li>
-  <li>Ricardo Ribeiro</li>
 </ul>
 </details>
 
