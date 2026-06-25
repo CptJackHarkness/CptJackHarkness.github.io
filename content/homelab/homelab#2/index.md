@@ -1,5 +1,5 @@
 ---
-title: "Homelab #3: Wazuh SIEM/XDR - Attack Simulation & Active Response"
+title: "Homelab #2: Wazuh SIEM/XDR - Attack Simulation & Active Response"
 date: 2026-06-07
 description: "Building a more advanced Wazuh lab on VirtualBox with Sysmon integration, real attack simulations, and automated Active Response until I hit the wall of my current skill level."
 ---
@@ -18,29 +18,20 @@ Then I hit a wall. There were things I wanted to do next that I simply wasn't go
 
 The lab runs entirely in VirtualBox with an isolated internal network to make sure no test traffic could reach my actual home network.
 
+```
 +-------------------------------------------------------+
-
 |                    VIRTUALBOX                         |
-
 |                                                       |
-
 |   +-----------------------+   +-------------------+   |
-
 |   | VM 1: Debian Server   |   | VM 2: Windows 10  |   |
-
 |   | (Wazuh Manager)       |   | (Victim Endpoint) |   |
-
 |   | IP: 192.168.50.10     |   | IP: 192.168.50.20 |   |
-
 |   +-----------+-----------+   +---------+---------+   |
-
 |               |                         |             |
-
 +---------------|-------------------------|-------------+
-
-                |    Internal Network     |
-
+                |     Internal Network    |
                 +------------X------------+
+```
 
 
 **VM 1 - Wazuh Manager & Indexer**
