@@ -6,13 +6,20 @@
     <description>Recent content in Homelab on Ricardo Ribeiro</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 01 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 26 Jun 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/homelab/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Homelab #2: Wazuh SIEM/XDR - Attack Simulation &amp; Active Response</title>
+      <link>http://localhost:1313/homelab/homelab%232/</link>
+      <pubDate>Fri, 26 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/homelab/homelab%232/</guid>
+      <description>Building a more advanced Wazuh lab on VirtualBox with Sysmon integration, real attack simulations, and automated Active Response until I hit the wall of my current skill level.</description>
+    </item>
+    <item>
       <title>Homelab #1: Raspberry Pi 4 — Pi-hole, Tailscale &amp; Jellyfin</title>
-      <link>http://localhost:1313/homelab/raspberry-pi/</link>
+      <link>http://localhost:1313/homelab/homelab%231/</link>
       <pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/homelab/raspberry-pi/</guid>
+      <guid>http://localhost:1313/homelab/homelab%231/</guid>
       <description>How I turned a Raspberry Pi 4 into a home DNS filter, VPN node, and media server.</description>
     </item>
   </channel>

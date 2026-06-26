@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="dark">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Homelab #2: Wazuh SIEM/XDR - Attack Simulation &amp; Active Response | Ricardo Ribeiro</title>
+<meta name="keywords" content="">
+<meta name="description" content="Building a more advanced Wazuh lab on VirtualBox with Sysmon integration, real attack simulations, and automated Active Response until I hit the wall of my current skill level.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/homelab/homelab%232/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.89ca4972ab5e6aaa05e9a0dae0c4bb64b26585bc79e36f5cf33614eea0283abe.css" integrity="sha256-icpJcqteaqoF6aDa4MS7ZLJlhbx5429c8zYU7qAoOr4=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/homelab/homelab%232/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Ricardo Ribeiro (Alt + H)">Ricardo Ribeiro</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:1313/about/" title="About Me">
+                    <span>About Me</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/homelab/" title="Homelab">
+                    <span>Homelab</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/ctfs/" title="CTFs">
+                    <span>CTFs</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/wargaming/" title="Wargaming">
+                    <span>Wargaming</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/quick-writeups/" title="Quick Writeups">
+                    <span>Quick Writeups</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/homelab/">Homelab</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      Homelab #2: Wazuh SIEM/XDR - Attack Simulation &amp; Active Response
+    </h1>
+    <div class="post-description">
+      Building a more advanced Wazuh lab on VirtualBox with Sysmon integration, real attack simulations, and automated Active Response until I hit the wall of my current skill level.
+    </div>
+    <div class="post-meta">
+
+<span title='2026-06-26 00:00:00 +0000 UTC'>June 26, 2026</span>&nbsp;·&nbsp;<span>6 min</span>
+
+</div>
+  </header> 
+  <div class="post-content md-content"><h2 id="why-this-lab">Why This Lab?<a hidden class="anchor" aria-hidden="true" href="#why-this-lab">#</a></h2>
+<p>After setting up the basic Wazuh stack with Docker, I wanted to push further. My course had given me a solid overview of SIEM concepts, but I wanted to see how far I could take it on my own and building something more complex, simulating real attacks, and watching the detections fire in real time.</p>
+<p>I got pretty far. I set up a proper isolated lab, integrated Sysmon for deeper telemetry, ran two controlled attack scenarios from the MITRE ATT&amp;CK framework, and even got Active Response working automatically blocking an attacker at the firewall level within milliseconds of detection.</p>
+<p>Then I hit a wall. There were things I wanted to do next that I simply wasn&rsquo;t good enough yet to implement cleanly. So this post documents how far I got, what I learned, and what&rsquo;s left for when I come back to it.</p>
+<hr>
+<h2 id="architecture">Architecture<a hidden class="anchor" aria-hidden="true" href="#architecture">#</a></h2>
+<p>The lab runs entirely in VirtualBox with an isolated internal network to make sure no test traffic could reach my actual home network.</p>
+<pre tabindex="0"><code>+-------------------------------------------------------+
+|                    VIRTUALBOX                         |
+|                                                       |
+|   +-----------------------+   +-------------------+   |
+|   | VM 1: Debian Server   |   | VM 2: Windows 10  |   |
+|   | (Wazuh Manager)       |   | (Victim Endpoint) |   |
+|   | IP: 192.168.50.10     |   | IP: 192.168.50.20 |   |
+|   +-----------+-----------+   +---------+---------+   |
+|               |                         |             |
++---------------|-------------------------|-------------+
+                |     Internal Network    |
+                +------------X------------+
+</code></pre><p><strong>VM 1 - Wazuh Manager &amp; Indexer</strong>
+Debian Server 13.5.0, 4 vCPUs, 8GB RAM, 50GB disk. Handles log ingestion, parsing, rule correlation, and index storage.</p>
+<p><strong>VM 2 - Victim Endpoint</strong>
+Windows 10 Enterprise, 2 vCPUs, 4GB RAM. Simulates a standard corporate workstation with the Wazuh Agent installed.</p>
+<hr>
+<h2 id="going-beyond-basic-logs---sysmon-integration">Going Beyond Basic Logs - Sysmon Integration<a hidden class="anchor" aria-hidden="true" href="#going-beyond-basic-logs---sysmon-integration">#</a></h2>
+<p>Windows Security Event Logs have critical blind spots. They don&rsquo;t natively correlate process lineage or network connections in a useful way for threat detection. To fix this, I integrated <strong>Microsoft Sysmon</strong> on the Windows VM.</p>
+<p>Install Sysmon with a modular config focused on attacker behaviours:</p>
+<pre tabindex="0"><code class="language-dos" data-lang="dos">Sysmon64.exe -i sysmonconfig-modular.xml
+</code></pre><p>This adds three key event types:</p>
+<ul>
+<li><strong>Event ID 1</strong> - Process Creation (full command line, user, MD5/SHA256 hash of the binary)</li>
+<li><strong>Event ID 3</strong> - Network Connections (which local process opened a socket to which external IP)</li>
+<li><strong>Event ID 11</strong> - File Creation (detecting payload drops in temp folders)</li>
+</ul>
+<p>To get these into Wazuh, I edited the agent config on the Windows VM (<code>C:\Program Files (x86)\ossec-agent\ossec.conf</code>) and added:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;localfile&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;location&gt;</span>Microsoft-Windows-Sysmon/Operational<span style="color:#f92672">&lt;/location&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;log_format&gt;</span>eventchannel<span style="color:#f92672">&lt;/log_format&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/localfile&gt;</span>
+</span></span></code></pre></div><p>After restarting the agent service, structured XML events from Sysmon started flowing into the SIEM pipeline continuously.</p>
+<hr>
+<h2 id="attack-simulation">Attack Simulation<a hidden class="anchor" aria-hidden="true" href="#attack-simulation">#</a></h2>
+<p>With telemetry in place, I ran two controlled attacks from a third machine to test the detection capability.</p>
+<h3 id="scenario-1---rdp-brute-force-mitre-t1110002">Scenario 1 - RDP Brute Force (MITRE T1110.002)<a hidden class="anchor" aria-hidden="true" href="#scenario-1---rdp-brute-force-mitre-t1110002">#</a></h3>
+<p><strong>The attack:</strong> An automated script generating 50 failed login attempts in under 20 seconds against the default RDP port (3389), using a dictionary of common admin usernames.</p>
+<p><strong>What Wazuh saw:</strong> The endpoint generated multiple Windows Event ID 4625 (failed logon) events. The base rule detected each failure, but the high-priority correlation rule (level 10+) fired when the frequency threshold within the timeframe was exceeded.</p>
+<p><strong>Raw alert:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;win&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;system&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;providerName&#34;</span>: <span style="color:#e6db74">&#34;Microsoft-Windows-Security-Auditing&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;eventID&#34;</span>: <span style="color:#e6db74">&#34;4625&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;eventdata&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;logonType&#34;</span>: <span style="color:#e6db74">&#34;3&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;targetUserName&#34;</span>: <span style="color:#e6db74">&#34;Administrator&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;ipAddress&#34;</span>: <span style="color:#e6db74">&#34;192.168.50.99&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;rule&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;60122&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;level&#34;</span>: <span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;Windows: Multiple logon failures - Possible Brute Force attack.&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>From the dashboard I could immediately pull the attacker&rsquo;s IP (<code>192.168.50.99</code>), the authentication type (LogonType 3 - network/remote), and the target account (<code>Administrator</code>). No session was established.</p>
+<hr>
+<h3 id="scenario-2---post-compromise-reconnaissance-mitre-t1033--t1087">Scenario 2 - Post-Compromise Reconnaissance (MITRE T1033 / T1087)<a hidden class="anchor" aria-hidden="true" href="#scenario-2---post-compromise-reconnaissance-mitre-t1033--t1087">#</a></h3>
+<p><strong>The attack:</strong> Simulating an attacker who already has console access and runs quick enumeration commands: <code>whoami</code>, <code>net user</code>, and <code>ipconfig /all</code>.</p>
+<p><strong>What Wazuh saw:</strong> A traditional antivirus would ignore these entirely as they are legitimate native Windows tools. But Sysmon caught the full execution context.</p>
+<p><strong>Process tree from Sysmon Event ID 1:</strong></p>
+<ul>
+<li><strong>Process created:</strong> <code>whoami.exe</code></li>
+<li><strong>Command line:</strong> <code>C:\Windows\system32\whoami.exe</code></li>
+<li><strong>Parent process:</strong> <code>powershell.exe</code> with execution policy bypass arguments, indicating a Reverse Shell</li>
+</ul>
+<p>The binary hash was automatically validated against the system integrity baseline, confirming the real <code>whoami.exe</code> was not tampered with but its execution context was clearly malicious.</p>
+<p>Seeing this fire in real time was the highlight of the lab for me. Watching commands I ran myself get flagged and contextualised by the SIEM within seconds made everything I had read about behavioural detection actually click.</p>
+<hr>
+<h2 id="active-response---automated-blocking">Active Response - Automated Blocking<a hidden class="anchor" aria-hidden="true" href="#active-response---automated-blocking">#</a></h2>
+<p>The most satisfying part of the lab. I configured Wazuh&rsquo;s Active Response to automatically block the attacking IP at the Windows Firewall level the moment the brute force rule fired, so no human intervention required.</p>
+<p><strong>Configuration in the Wazuh Manager&rsquo;s <code>ossec.conf</code>:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- Block command definition --&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;command&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;name&gt;</span>netsh-block-ip<span style="color:#f92672">&lt;/name&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;executable&gt;</span>netsh-w firewall-drop.cmd<span style="color:#f92672">&lt;/executable&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;timeout_allowed&gt;</span>yes<span style="color:#f92672">&lt;/timeout_allowed&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/command&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- Trigger on brute force rule --&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;active-response&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;command&gt;</span>netsh-block-ip<span style="color:#f92672">&lt;/command&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;location&gt;</span>local<span style="color:#f92672">&lt;/location&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;rules_id&gt;</span>60122<span style="color:#f92672">&lt;/rules_id&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;timeout&gt;</span>1800<span style="color:#f92672">&lt;/timeout&gt;</span> <span style="color:#75715e">&lt;!-- 30 minute block --&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/active-response&gt;</span>
+</span></span></code></pre></div><p><strong>What happened during the test:</strong> The moment the 10th failed login hit the server, rule 60122 fired. The Manager sent an encrypted instruction back to the Windows agent, which executed:</p>
+<pre tabindex="0"><code class="language-dos" data-lang="dos">netsh advfirewall firewall add rule name=&#34;Wazuh Block IP&#34; dir=in action=block remoteip=192.168.50.99
+</code></pre><p>The attacker&rsquo;s connection dropped instantly. After 30 minutes, the agent removed the rule automatically and restored the original network state.</p>
+<p>The response time was measured in milliseconds compared to the minutes it would take a human analyst to read the alert and act manually.</p>
+<hr>
+<h2 id="where-i-hit-the-wall">Where I Hit the Wall<a hidden class="anchor" aria-hidden="true" href="#where-i-hit-the-wall">#</a></h2>
+<p>I wanted to go further - integrating external Threat Intelligence APIs like VirusTotal to automatically enrich file creation alerts with global reputation data, and writing custom YARA rules to trigger on suspicious downloads.</p>
+<p>I started down that path and quickly realised I didn&rsquo;t have enough knowledge yet to do it cleanly. Rather than cobble something together I didn&rsquo;t fully understand, I stopped here. This is the honest version of the lab: it goes as far as my current skill level allowed, and that&rsquo;s fine.</p>
+<p>When I come back to this, once the SFF server is running and I have a proper Proxmox environment, I&rsquo;ll pick up from here.</p>
+<hr>
+<h2 id="what-i-learned">What I Learned<a hidden class="anchor" aria-hidden="true" href="#what-i-learned">#</a></h2>
+<ul>
+<li><strong>Context beats signatures.</strong> Traditional security tools focused on signatures fail against behavioural attacks. Correlating Sysmon process metadata with Wazuh&rsquo;s rule engine is a far more robust defence against modern techniques.</li>
+<li><strong>Automation matters.</strong> Active Response reduces mean time to remediation from minutes to milliseconds. That difference is significant in a real incident.</li>
+<li><strong>Knowing your limits is a skill.</strong> Stopping before I broke something I didn&rsquo;t understand was the right call. I learned more from the parts that worked cleanly than I would have from forcing the parts that didn&rsquo;t.</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="next" href="http://localhost:1313/wargaming/solved/alpha-first-contact/">
+    <span class="title">Next »</span>
+    <span>Alpha - First Contact</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Ricardo Ribeiro</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

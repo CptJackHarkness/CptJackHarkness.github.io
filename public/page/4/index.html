@@ -98,6 +98,23 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">The Disk Dump - FAT12 Forensics &amp; XOR Decryption
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Overview “The Disk Dump” focuses on forensic analysis of FAT12 filesystems and fundamental cryptography. It explores how FAT handles file deletion: when a file is deleted, the data remains intact on disk - only the first byte of the filename in the directory entry is replaced with 0xE5, marking the space as available.
+The challenge also includes a decoy flag (rabbit hole) designed to mislead players.
+Challenge Setup A FAT12 disk image (the_disk_dump.img) was created and mounted. Four files were written and then forensically deleted (first byte replaced with 0xE5):
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer>
+  <a class="entry-link" aria-label="post link to The Disk Dump - FAT12 Forensics & XOR Decryption" href="http://localhost:1313/wargaming/created/the-disk-dump/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">The Moodle Breach - Multi-Vector Forensics
     </h2>
   </header>
@@ -126,6 +143,40 @@ Vulnerabilities Covered Information Disclosure (A02:2025 — Security Misconfigu
 
 <span title='2026-06-03 00:00:00 +0000 UTC'>June 3, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer>
   <a class="entry-link" aria-label="post link to The True Owner - LFI, Base64 & Cookie Tampering" href="http://localhost:1313/wargaming/created/the-true-owner/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Homelab #1: Raspberry Pi 4 — Pi-hole, Tailscale &amp; Jellyfin
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Overview Before the SFF server arrives, my Raspberry Pi 4 is doing the heavy lifting. It currently runs three services: Pi-hole for DNS-level ad and tracker blocking, Tailscale for secure remote access, and Jellyfin as a self-hosted media server.
+This post documents a simple setup and what I learned along the way.
+Hardware Raspberry Pi 4 (4GB RAM) MicroSD card (32GB) Raspberry Pi OS Lite (64-bit, headless) 1. Pi-hole - Network-wide DNS Filtering Pi-hole acts as a local DNS resolver for the entire network. Any device that uses the Pi as its DNS server gets ad and tracker domains blocked before the request even leaves the network.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-06-01 00:00:00 +0000 UTC'>June 1, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer>
+  <a class="entry-link" aria-label="post link to Homelab #1: Raspberry Pi 4 — Pi-hole, Tailscale & Jellyfin" href="http://localhost:1313/homelab/homelab%231/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Quick Writeup: Network Reconnaissance Analysis with Nmap
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Lab Objective The objective of this exercise was to perform a reconnaissance scan (recon) on a test host to map the attack surface and identify potential entry vectors.
+1. Command Execution I used Kali Linux to run an aggressive scan, extracting service versions and the target’s operating system:
+nmap -sV -sC -O -F 192.168.1.50 2. Results Port State Service Version Detected Security Impact 22/TCP Open SSH OpenSSH 8.2p1 Secure (if using keys instead of passwords) 80/TCP Open HTTP Apache httpd 2.4.41 Potential vector if public exploits exist 445/TCP Open SMB Samba 4.X Critical: Common target for lateral movement 3. Conclusion The exposed 445 (SMB) port represents the highest risk in this scenario. Immediate mitigation recommendations:
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-05-16 00:00:00 +0000 UTC'>May 16, 2026</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to Quick Writeup: Network Reconnaissance Analysis with Nmap" href="http://localhost:1313/quick-writeups/analise-nmap/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

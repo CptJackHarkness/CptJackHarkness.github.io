@@ -16,6 +16,11 @@ params:
       Not a polished resume, just a working journal.
   ShowPoweredBy: false
   copyright: "2024"
+  mainSections:
+    - homelab
+    - ctfs
+    - wargaming
+    - quick-writeups
 
   socialIcons:
     - name: github

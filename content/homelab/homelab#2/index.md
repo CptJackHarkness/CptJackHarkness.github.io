@@ -1,6 +1,6 @@
 ---
 title: "Homelab #2: Wazuh SIEM/XDR - Attack Simulation & Active Response"
-date: 2026-06-07
+date: 2026-06-26
 description: "Building a more advanced Wazuh lab on VirtualBox with Sysmon integration, real attack simulations, and automated Active Response until I hit the wall of my current skill level."
 ---
 

@@ -22,7 +22,7 @@ This post documents a simple setup and what I learned along the way.
 
 ---
 
-## 1. Pi-hole — Network-wide DNS Filtering
+## 1. Pi-hole - Network-wide DNS Filtering
 
 Pi-hole acts as a local DNS resolver for the entire network. Any device that
 uses the Pi as its DNS server gets ad and tracker domains blocked before the
@@ -38,7 +38,7 @@ benefit automatically.
 
 ---
 
-## 2. Tailscale — Zero-config VPN
+## 2. Tailscale - Zero-config VPN
 
 Tailscale creates a private mesh network using WireGuard under the hood. With
 it installed on the Pi and my other devices, I can reach home services securely
@@ -56,7 +56,7 @@ sudo tailscale up
 
 ---
 
-## 3. Jellyfin — Self-hosted Media Server
+## 3. Jellyfin - Self-hosted Media Server
 
 Jellyfin is an open-source alternative to Plex. It serves media files over the
 local network (and remotely via Tailscale) without phoning home to any external
@@ -73,8 +73,7 @@ Access via browser at my Pi's local or Tailscale IP on port 8096.
 
 ## What I Learned
 
-- Running services on a single device requires thinking about resource contention
-— Pi-hole is very lightweight, but Jellyfin transcoding can spike CPU on a Pi 4.
+- Running services on a single device requires thinking about resource contention, and Pi-hole is very lightweight, but Jellyfin transcoding can spike CPU on a Pi 4.
 - Combining Pi-hole with Tailscale means I can use my home DNS filter even when
 away from home by routing DNS through the Pi via the VPN.
 
