@@ -1,5 +1,5 @@
 ---
-title: "Homelab #3: Project STARK — Automated Media Server on Proxmox"
+title: "Homelab #3: Project STARK - Automated Media Server on Proxmox"
 date: 2026-09-29
 description: "The SFF server finally arrived. Building a fully automated media stack on Proxmox VE with Docker, LXC, Jellyfin, Radarr, Sonarr, and a 2TB media pool."
 ---
